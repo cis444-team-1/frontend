@@ -1,11 +1,12 @@
+import { Button } from "../../components";
 import { Example } from "./components/example";
-import styles from "./styles/page.module.css";
 
 export default function HomePage() {
   return (
-    <div className={styles.container}>
+    <div>
       <p>HomePage</p>
       <Example />
+      <Button />
     </div>
   );
 }

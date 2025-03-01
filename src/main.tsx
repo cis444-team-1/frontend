@@ -4,6 +4,7 @@ import "./index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import HomePage from "./features/home/page";
+import { ThemeProvider } from "./context/theme-context";
 
 const mainRoutes = {
   path: "/",
@@ -33,7 +34,9 @@ export const queryClient = new QueryClient();
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+        <RouterProvider router={router} />
+      </ThemeProvider>
     </QueryClientProvider>
   </StrictMode>
 );

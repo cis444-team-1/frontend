@@ -1,6 +1,6 @@
 .example {
-    background-color: var(--primary);
-    color: var(--background);
+    background-color: var(--secondary-default);
+    color: var(--foreground-default);
     padding: 1rem;
     border-radius: 1rem;
 }
