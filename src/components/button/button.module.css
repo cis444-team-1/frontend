@@ -1,6 +1,317 @@
-.example {
-    background-color: var(--secondary-default);
+.baseButton {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    gap: 4px;
+    text-align: center;
+    font-weight: normal;
+    transition: all 0.2s ease-out;
+    border-radius: 0.375rem;
+    outline: none;
+    border: 1px solid;
+    outline-width: 0;
+}
+
+.baseButton:focus-visible {
+    outline-width: 4px;
+    outline-offset: 1px;
+}
+
+.iconContainer {
+    display: flex;
+}
+
+/* SIZE VARIANTS */
+.sizeTiny {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.625rem;
+    height: 24px;
+}
+
+.sizeSmall {
+    font-size: 0.875rem;
+    line-height: 1rem;
+    padding: 0.5rem 0.75rem;
+    height: 28px;
+}
+
+.sizeMedium {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    height: 32px;
+}
+
+.sizeLarge {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    height: 36px;
+}
+
+.sizeXlarge {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    height: 44px;
+}
+
+/* TYPE VARIANTS */
+.typePrimary {
+    background-color: var(--brand-400);
     color: var(--foreground-default);
-    padding: 1rem;
-    border-radius: 1rem;
+    border: 1px solid color-mix(in srgb, var(--brand-500) 25%, transparent);
+    outline-color: var(--brand-600);
+}
+
+.typePrimary:hover {
+    background-color: color-mix(in srgb, var(--brand-default) 20%, transparent);
+    border-color: var(--brand-600);
+}
+
+.typePrimary:focus-visible {
+    outline-color: var(--brand-600);
+}
+
+.typePrimary[data-state="open"] {
+    background-color: color-mix(in srgb, var(--brand-default) 20%, transparent);
+    outline-color: var(--brand-600);
+}
+
+.typeDefault {
+    color: var(--foreground-default);
+    background-color: var(--background-alternative-default);
+    border: 1px solid var(--border-strong);
+    outline-color: var(--brand-600);
+}
+
+.typeDefault:hover {
+    background-color: var(--background-surface-100);
+    border-color: var(--border-stronger);
+}
+
+.typeDefault:focus-visible {
+    outline-color: var(--brand-600);
+}
+
+.typeDefault[data-state="open"] {
+    background-color: var(--background-surface-100);
+    outline-color: var(--brand-600);
+    border-color: var(--colors-gray-dark-800);
+}
+
+.typeSecondary {
+    background-color: var(--foreground-default);
+    color: var(--background-default);
+    border: 1px solid var(--foreground-light);
+    outline-color: var(--border-strong);
+}
+
+.typeSecondary:hover {
+    color: var(--border-stronger);
+    border-color: var(--foreground-lighter);
+}
+
+.typeSecondary:focus-visible {
+    outline-color: var(--border-strong);
+}
+
+.typeSecondary[data-state="open"] {
+    border-color: var(--foreground-lighter);
+    outline-color: var(--border-strong);
+}
+
+.typeOutline {
+    color: var(--foreground-default);
+    background-color: transparent;
+    border: 1px solid var(--border-strong);
+    outline-color: var(--border-strong);
+}
+
+.typeOutline:hover {
+    border-color: var(--foreground-muted);
+}
+
+.typeOutline:focus-visible {
+    outline-color: var(--border-strong);
+}
+
+.typeOutline[data-state="open"] {
+    border-color: var(--border-stronger);
+    outline-color: var(--border-strong);
+}
+
+.typeDashed {
+    color: var(--foreground-default);
+    background-color: transparent;
+    border: 1px dashed var(--border-strong);
+    outline-color: var(--border-strong);
+}
+
+.typeDashed:hover {
+    border-color: var(--border-stronger);
+}
+
+.typeDashed:focus-visible {
+    outline-color: var(--border-strong);
+}
+
+.typeDashed[data-state="open"] {
+    border-color: var(--border-stronger);
+    outline-color: var(--border-strong);
+}
+
+.typeLink {
+    color: var(--brand-600);
+    background-color: transparent;
+    border: 1px solid transparent;
+    outline-color: var(--border-strong);
+}
+
+.typeLink:hover {
+    background-color: var(--brand-400);
+}
+
+.typeLink:focus-visible {
+    outline-color: var(--border-strong);
+}
+
+.typeLink[data-state="open"] {
+    background-color: var(--brand-400);
+    outline-color: var(--border-strong);
+}
+
+.typeText {
+    color: var(--foreground-default);
+    background-color: transparent;
+    border: 1px solid transparent;
+    outline-color: var(--border-strong);
+}
+
+.typeText:hover {
+    background-color: var(--background-surface-300);
+}
+
+.typeText:focus-visible {
+    outline-color: var(--border-strong);
+}
+
+.typeText[data-state="open"] {
+    background-color: var(--background-surface-300);
+    outline-color: var(--border-strong);
+}
+
+.typeDanger {
+    color: var(--foreground-default);
+    background-color: var(--destructive-300);
+    border: 1px solid var(--destructive-500);
+    outline-color: var(--amber-default);
+}
+
+.typeDanger:hover {
+    background-color: var(--destructive-400);
+    border-color: var(--destructive-default);
+    color: var(--foreground-default);
+}
+
+.typeDanger:focus-visible {
+    outline-color: var(--amber-default);
+}
+
+.typeDanger[data-state="open"] {
+    background-color: var(--destructive-400);
+    border-color: var(--destructive-default);
+    outline-color: var(--destructive-default);
+}
+
+.typeWarning {
+    color: var(--foreground-default);
+    background-color: var(--warning-300);
+    border: 1px solid var(--warning-500);
+    outline-color: var(--amber-default);
+}
+
+.typeWarning:hover {
+    background-color: var(--warning-400);
+    border-color: var(--warning-default);
+    color: var(--foreground-default);
+}
+
+.typeWarning:focus-visible {
+    outline-color: var(--amber-default);
+}
+
+.typeWarning[data-state="open"] {
+    background-color: var(--warning-400);
+    border-color: var(--warning-default);
+    outline-color: var(--warning-default);
+}
+
+/* SVG SIZES */
+.svgTiny svg {
+    height: 14px;
+    width: 14px;
+}
+
+.svgSmall svg {
+    height: 18px;
+    width: 18px;
+}
+
+.svgMedium svg {
+    height: 20px;
+    width: 20px;
+}
+
+.svgLarge svg {
+    height: 20px;
+    width: 20px;
+}
+
+.svgXlarge svg {
+    height: 24px;
+    width: 24px;
+}
+
+.svgXxlarge svg {
+    height: 30px;
+    width: 30px;
+}
+
+.svgXxxlarge svg {
+    height: 42px;
+    width: 42px;
+}
+
+/* Block Variant */
+.block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Overlay Variants */
+.overlayBase {
+    position: absolute;
+    inset: 0;
+    background-color: var(--background-default);
+    opacity: 0.5;
+}
+
+.overlayContainer {
+    position: fixed;
+    inset: 0;
+    transition: opacity 0.3s;
+}
+
+/* Disabled Variant */
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Rounded Variant */
+.roundedFull {
+    border-radius: 9999px;
 }

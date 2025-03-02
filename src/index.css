@@ -18,11 +18,6 @@ body {
   min-height: 100svh;
 }
 
-*:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
-  all: unset;
-  display: revert;
-}
-
 /* Fix mobile Safari increase font-size on landscape mode */
 html {
   -moz-text-size-adjust: none;
@@ -121,8 +116,6 @@ meter {
   display: none;
 }
 
-
-/* BEGINNING OF CUSTOM STYLES */
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -134,7 +127,24 @@ meter {
   -moz-osx-font-smoothing: grayscale;
 
   --helpers-os-appearance: Light;
+
+  /* general colors */
+  --amber-default: #b45309;
+
   /* todo: Put light mode colors here */
+
+  --colors-gray-light-100: hsl(0deg 0% 98.8%);
+  --colors-gray-light-200: hsl(0deg 0% 97.3%);
+  --colors-gray-light-300: hsl(0deg 0% 95.3%);
+  --colors-gray-light-400: hsl(0deg 0% 92.9%);
+  --colors-gray-light-500: hsl(0deg 0% 91%);
+  --colors-gray-light-600: hsl(0deg 0% 88.6%);
+  --colors-gray-light-700: hsl(0deg 0% 85.9%);
+  --colors-gray-light-800: hsl(0deg 0% 78%);
+  --colors-gray-light-900: hsl(0deg 0% 56.1%);
+  --colors-gray-light-1000: hsl(0deg 0% 52.2%);
+  --colors-gray-light-1100: hsl(0deg 0% 43.5%);
+  --colors-gray-light-1200: hsl(0deg 0% 9%);
 
 }
 
@@ -190,5 +200,35 @@ meter {
     --foreground-lighter: hsl(0deg 0% 53.7%);
     --foreground-light: hsl(0deg 0% 70.6%);
     --foreground-default: hsl(0deg 0% 98%);
+
+    --colors-gray-dark-100: hsl(0deg 0% 8.6%);
+    --colors-gray-dark-200: hsl(0deg 0% 11%);
+    --colors-gray-dark-300: hsl(0deg 0% 13.7%);
+    --colors-gray-dark-400: hsl(0deg 0% 15.7%);
+    --colors-gray-dark-500: hsl(0deg 0% 18%);
+    --colors-gray-dark-600: hsl(0deg 0% 20.4%);
+    --colors-gray-dark-700: hsl(0deg 0% 24.3%);
+    --colors-gray-dark-800: hsl(0deg 0% 31.4%);
+    --colors-gray-dark-900: hsl(0deg 0% 43.9%);
+    --colors-gray-dark-1000: hsl(0deg 0% 49.4%);
+    --colors-gray-dark-1100: hsl(0deg 0% 62.7%);
+    --colors-gray-dark-1200: hsl(0deg 0% 92.9%);
+
+    background-color: var(--background-default);
   }
+}
+
+/* ANIMATIONS */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
 }
