@@ -1,0 +1,151 @@
+.subtrigger {
+    display: flex;
+    cursor: default;
+    gap: 0.5rem;
+    user-select: none;
+    align-items: center;
+    border-radius: 0.375rem;
+    padding: 0.375rem 0.5rem;
+    font-size: 0.875rem;
+    outline: none;
+}
+
+.subtrigger:focus,
+.subtrigger[data-state="open"] {
+    background-color: var(--brand-default);
+}
+
+.subtrigger svg {
+    pointer-events: none;
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+}
+
+.subtriggerInset {
+    padding-left: 8px;
+}
+
+.dropdownSubcontent {
+    z-index: 50;
+    min-width: 8rem;
+    overflow: hidden;
+    border-radius: 0.375rem;
+    border: 1px solid var(--border-default);
+    background-color: var(--background-surface-200);
+    padding: 0.25rem;
+    color: var(--foreground-default);
+}
+
+.dropdownSubcontent[data-state="open"] {
+    animation: fade-in-0 zoom-in-95 var(150ms, 0.2s) ease-out;
+}
+
+.dropdownSubcontent[data-state="closed"] {
+    animation: fade-out-0 zoom-out-95 var(150ms, 0.2s) ease-in;
+}
+
+.dropdownSubcontent[data-side="bottom"] {
+    animation: slide-in-from-top-2 var(150ms, 0.2s) ease-out;
+}
+
+.dropdownSubcontent[data-side="left"] {
+    animation: slide-in-from-right-2 var(150ms, 0.2s) ease-out;
+}
+
+.dropdownSubcontent[data-side="right"] {
+    animation: slide-in-from-left-2 var(150ms, 0.2s) ease-out;
+}
+
+.dropdownSubcontent[data-side="top"] {
+    animation: slide-in-from-bottom-2 var(150ms, 0.2s) ease-out;
+}
+
+.menuContent {
+    z-index: 50;
+    min-width: 8rem;
+    overflow: hidden;
+    border-radius: 0.375rem;
+    border: 1px solid var(--border-default);
+    background-color: var(--background-surface-200);
+    padding: 0.25rem;
+    color: var(--foreground-default);
+}
+
+
+.menuContent[data-state="open"] {
+    animation: fade-in-0 zoom-in-95 var(150ms, 0.2s) ease-out;
+}
+
+.menuContent[data-state="closed"] {
+    animation: fade-out-0 zoom-out-95 var(150ms, 0.2s) ease-in;
+}
+
+.menuContent[data-side="bottom"] {
+    animation: slide-in-from-top-2 var(150ms, 0.2s) ease-out;
+}
+
+.menuContent[data-side="left"] {
+    animation: slide-in-from-right-2 var(150ms, 0.2s) ease-out;
+}
+
+.menuContent[data-side="right"] {
+    animation: slide-in-from-left-2 var(150ms, 0.2s) ease-out;
+}
+
+.menuContent[data-side="top"] {
+    animation: slide-in-from-bottom-2 var(150ms, 0.2s) ease-out;
+}
+
+.menuItem {
+    position: relative;
+    display: flex;
+    cursor: default;
+    user-select: none;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.375rem;
+    padding: 0.375rem 0.5rem;
+    font-size: 0.875rem;
+    outline: none;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.menuItem:focus {
+    background-color: var(--background-surface-300);
+    color: var(--brand-default);
+}
+
+.menuItem[data-disabled] {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.menuItem>svg {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+}
+
+.label {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    color: var(--foreground-default);
+    font-weight: 500;
+}
+
+.separator {
+    margin-left: -0.25rem;
+    margin-right: -0.25rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    height: 1px;
+    background-color: var(--muted);
+}
+
+.shortcut {
+    margin-left: auto;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    opacity: 0.6;
+}

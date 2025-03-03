@@ -1,0 +1,133 @@
+/* SIZE VARIANTS */
+.sizeTiny {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.625rem;
+    height: 24px;
+}
+
+.sizeSmall {
+    font-size: 0.875rem;
+    line-height: 1rem;
+    padding: 0.5rem 0.75rem;
+    height: 28px;
+}
+
+.sizeMedium {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    height: 32px;
+}
+
+.sizeLarge {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    height: 36px;
+}
+
+.sizeXlarge {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    height: 44px;
+}
+
+/* SVG SIZES */
+.svgTiny svg {
+    height: 14px;
+    width: 14px;
+}
+
+.svgSmall svg {
+    height: 18px;
+    width: 18px;
+}
+
+.svgMedium svg {
+    height: 20px;
+    width: 20px;
+}
+
+.svgLarge svg {
+    height: 20px;
+    width: 20px;
+}
+
+.svgXlarge svg {
+    height: 24px;
+    width: 24px;
+}
+
+.svgXxlarge svg {
+    height: 30px;
+    width: 30px;
+}
+
+.svgXxxlarge svg {
+    height: 42px;
+    width: 42px;
+}
+
+/* INPUT CLASSES*/
+.input {
+    display: flex;
+    width: 100%;
+    border-radius: 0.375rem;
+    border: 1px solid var(--border-control);
+    color: var(--foreground-default);
+    background-color: color-mix(in srgb, var(--foreground-default) 0.026, transparent);
+}
+
+.input::file-selector-button {
+    border: none;
+    background: transparent;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.input::placeholder {
+    color: var(--foreground-muted);
+}
+
+.input:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--border-control), 0 0 0 4px var(--foreground-muted);
+}
+
+.input:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* Aria invalid states */
+.input[aria-invalid="true"] {
+    background-color: var(--destructive-200);
+    border-color: var(--destructive-400);
+}
+
+.input[aria-invalid="true"]:focus,
+.input[aria-invalid="true"]:focus-visible {
+    border-color: var(--destructive-default);
+}
+
+.icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0.5rem;
+    padding-left: 3px;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    color: var(--foreground-light);
+}
+
+.copy {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0.5rem;
+    padding-left: 3px;
+    padding-right: 1px;
+    display: flex;
+    gap: 1px;
+    align-items: center;
+}

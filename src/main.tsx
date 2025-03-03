@@ -2,21 +2,15 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import HomePage from "./features/home/page";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "./context/theme-context";
+import PlaylistPage from "./features/playlist/page";
+import PlaybackLayout from "./features/base/components/playback-layout";
 
 const mainRoutes = {
   path: "/",
-  element: (
-    <div>
-      <Outlet />
-    </div>
-  ),
-  children: [
-    { path: "/", element: <HomePage /> },
-    { path: "/about", element: <div>About page!</div> },
-  ],
+  element: <PlaybackLayout />,
+  children: [{ path: "/", element: <PlaylistPage /> }],
 };
 
 const router = createBrowserRouter([mainRoutes], {

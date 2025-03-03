@@ -1,0 +1,266 @@
+/* LAYOUT */
+.layoutContainer {
+    display: flex;
+    flex-direction: row;
+    height: 100dvh;
+    color: var(--foreground-default)
+}
+
+@media (max-width: 720px) {
+    .layoutContainer {
+        flex-direction: column;
+    }
+}
+
+/* NOW PLAYING STYLES */
+.nowPlayingContainer {
+    display: none;
+}
+
+@media (min-width: 720px) {
+    .nowPlayingContainer {
+        display: flex;
+        flex-direction: column;
+        width: 14rem;
+        padding: 1rem;
+        background-color: var(--background-surface-50);
+        overflow: auto;
+    }
+}
+
+.nowPlayingTitle {
+    color: var(--foreground-default);
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.nowPlayingImageContainer {
+    position: relative;
+    width: 100%;
+    aspect-ratio: square;
+    margin-bottom: 0.5rem;
+}
+
+.nowPlayingImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nowPlayingInfoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.nowPlayingInfoText {
+    color: var(--foreground-default);
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.nowPlayingInfoLabel {
+    color: var(--foreground-lighter);
+    font-size: 0.875rem;
+}
+
+/* END OF NOW PLAYING STYLES */
+
+/* SIDEBAR STYLES */
+.sidebarContainer {
+    display: none;
+}
+
+@media (min-width: 720px) {
+    .sidebarContainer {
+        display: block;
+        width: 14rem;
+        height: 100dvh;
+        background-color: var(--background-surface-50);
+        overflow: auto;
+    }
+}
+
+.sidebarHeader {
+    margin: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sidebarScrollAreaContainer {
+    height: calc(100dvh - 500px);
+}
+
+.sidebarList {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1px;
+}
+
+.playlistRowItem {
+    position: relative
+}
+
+.playlistRowItem:hover .playlistAction {
+    opacity: 1;
+}
+
+.playlistAction {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.playlistsTitle {
+    color: var(--foreground-default);
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin: 0.2rem 0.7rem 0.2rem 0.7rem;
+}
+
+/* END OF SIDEBAR STYLES */
+
+/* PLAYBACK CONTROLS STYLES */
+
+.playbackControlsContainer {
+    position: fixed;
+    display: flex;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border-top: 1px solid var(--border-default);
+    background-color: var(--background-surface-100);
+    padding: 0.5rem;
+    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
+}
+
+.playbackControlsLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(100% / 3);
+}
+
+.playbackControlsRight {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 0.5rem;
+    width: calc(100% / 3);
+}
+
+.trackInfoContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: calc(100% / 3);
+}
+
+.trackInfoImage {
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: cover;
+}
+
+.trackInfoTextContainer {
+    flex-shrink: 1;
+    min-width: 0;
+}
+
+.trackTitle {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--foreground-default);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 120px;
+}
+
+.trackArtist {
+    font-size: 0.875rem;
+    color: var(--foreground-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 120px;
+}
+
+.playbackButtonsContainer {
+    display: flex;
+    align-items: center;
+}
+
+.progressBarContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 4px;
+}
+
+.progressBarText {
+    font-size: 0.75rem;
+    color: var(--foreground-lighter);
+    font-variant-numeric: tabular-nums;
+}
+
+.progressBarOuter {
+    flex-grow: 1;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    height: 4px;
+    background-color: var(--foreground-muted);
+    border-radius: 999px;
+    cursor: pointer;
+    position: relative;
+}
+
+.progressBarInner {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: var(--foreground-default);
+    border-radius: 999px;
+}
+
+.volumeVisibleContainer {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    background-color: var(--background-surface-200);
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-strong);
+}
+
+.volumeBarOuter {
+    width: 5rem;
+    height: 4px;
+    background-color: var(--foreground-muted);
+    border-radius: 999px;
+    cursor: pointer;
+    position: relative;
+}
+
+.volumeBarInner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: var(--foreground-default);
+    border-radius: 999px;
+}
+
+/* END OF PLAYBACK CONTROLS STYLES */
