@@ -1,13 +1,4 @@
-import {
-  Trash,
-  EllipsisVertical,
-  Search,
-  Library,
-  Home,
-  BookHeadphones,
-  Plus,
-  Pencil,
-} from "lucide-react";
+import { Trash, EllipsisVertical, Search, Pencil } from "lucide-react";
 import { useRef, useEffect, RefObject } from "react";
 import { usePlaylist } from "../../../hooks/use-playlist";
 import { Link } from "react-router";
@@ -27,9 +18,10 @@ import styles from "../styles.module.css";
 import { useTheme } from "../../../hooks/theme";
 
 export function Sidebar() {
-  let { playlists } = usePlaylist();
-  let playlistsContainerRef = useRef<HTMLUListElement>(null);
-  let { registerPanelRef, handleKeyNavigation, setActivePanel } = usePlayback();
+  const { playlists } = usePlaylist();
+  const playlistsContainerRef = useRef<HTMLUListElement>(null);
+  const { registerPanelRef, handleKeyNavigation, setActivePanel } =
+    usePlayback();
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
@@ -64,9 +56,17 @@ export function Sidebar() {
           <Input
             icon={<Search />}
             size="tiny"
-            placeholder="Search music, users, playlists..."
-            style={{ margin: "1rem" }}
+            placeholder="Search"
+            className={styles.searchInput}
           />
+        </div>
+
+        {/** TODO: MOVE SOMEWHERE ELSE */}
+        <div style={{ marginLeft: "0.8rem" }}>
+          <p style={{ fontSize: "0.8rem" }}>Current Theme: {theme}</p>
+          <Button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+            Change theme
+          </Button>
         </div>
 
         <p className={styles.playlistsTitle} style={{ marginTop: "1rem" }}>
@@ -75,9 +75,8 @@ export function Sidebar() {
         <Link to="/">
           <Button
             type="text"
-            size="small"
+            size="tiny"
             block
-            icon={<Home />}
             style={{
               borderRadius: 0,
               justifyContent: "start",
@@ -86,23 +85,21 @@ export function Sidebar() {
             Home
           </Button>
         </Link>
-        <Link to="/">
+        <Link to="/explore">
           <Button
             type="text"
-            size="small"
+            size="tiny"
             block
-            icon={<BookHeadphones />}
             style={{ borderRadius: 0, justifyContent: "start" }}
           >
             Explore
           </Button>
         </Link>
-        <Link to="/">
+        <Link to="/library">
           <Button
             type="text"
-            size="small"
+            size="tiny"
             block
-            icon={<Library />}
             style={{ borderRadius: 0, justifyContent: "start" }}
           >
             Library
@@ -114,9 +111,8 @@ export function Sidebar() {
         </p>
         <Button
           type="text"
-          size="small"
+          size="tiny"
           block
-          icon={<Plus />}
           style={{
             borderRadius: 0,
             justifyContent: "start",
@@ -126,9 +122,8 @@ export function Sidebar() {
         </Button>
         <Button
           type="text"
-          size="small"
+          size="tiny"
           block
-          icon={<Plus />}
           style={{
             borderRadius: 0,
             justifyContent: "start",
@@ -147,17 +142,11 @@ export function Sidebar() {
           className={styles.sidebarList}
           onKeyDown={(e) => handleKeyNavigation(e, "sidebar")}
         >
-          {playlists.map((playlist: any) => (
+          {playlists.map((playlist: Playlist) => (
             <PlaylistRow key={playlist.id} playlist={playlist} />
           ))}
         </ul>
       </ScrollArea>
-
-      {/** TODO: MOVE SOMEWHERE ELSE */}
-      <p style={{ fontSize: "0.8rem" }}>Current Theme: {theme}</p>
-      <Button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-        Change theme
-      </Button>
     </div>
   );
 }
@@ -168,7 +157,7 @@ function PlaylistRow({ playlist }: { playlist: Playlist }) {
       <Link to="/" tabIndex={0}>
         <Button
           type="text"
-          size="small"
+          size="tiny"
           block
           style={{ borderRadius: 0, justifyContent: "start" }}
         >

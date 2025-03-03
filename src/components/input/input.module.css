@@ -84,7 +84,7 @@
 }
 
 .input::placeholder {
-    color: var(--foreground-muted);
+    color: var(--foreground-light);
 }
 
 .input:focus-visible {

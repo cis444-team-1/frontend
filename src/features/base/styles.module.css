@@ -83,6 +83,10 @@
     }
 }
 
+.searchInput {
+    background-color: var(--background-surface-100);
+}
+
 .sidebarHeader {
     margin: 0.6rem;
     display: flex;
@@ -91,7 +95,7 @@
 }
 
 .sidebarScrollAreaContainer {
-    height: calc(100dvh - 500px);
+    height: calc(100dvh - 450px);
 }
 
 .sidebarList {

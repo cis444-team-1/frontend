@@ -31,6 +31,13 @@ button {
   cursor: revert;
 }
 
+/* Remove all strange presets for anchor tags */
+a {
+  all: unset;
+  cursor: pointer;
+}
+
+
 /* Remove list styles (bullets/numbers) */
 ol,
 ul,

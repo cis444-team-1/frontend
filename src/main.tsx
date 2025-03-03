@@ -6,11 +6,15 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "./context/theme-context";
 import PlaylistPage from "./features/playlist/page";
 import PlaybackLayout from "./features/base/components/playback-layout";
+import LibraryPage from "./features/library/page";
 
 const mainRoutes = {
   path: "/",
   element: <PlaybackLayout />,
-  children: [{ path: "/", element: <PlaylistPage /> }],
+  children: [
+    { path: "/", element: <PlaylistPage /> },
+    { path: "/library", element: <LibraryPage /> },
+  ],
 };
 
 const router = createBrowserRouter([mainRoutes], {
