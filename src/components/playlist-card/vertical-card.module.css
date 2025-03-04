@@ -3,6 +3,12 @@
     margin-top: 0.5rem;
     font-size: 1rem;
     color: var(--foreground-default);
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
 }
 
 .playlistInfo {

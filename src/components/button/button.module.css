@@ -57,14 +57,14 @@
 
 /* TYPE VARIANTS */
 .typePrimary {
-    background-color: var(--brand-400);
+    background-color: var(--brand-200);
     color: var(--foreground-default);
     border: 1px solid color-mix(in srgb, var(--brand-500) 25%, transparent);
     outline-color: var(--brand-600);
 }
 
 .typePrimary:hover {
-    background-color: color-mix(in srgb, var(--brand-default) 20%, transparent);
+    background-color: color-mix(in srgb, var(--brand-default) 40%, transparent);
     border-color: var(--brand-600);
 }
 
