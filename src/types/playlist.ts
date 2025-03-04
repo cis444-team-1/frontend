@@ -8,89 +8,64 @@ export interface Playlist {
   updatedAt: Date;
   songs: Song[]; // Not part of the API, but will be appended by the client
   userId?: string;
+  visbility: "public" | "private";
 }
 
-const testImage = "https://picsum.photos/2000/2000";
+const getTestImage = () => {
+  return `https://picsum.photos/id/${Math.floor(
+    Math.random() * 300
+  )}/2000/2000`;
+};
 
 export const playlists: Playlist[] = [
   {
     id: "1",
-    name: "Playlist One",
-    imageSrc: testImage,
+    name: "Liked Songs",
+    imageSrc: "liked-songs.png",
     createdAt: new Date(),
     updatedAt: new Date(),
     songs: [...songs],
+    visbility: "private",
+    userId: "DextrousSafe",
   },
   {
     id: "2",
     name: "Playlist Two",
-    imageSrc: testImage,
+    imageSrc: getTestImage(),
     createdAt: new Date(),
     updatedAt: new Date(),
     songs: [...songs],
+    visbility: "public",
+    userId: "JamesBond",
   },
   {
     id: "3",
     name: "Playlist Three",
-    imageSrc: testImage,
+    imageSrc: getTestImage(),
     createdAt: new Date(),
     updatedAt: new Date(),
     songs: [...songs],
+    visbility: "public",
+    userId: "JamesBond",
   },
   {
     id: "4",
     name: "Playlist Four",
-    imageSrc: testImage,
+    imageSrc: getTestImage(),
     createdAt: new Date(),
     updatedAt: new Date(),
     songs: [...songs],
+    visbility: "private",
+    userId: "Batman123",
   },
   {
     id: "5",
     name: "Playlist Five",
-    imageSrc: testImage,
+    imageSrc: getTestImage(),
     createdAt: new Date(),
     updatedAt: new Date(),
     songs: [...songs],
-  },
-  {
-    id: "5",
-    name: "Playlist Five",
-    imageSrc: testImage,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    songs: [...songs],
-  },
-  {
-    id: "5",
-    name: "Playlist Five",
-    imageSrc: testImage,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    songs: [...songs],
-  },
-  {
-    id: "5",
-    name: "Playlist Five",
-    imageSrc: testImage,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    songs: [...songs],
-  },
-  {
-    id: "5",
-    name: "Playlist Five",
-    imageSrc: testImage,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    songs: [...songs],
-  },
-  {
-    id: "5",
-    name: "Playlist Five",
-    imageSrc: testImage,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    songs: [...songs],
+    visbility: "private",
+    userId: "Batman123",
   },
 ];

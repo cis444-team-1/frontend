@@ -141,6 +141,36 @@ meter {
   /* general colors */
   --amber-default: #b45309;
 
+  --success-default: #10b981;
+  --success-600: #065f46;
+  --success-500: #16a34a;
+  --success-400: #22c55e;
+  --success-300: #86efac;
+
+  --purple-default: #8b5cf6;
+  --purple-600: #7c3aed;
+  --purple-500: #a855f7;
+  --purple-400: #9333ea;
+  --purple-300: #c4b5fd;
+
+  --blue-default: #3b82f6;
+  --blue-600: #2563eb;
+  --blue-500: #3b82f6;
+  --blue-400: #60a5fa;
+  --blue-300: #93c5fd;
+
+  --indigo-default: #4f46e5;
+  --indigo-600: #4338ca;
+  --indigo-500: #6366f1;
+  --indigo-400: #818cf8;
+  --indigo-300: #a5b4fc;
+
+  --pink-default: #ec4899;
+  --pink-600: #db2777;
+  --pink-500: #ec4899;
+  --pink-400: #f472b6;
+  --pink-300: #f9a8d4;
+
   --colors-gray-light-100: hsl(0deg 0% 98.8%);
   --colors-gray-light-200: hsl(0deg 0% 97.3%);
   --colors-gray-light-300: hsl(0deg 0% 95.3%);
@@ -301,4 +331,10 @@ meter {
 
 .animate-spin {
   animation: spin 1s linear infinite;
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: var(150ms);
 }

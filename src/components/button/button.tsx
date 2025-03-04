@@ -18,6 +18,7 @@ const buttonVariants = cva(styles.baseButton, {
       text: styles.typeText,
       danger: styles.typeDanger,
       warning: styles.typeWarning,
+      success: styles.typeSuccess,
     },
     block: {
       true: styles.block,
@@ -67,6 +68,7 @@ const IconContainerVariants = cva("", {
       text: "color: var(--foreground-muted);",
       danger: "color: var(--destructive-600);",
       warning: "color: var(--warning-600);",
+      success: "color: var(--success-600);",
     },
   },
 });
@@ -84,6 +86,7 @@ const loadingVariants = cva("", {
       text: "color: var(--foreground-muted);",
       danger: "color: var(--destructive-600);",
       warning: "color: var(--warning-600);",
+      success: "color: var(--success-600);",
     },
     loading: {
       default: "",

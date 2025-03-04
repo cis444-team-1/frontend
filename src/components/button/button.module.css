@@ -246,6 +246,29 @@
     outline-color: var(--warning-default);
 }
 
+.typeSuccess {
+    color: var(--foreground-default);
+    background-color: var(--success-500);
+    border: 1px solid var(--success-400);
+    outline-color: var(--success-400);
+}
+
+.typeSuccess:hover {
+    background-color: var(--success-400);
+    border-color: var(--success-300);
+    color: var(--foreground-default);
+}
+
+.typeSuccess:focus-visible {
+    outline-color: var(--success-default);
+}
+
+.typeSuccess[data-state="open"] {
+    background-color: var(--success-400);
+    border-color: var(--success-default);
+    outline-color: var(--success-default);
+}
+
 /* SVG SIZES */
 .svgTiny svg {
     height: 14px;

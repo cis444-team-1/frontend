@@ -14,14 +14,18 @@ export interface Song {
   durationSeconds: number;
 }
 
-const testImage = "https://picsum.photos/2000/2000";
+const getTestImage = () => {
+  return `https://picsum.photos/id/${Math.floor(
+    Math.random() * 300
+  )}/2000/2000`;
+};
 const testAudio = "sample.mp3";
 
 export const songs: Song[] = [
   {
     id: "1",
     title: "Song One",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -36,7 +40,7 @@ export const songs: Song[] = [
   {
     id: "2",
     title: "Song Two",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -51,7 +55,7 @@ export const songs: Song[] = [
   {
     id: "3",
     title: "Song Three",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -66,7 +70,7 @@ export const songs: Song[] = [
   {
     id: "4",
     title: "Song Four",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -81,7 +85,7 @@ export const songs: Song[] = [
   {
     id: "5",
     title: "Song Five",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -96,7 +100,7 @@ export const songs: Song[] = [
   {
     id: "6",
     title: "Song Six",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -111,7 +115,7 @@ export const songs: Song[] = [
   {
     id: "7",
     title: "Song Seven",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -126,7 +130,7 @@ export const songs: Song[] = [
   {
     id: "8",
     title: "Song Eight",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -141,7 +145,7 @@ export const songs: Song[] = [
   {
     id: "9",
     title: "Song Nine",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -156,7 +160,7 @@ export const songs: Song[] = [
   {
     id: "10",
     title: "Song Ten",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -171,7 +175,7 @@ export const songs: Song[] = [
   {
     id: "11",
     title: "Song Eleven",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -186,7 +190,7 @@ export const songs: Song[] = [
   {
     id: "12",
     title: "Song Twelve",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -201,7 +205,7 @@ export const songs: Song[] = [
   {
     id: "13",
     title: "Song Thirteen",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -216,7 +220,7 @@ export const songs: Song[] = [
   {
     id: "14",
     title: "Song Fourteen",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -231,7 +235,7 @@ export const songs: Song[] = [
   {
     id: "15",
     title: "Song Fifteen",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -246,7 +250,7 @@ export const songs: Song[] = [
   {
     id: "16",
     title: "Song Sixteen",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -261,7 +265,7 @@ export const songs: Song[] = [
   {
     id: "17",
     title: "Song Seventeen",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -276,7 +280,7 @@ export const songs: Song[] = [
   {
     id: "18",
     title: "Song Eighteen",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -291,7 +295,7 @@ export const songs: Song[] = [
   {
     id: "19",
     title: "Song Nineteen",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -306,7 +310,7 @@ export const songs: Song[] = [
   {
     id: "20",
     title: "Song Twenty",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -321,7 +325,7 @@ export const songs: Song[] = [
   {
     id: "20",
     title: "Song Twenty",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -336,7 +340,7 @@ export const songs: Song[] = [
   {
     id: "20",
     title: "Song Twenty",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -351,7 +355,7 @@ export const songs: Song[] = [
   {
     id: "20",
     title: "Song Twenty",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -366,7 +370,7 @@ export const songs: Song[] = [
   {
     id: "20",
     title: "Song Twenty",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -381,7 +385,7 @@ export const songs: Song[] = [
   {
     id: "20",
     title: "Song Twenty",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -396,7 +400,7 @@ export const songs: Song[] = [
   {
     id: "20",
     title: "Song Twenty",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -411,7 +415,7 @@ export const songs: Song[] = [
   {
     id: "20",
     title: "Song Twenty",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -426,7 +430,7 @@ export const songs: Song[] = [
   {
     id: "20",
     title: "Song Twenty",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -441,7 +445,7 @@ export const songs: Song[] = [
   {
     id: "20",
     title: "Song Twenty",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -456,7 +460,7 @@ export const songs: Song[] = [
   {
     id: "20",
     title: "Song Twenty",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -471,7 +475,7 @@ export const songs: Song[] = [
   {
     id: "20",
     title: "Song Twenty",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -486,7 +490,7 @@ export const songs: Song[] = [
   {
     id: "20",
     title: "Song Twenty",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -501,7 +505,7 @@ export const songs: Song[] = [
   {
     id: "20",
     title: "Song Twenty",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -516,7 +520,7 @@ export const songs: Song[] = [
   {
     id: "20",
     title: "Song Twenty",
-    imageUrl: testImage,
+    imageUrl: getTestImage(),
     audioUrl: testAudio,
     createdAt: new Date(),
     updatedAt: new Date(),

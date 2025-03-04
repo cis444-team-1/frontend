@@ -1,0 +1,240 @@
+/* Badge.module.css */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    cursor: default;
+}
+
+.icon {
+    margin-right: 0.25rem;
+    display: flex;
+    align-items: center;
+}
+
+.label {
+    white-space: nowrap;
+}
+
+.delete {
+    margin-left: 0.375rem;
+    font-size: 1rem;
+    line-height: 1;
+    font-weight: 700;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete:hover {
+    opacity: 1;
+}
+
+button.badge {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-family: inherit;
+}
+
+button.badge:hover {
+    filter: brightness(0.9);
+}
+
+.selected {
+    filter: brightness(0.8);
+}
+
+button.badge:active {
+    transform: scale(0.98);
+}
+
+/* SIZE VARIANTS */
+.sizeTiny {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.625rem;
+    height: 24px;
+}
+
+.sizeSmall {
+    font-size: 0.875rem;
+    line-height: 1rem;
+    padding: 0.5rem 0.75rem;
+    height: 28px;
+}
+
+.sizeMedium {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    height: 32px;
+}
+
+.sizeLarge {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    height: 36px;
+}
+
+.sizeXlarge {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    height: 44px;
+}
+
+/* SVG SIZES */
+.svgTiny svg {
+    height: 14px;
+    width: 14px;
+}
+
+.svgSmall svg {
+    height: 18px;
+    width: 18px;
+}
+
+.svgMedium svg {
+    height: 20px;
+    width: 20px;
+}
+
+.svgLarge svg {
+    height: 20px;
+    width: 20px;
+}
+
+.svgXlarge svg {
+    height: 24px;
+    width: 24px;
+}
+
+.colorPrimary {
+    background-color: var(--background-surface-200);
+    color: var(--foreground-default);
+}
+
+.colorSecondary {
+    background-color: var(--secondary-200);
+    color: var(--foreground-default);
+}
+
+.colorDanger {
+    color: var(--foreground-default);
+    background-color: var(--destructive-300);
+}
+
+.colorDanger:hover {
+    background-color: var(--destructive-400);
+    color: var(--foreground-default);
+}
+
+.colorWarning {
+    color: var(--foreground-default);
+    background-color: var(--warning-300);
+}
+
+.colorWarning:hover {
+    background-color: var(--warning-400);
+    color: var(--foreground-default);
+}
+
+.colorSuccess {
+    color: var(--foreground-default);
+    background-color: var(--success-300);
+}
+
+.colorPurple {
+    color: var(--foreground-default);
+    background-color: var(--purple-300);
+}
+
+.colorBlue {
+    color: var(--foreground-default);
+    background-color: var(--blue-300);
+}
+
+.colorIndigo {
+    color: var(--foreground-default);
+    background-color: var(--indigo-300);
+}
+
+.colorPink {
+    color: var(--foreground-default);
+    background-color: var(--pink-300);
+}
+
+.outlineColorPrimary {
+    color: var(--foreground-default);
+    background-color: var(--background-surface-200);
+    border: 1px solid var(--border-default);
+}
+
+.outlineColorSecondary {
+    color: var(--foreground-default);
+    background-color: var(--secondary-200);
+    border: 1px solid var(--border-default);
+}
+
+.outlineColorDanger {
+    color: var(--foreground-default);
+    background-color: var(--destructive-300);
+    border: 1px solid var(--destructive-500);
+    outline-color: var(--amber-default);
+}
+
+.outlineColorDanger:hover {
+    background-color: var(--destructive-400);
+    border-color: var(--destructive-default);
+    color: var(--foreground-default);
+}
+
+.outlineColorWarning {
+    color: var(--foreground-default);
+    background-color: var(--warning-300);
+    border: 1px solid var(--warning-500);
+    outline-color: var(--amber-default);
+}
+
+.outlineColorWarning:hover {
+    background-color: var(--warning-400);
+    border-color: var(--warning-default);
+    color: var(--foreground-default);
+}
+
+.outlineColorSuccess {
+    color: var(--foreground-default);
+    background-color: var(--success-300);
+    border: 1px solid var(--success-500);
+    outline-color: var(--success-default);
+}
+
+.outlineColorPurple {
+    color: var(--foreground-default);
+    background-color: var(--purple-300);
+    border: 1px solid var(--purple-500);
+    outline-color: var(--purple-default);
+}
+
+.outlineColorBlue {
+    color: var(--foreground-default);
+    background-color: var(--blue-300);
+    border: 1px solid var(--blue-500);
+    outline-color: var(--blue-default);
+}
+
+.outlineColorIndigo {
+    color: var(--foreground-default);
+    background-color: var(--indigo-300);
+    border: 1px solid var(--indigo-500);
+    outline-color: var(--indigo-default);
+}
+
+.outlineColorPink {
+    color: var(--foreground-default);
+    background-color: var(--pink-300);
+    border: 1px solid var(--pink-500);
+    outline-color: var(--pink-default);
+}

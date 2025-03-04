@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.filterButton {
+    border-radius: 999px !important;
+    width: fit-content;
+}
