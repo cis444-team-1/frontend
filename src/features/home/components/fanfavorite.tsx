@@ -1,12 +1,11 @@
 import { Link } from "react-router";
-import { Playlist } from "../../types/playlist";
-import styles from "./vertical-card.module.css";
+import { FanFavorites } from "../../../types/fanfavorite";
+import styles from "../styles/fanfavorite.module.css";
 import { Play } from "lucide-react";
-import Badge from "../badge/badge";
 import { useState } from "react";
-import { Button } from "../button/button";
+import { Button } from "../../../components/button/button";
 
-export const VerticalPlaylistCard = ({ playlist }: { playlist: Playlist }) => {
+export const FanFavorite = ({ playlist }: { playlist: FanFavorites }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   return (
     <div>
@@ -28,19 +27,10 @@ export const VerticalPlaylistCard = ({ playlist }: { playlist: Playlist }) => {
           className={styles.playButton}
           type="success"
         />
-
-        <Badge
-          label={playlist.visbility}
-          size="tiny"
-          variant="full"
-          color="primary"
-          borderRadius={999}
-          className={styles.visibilityBadge}
-        />
       </Link>
       <p className={styles.playlistTitle}>{playlist.name}</p>
       <p className={styles.playlistInfo}>
-        {playlist.userId} • {playlist.songs.length} Tracks
+        {playlist.artistName} • {playlist.songs.length} Tracks
       </p>
       <div></div>
     </div>

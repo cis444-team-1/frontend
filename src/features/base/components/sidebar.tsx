@@ -154,7 +154,7 @@ export function Sidebar() {
 function PlaylistRow({ playlist }: { playlist: Playlist }) {
   return (
     <li className={styles.playlistRowItem}>
-      <Link to="/" tabIndex={0}>
+      <Link to="/playlist" tabIndex={0}>
         <Button
           type="text"
           size="tiny"
