@@ -4,6 +4,8 @@
     flex: 1 1 0;
     overflow: hidden;
     padding-bottom: 69px;
+    overflow-y: auto;
+    gap: 2rem;
 }
 
 .playlistContainer {

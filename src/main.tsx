@@ -7,6 +7,7 @@ import { ThemeProvider } from "./context/theme-context";
 import PlaylistPage from "./features/playlist/page";
 import PlaybackLayout from "./features/base/components/playback-layout";
 import LibraryPage from "./features/library/page";
+import ExplorePage from "./features/explore/page";
 
 const mainRoutes = {
   path: "/",
@@ -14,6 +15,7 @@ const mainRoutes = {
   children: [
     { path: "/", element: <PlaylistPage /> },
     { path: "/library", element: <LibraryPage /> },
+    { path: "/explore", element: <ExplorePage /> },
   ],
 };
 

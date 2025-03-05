@@ -11,17 +11,19 @@
     height: 100%;
     width: 0.75rem;
     padding: 1px;
-    border-left: 1px solid var(--border-default);
-    background-color: var(--background-alternative-default);
+    /* border-left: 1px solid var(--border-default);
+    background-color: var(--background-alternative-default); */
+    background-color: transparent;
     z-index: 100;
 }
 
 .scrollbarHorizontal {
-    height: 2.5rem;
+    height: 0.75rem;
     flex-direction: column;
     padding: 1px;
-    border-top: 1px solid var(--border-default);
-    background-color: var(--background-alternative-default);
+    /* border-top: 1px solid var(--border-default);
+    background-color: var(--background-alternative-default); */
+    background-color: transparent;
     z-index: 100;
 }
 
@@ -39,7 +41,36 @@
     border-radius: inherit;
 }
 
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.controlButton {
+    border-radius: 999px !important;
+    padding-inline: 0.5rem;
+}
+
+.moreButton {
+    border-radius: 999px !important;
+}
+
 .root {
     position: relative;
     overflow: hidden;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--foreground-default);
+}
+
+.header {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    justify-content: space-between;
 }

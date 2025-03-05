@@ -1,0 +1,102 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 20rem;
+    position: relative;
+}
+
+.container:hover {
+    cursor: pointer;
+}
+
+.image {
+    width: 3.2rem;
+    height: 3.2rem;
+    object-fit: cover;
+}
+
+.playButton {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 0;
+}
+
+.container:hover .playButton {
+    opacity: 1;
+    background-color: color-mix(in srgb, var(--background-surface-50) 80%, transparent);
+}
+
+.pauseButton {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 0;
+}
+
+.container:hover .pauseButton {
+    opacity: 1;
+    background-color: color-mix(in srgb, var(--background-surface-50) 80%, transparent);
+}
+
+.audioButton {
+    opacity: 1;
+    background-color: color-mix(in srgb, var(--background-surface-50) 80%, transparent);
+    position: absolute;
+    left: 0;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 0;
+}
+
+.container:hover .audioButton {
+    opacity: 0;
+}
+
+.noShow {
+    display: none;
+}
+
+
+.moreButton {
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    border-radius: 0;
+    width: fit-content;
+    padding: 5px;
+    border-radius: 9999px;
+}
+
+.container:hover .moreButton {
+    opacity: 1;
+}
+
+.title {
+    font-weight: 500;
+    color: var(--foreground-default);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-clamp: 1;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.info {
+    font-size: 0.875rem;
+    color: var(--foreground-light);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-clamp: 1;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}

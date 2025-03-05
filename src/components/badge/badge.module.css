@@ -36,7 +36,6 @@
 
 button.badge {
     cursor: pointer;
-    border: none;
     outline: none;
     font-family: inherit;
 }

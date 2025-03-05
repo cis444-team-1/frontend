@@ -16,6 +16,18 @@ export type BadgeColorOptions =
   | "indigo"
   | "pink";
 
+const badgeColors: BadgeColorOptions[] = [
+  "primary",
+  "secondary",
+  "danger",
+  "warning",
+  "success",
+  "purple",
+  "blue",
+  "indigo",
+  "pink",
+];
+
 export interface BadgeProps {
   variant?: BadgeVariant;
   color?: BadgeColorOptions;
@@ -27,6 +39,7 @@ export interface BadgeProps {
   onDelete?: () => void;
   className?: string;
   selected?: boolean;
+  randomColor?: boolean;
   size?: "tiny" | "small" | "medium" | "large" | "xlarge";
 }
 
@@ -77,6 +90,7 @@ const Badge: React.FC<BadgeProps> = ({
   selected = false,
   deleteable = false,
   borderRadius = 4,
+  randomColor = false,
   icon,
   label,
   onClick,
@@ -98,7 +112,14 @@ const Badge: React.FC<BadgeProps> = ({
     setVisible(false);
   };
 
+  const getRandomBadgeColor = (): BadgeColorOptions => {
+    const randomIndex = Math.floor(Math.random() * badgeColors.length);
+    return badgeColors[randomIndex] as BadgeColorOptions;
+  };
+
   const BadgeComponent = onClick ? "button" : "div";
+
+  const colorVariant = randomColor ? getRandomBadgeColor() : color;
 
   return (
     <BadgeComponent
@@ -106,7 +127,7 @@ const Badge: React.FC<BadgeProps> = ({
         styles.badge,
         className,
         sizeVariants[size],
-        colorVariants[variant][color],
+        colorVariants[variant][colorVariant],
         selected && styles.selected
       )}
       style={{

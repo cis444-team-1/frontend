@@ -14,7 +14,7 @@ import { Button } from "../../../components/button/button";
 import styles from "../styles.module.css";
 
 export function TrackInfo() {
-  let { currentTrack } = usePlayback();
+  const { currentTrack } = usePlayback();
 
   return (
     <div className={styles.trackInfoContainer}>
@@ -37,7 +37,7 @@ export function TrackInfo() {
 }
 
 export function PlaybackButtons() {
-  let {
+  const {
     isPlaying,
     togglePlayPause,
     playPreviousTrack,
@@ -53,6 +53,7 @@ export function PlaybackButtons() {
         icon={<SkipBack />}
         onClick={playPreviousTrack}
         disabled={!currentTrack}
+        className={styles.playbackButton}
       />
       <Button
         type="text"
@@ -60,6 +61,7 @@ export function PlaybackButtons() {
         icon={isPlaying ? <Pause /> : <Play />}
         onClick={togglePlayPause}
         disabled={!currentTrack}
+        className={styles.playbackButton}
       />
       <Button
         type="text"
@@ -67,27 +69,28 @@ export function PlaybackButtons() {
         icon={<SkipForward />}
         onClick={playNextTrack}
         disabled={!currentTrack}
+        className={styles.playbackButton}
       />
     </div>
   );
 }
 
 export function ProgressBar() {
-  let { currentTime, duration, audioRef, setCurrentTime } = usePlayback();
-  let progressBarRef = useRef<HTMLDivElement>(null);
+  const { currentTime, duration, audioRef, setCurrentTime } = usePlayback();
+  const progressBarRef = useRef<HTMLDivElement>(null);
 
-  let formatTime = (time: number) => {
-    let minutes = Math.floor(time / 60);
-    let seconds = Math.floor(time % 60);
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
 
-  let handleProgressChange = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleProgressChange = (e: React.MouseEvent<HTMLDivElement>) => {
     if (progressBarRef.current && audioRef.current) {
-      let rect = progressBarRef.current.getBoundingClientRect();
-      let x = e.clientX - rect.left;
-      let percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
-      let newTime = (percentage / 100) * duration;
+      const rect = progressBarRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+      const newTime = (percentage / 100) * duration;
       audioRef.current.currentTime = newTime;
       setCurrentTime(newTime);
     }
@@ -116,11 +119,11 @@ export function ProgressBar() {
 }
 
 export function Volume() {
-  let { audioRef, currentTrack } = usePlayback();
-  let [volume, setVolume] = useState(100);
-  let [isMuted, setIsMuted] = useState(false);
-  let [isVolumeVisible, setIsVolumeVisible] = useState(false);
-  let volumeBarRef = useRef<HTMLDivElement>(null);
+  const { audioRef, currentTrack } = usePlayback();
+  const [volume, setVolume] = useState(100);
+  const [isMuted, setIsMuted] = useState(false);
+  const [isVolumeVisible, setIsVolumeVisible] = useState(false);
+  const volumeBarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -128,11 +131,11 @@ export function Volume() {
     }
   }, [volume, isMuted, audioRef]);
 
-  let handleVolumeChange = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleVolumeChange = (e: React.MouseEvent<HTMLDivElement>) => {
     if (volumeBarRef.current) {
-      let rect = volumeBarRef.current.getBoundingClientRect();
-      let x = e.clientX - rect.left;
-      let percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+      const rect = volumeBarRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
       setVolume(percentage);
       if (audioRef.current) {
         audioRef.current.volume = percentage / 100;
@@ -141,7 +144,7 @@ export function Volume() {
     }
   };
 
-  let toggleMute = () => {
+  const toggleMute = () => {
     if (audioRef.current) {
       if (isMuted) {
         audioRef.current.volume = volume / 100;
@@ -169,7 +172,7 @@ export function Volume() {
     };
   }, []);
 
-  let toggleVolumeVisibility = () => {
+  const toggleVolumeVisibility = () => {
     setIsVolumeVisible(!isVolumeVisible);
   };
 
@@ -204,7 +207,7 @@ export function Volume() {
 }
 
 export function PlaybackControls() {
-  let {
+  const {
     currentTrack,
     audioRef,
     setCurrentTime,
@@ -215,10 +218,10 @@ export function PlaybackControls() {
   } = usePlayback();
 
   useEffect(() => {
-    let audio = audioRef.current;
+    const audio = audioRef.current;
     if (audio) {
-      let updateTime = () => setCurrentTime(audio.currentTime);
-      let updateDuration = () => setDuration(audio.duration);
+      const updateTime = () => setCurrentTime(audio.currentTime);
+      const updateDuration = () => setDuration(audio.duration);
 
       audio.addEventListener("timeupdate", updateTime);
       audio.addEventListener("loadedmetadata", updateDuration);
