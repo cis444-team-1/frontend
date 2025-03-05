@@ -5,12 +5,23 @@ import { VerticalPlaylistCard } from "../../components/playlist-card/vertical-ca
 import Filters from "./components/filters";
 import { users } from "../../types/user";
 import { VerticalArtistCard } from "../../components/artist-card/vertical-card";
+import { Input } from "../../components/input/input";
+import { Search } from "lucide-react";
 
 export default function LibraryPage() {
   const playlist = playlists[0];
 
   return (
     <div className={styles.pageContainer}>
+      <div className={styles.sectionContainer}>
+        <Input
+          placeholder="Search music, artists, albums, or playlists..."
+          size="xlarge"
+          icon={<Search />}
+          className={styles.searchInput}
+        />
+      </div>
+
       <div className={styles.sectionContainer}>
         <p className={styles.pageTitle}>Playlists</p>
         <Filters />

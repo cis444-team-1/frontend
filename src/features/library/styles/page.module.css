@@ -5,7 +5,12 @@
     overflow: hidden;
     padding-bottom: 69px;
     overflow-y: auto;
-    gap: 2rem;
+    gap: 1rem;
+}
+
+.searchInput {
+    max-width: 32rem;
+    width: 100%;
 }
 
 .playlistContainer {

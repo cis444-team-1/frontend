@@ -37,6 +37,7 @@
 button.badge {
     cursor: pointer;
     outline: none;
+    border: none;
     font-family: inherit;
 }
 
@@ -168,72 +169,72 @@ button.badge:active {
 .outlineColorPrimary {
     color: var(--foreground-default);
     background-color: var(--background-surface-200);
-    border: 1px solid var(--border-default);
+    border: 1px solid var(--border-default) !important;
 }
 
 .outlineColorSecondary {
     color: var(--foreground-default);
     background-color: var(--secondary-200);
-    border: 1px solid var(--border-default);
+    border: 1px solid var(--border-default) !important;
 }
 
 .outlineColorDanger {
     color: var(--foreground-default);
     background-color: var(--destructive-300);
-    border: 1px solid var(--destructive-500);
+    border: 1px solid var(--destructive-500) !important;
     outline-color: var(--amber-default);
 }
 
 .outlineColorDanger:hover {
     background-color: var(--destructive-400);
-    border-color: var(--destructive-default);
+    border-color: var(--destructive-default) !important;
     color: var(--foreground-default);
 }
 
 .outlineColorWarning {
     color: var(--foreground-default);
     background-color: var(--warning-300);
-    border: 1px solid var(--warning-500);
+    border: 1px solid var(--warning-500) !important;
     outline-color: var(--amber-default);
 }
 
 .outlineColorWarning:hover {
     background-color: var(--warning-400);
-    border-color: var(--warning-default);
+    border-color: var(--warning-default) !important;
     color: var(--foreground-default);
 }
 
 .outlineColorSuccess {
     color: var(--foreground-default);
     background-color: var(--success-300);
-    border: 1px solid var(--success-500);
+    border: 1px solid var(--success-500) !important;
     outline-color: var(--success-default);
 }
 
 .outlineColorPurple {
     color: var(--foreground-default);
     background-color: var(--purple-300);
-    border: 1px solid var(--purple-500);
+    border: 1px solid var(--purple-500) !important;
     outline-color: var(--purple-default);
 }
 
 .outlineColorBlue {
     color: var(--foreground-default);
     background-color: var(--blue-300);
-    border: 1px solid var(--blue-500);
+    border: 1px solid var(--blue-500) !important;
     outline-color: var(--blue-default);
 }
 
 .outlineColorIndigo {
     color: var(--foreground-default);
     background-color: var(--indigo-300);
-    border: 1px solid var(--indigo-500);
+    border: 1px solid var(--indigo-500) !important;
     outline-color: var(--indigo-default);
 }
 
 .outlineColorPink {
     color: var(--foreground-default);
     background-color: var(--pink-300);
-    border: 1px solid var(--pink-500);
+    border: 1px solid var(--pink-500) !important;
     outline-color: var(--pink-default);
 }
