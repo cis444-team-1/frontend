@@ -1,17 +1,20 @@
-"use client";
 import {
   Trash,
   EllipsisVertical,
-  Search,
   Pencil,
+  User,
+  Settings,
+  Users,
+  LogOut,
   Home,
   Radio,
   PlusSquare,
-  User,
+  Plus,
+  Upload,
 } from "lucide-react";
-import { useRef, useEffect, type RefObject } from "react";
+import { useRef, useEffect, RefObject } from "react";
 import { usePlaylist } from "../../../hooks/use-playlist";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,12 +23,12 @@ import {
 } from "../../../components/dropdown-menu.tsx/dropdown-menu";
 import { Button } from "../../../components/button/button";
 import { ScrollArea } from "../../../components/scrollarea/scroll-area";
-import type { Playlist } from "../../../types/playlist";
-import { Input } from "../../../components/input/input";
+import { Playlist } from "../../../types/playlist";
 import { usePlayback } from "../../../hooks/use-playback";
 
 import styles from "../styles.module.css";
 import { useTheme } from "../../../hooks/theme";
+import { users } from "../../../types/user";
 
 // TODO : Change the active affect, since some pages lead to the same route, the active affect is not working properly.
 
@@ -51,31 +54,49 @@ export function Sidebar() {
       className={styles.sidebarContainer}
       onClick={() => setActivePanel("sidebar")}
     >
-      <div className={styles.sidebarHeader}>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <button className={styles.userButton}>
-              <User size={18} />
-              <span>User Account</span>
-            </button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => {}}>Settings</DropdownMenuItem>
-            <DropdownMenuItem onClick={() => {}}>Users</DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            >
-              Toggle Theme
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-
-        <Input
-          icon={<Search />}
-          size="tiny"
-          placeholder="Search"
-          className={styles.searchInput}
-        />
+      <div>
+        <div className={styles.sidebarHeader}>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                type="text"
+                block
+                size="large"
+                className={styles.userButton}
+                icon={<img src={users[0].imageSrc} className={styles.avatar} />}
+              >
+                {users[0].username}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="center" style={{ width: "12rem" }}>
+              <Link to="/profile">
+                <DropdownMenuItem onClick={() => {}}>
+                  <User /> Profile
+                </DropdownMenuItem>
+              </Link>
+              <DropdownMenuItem onClick={() => {}}>
+                <Settings />
+                Settings
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => {}}>
+                <Users />
+                Users
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => {}}>
+                <LogOut />
+                Logout
+              </DropdownMenuItem>
+              <Button
+                block
+                size="medium"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                style={{ marginTop: "0.5rem" }}
+              >
+                Change theme
+              </Button>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
 
       <div className={styles.navSection}>
@@ -117,6 +138,7 @@ export function Sidebar() {
             `${styles.navItem} ${isActive ? styles.active : ""}`
           }
         >
+          <Upload size={18} className={styles.navIcon} />
           <span>Upload Music</span>
         </NavLink>
         <NavLink
@@ -125,6 +147,7 @@ export function Sidebar() {
             `${styles.navItem} ${isActive ? styles.active : ""}`
           }
         >
+          <Plus size={18} className={styles.navIcon} />
           <span>Create Playlist</span>
         </NavLink>
       </div>
@@ -157,12 +180,18 @@ function PlaylistRow({ playlist }: { playlist: Playlist }) {
         }
         tabIndex={0}
       >
+        {/** TODO: HANDLE TEXT OVERFLOW WITH ELLIPSIS */}
         {playlist.name}
       </NavLink>
+
       <div className={styles.playlistAction}>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button type="text" icon={<EllipsisVertical size={16} />} />
+            <Button
+              type="text"
+              style={{ width: "2rem", height: "2rem" }}
+              icon={<EllipsisVertical size={16} />}
+            />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem onClick={() => {}}>

@@ -10,6 +10,8 @@ import { NowPlaying } from "./now-playing";
 export default function PlaybackLayout() {
   return (
     <div className={styles.layoutContainer}>
+      <div className={styles.background}></div>
+
       <PlaybackProvider>
         <PlaylistProvider playlists={playlists}>
           <Sidebar />

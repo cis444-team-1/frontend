@@ -1,0 +1,81 @@
+.image {
+    border-radius: 999px;
+    width: 8.5rem;
+    height: 8.5rem;
+}
+
+.container {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 10rem;
+}
+
+.username {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--foreground-default);
+}
+
+.buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.subscribers {
+    font-weight: 600;
+    margin-left: 4px;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    gap: 2rem;
+}
+
+.artistTitle {
+    position: absolute;
+    top: -1.7rem;
+
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--foreground-lighter);
+}
+
+@media screen and (max-width: 1000px) {
+    .info {
+        flex-direction: column;
+        align-items: start;
+    }
+
+}
+
+.backgroundImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 20rem;
+    z-index: -2;
+    opacity: 55%;
+    pointer-events: none;
+    object-fit: cover;
+}
+
+[data-theme="dark"] .backgroundImage {
+    opacity: 35%;
+}
+
+.gradient {
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    height: 30rem;
+    z-index: -1;
+    background: linear-gradient(to top, var(--background-alternative-default) 10%, transparent 100%);
+    pointer-events: none;
+}
