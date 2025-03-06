@@ -6,6 +6,11 @@
     padding-bottom: 69px;
 }
 
+.searchInput {
+    max-width: 32rem;
+    width: 100%;
+}
+
 .playlistContainer {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));

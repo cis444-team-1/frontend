@@ -1,4 +1,3 @@
-
 import {
   Trash,
   EllipsisVertical,
@@ -8,11 +7,14 @@ import {
   Users,
   LogOut,
   Home,
+  Radio,
   PlusSquare,
+  Plus,
+  Upload,
 } from "lucide-react";
 import { useRef, useEffect, RefObject } from "react";
 import { usePlaylist } from "../../../hooks/use-playlist";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -66,7 +68,7 @@ export function Sidebar() {
                 {users[0].username}
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent align="center" style={{ width: "12rem" }}>
               <Link to="/profile">
                 <DropdownMenuItem onClick={() => {}}>
                   <User /> Profile
@@ -86,6 +88,7 @@ export function Sidebar() {
               </DropdownMenuItem>
               <Button
                 block
+                size="medium"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 style={{ marginTop: "0.5rem" }}
               >
@@ -94,6 +97,7 @@ export function Sidebar() {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
+      </div>
 
       <div className={styles.navSection}>
         <p className={styles.playlistsTitle}>Navigation</p>
@@ -134,6 +138,7 @@ export function Sidebar() {
             `${styles.navItem} ${isActive ? styles.active : ""}`
           }
         >
+          <Upload size={18} className={styles.navIcon} />
           <span>Upload Music</span>
         </NavLink>
         <NavLink
@@ -142,6 +147,7 @@ export function Sidebar() {
             `${styles.navItem} ${isActive ? styles.active : ""}`
           }
         >
+          <Plus size={18} className={styles.navIcon} />
           <span>Create Playlist</span>
         </NavLink>
       </div>
@@ -174,12 +180,18 @@ function PlaylistRow({ playlist }: { playlist: Playlist }) {
         }
         tabIndex={0}
       >
+        {/** TODO: HANDLE TEXT OVERFLOW WITH ELLIPSIS */}
         {playlist.name}
       </NavLink>
+
       <div className={styles.playlistAction}>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button type="text" icon={<EllipsisVertical size={16} />} />
+            <Button
+              type="text"
+              style={{ width: "2rem", height: "2rem" }}
+              icon={<EllipsisVertical size={16} />}
+            />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem onClick={() => {}}>
