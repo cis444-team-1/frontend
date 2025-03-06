@@ -18,7 +18,7 @@ export const users: User[] = [
     id: "1",
     username: "SkyWalker_92",
     email: "8o5vH@example.com",
-    bio: "Adventure seeker, sci-fi lover, and coffee addict.",
+    bio: "Adventure seeker, sci-fi lover, and coffee addict. I'm a part-time artist and full-time daydreamer. I'm passionate about exploring new places and meeting new people. I'm a sucker for a good pun and a fan of the Oxford comma. I'm always looking for new collaborators and mentors to help me grow as an artist. ",
     imageSrc: getTestImage(),
     createdAt: new Date(),
     updatedAt: new Date(),

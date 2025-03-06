@@ -51,7 +51,7 @@ export function TrackTable({ playlist }: { playlist: Playlist }) {
           <th className={styles.w8}></th>
         </tr>
       </thead>
-      <tbody style={{ marginTop: "1px" }}>
+      <tbody className={styles.tableBody}>
         {playlist.songs.map((track: Song, index: number) => (
           <TrackRow
             key={track.id}

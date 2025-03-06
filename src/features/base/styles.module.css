@@ -2,14 +2,32 @@
 .layoutContainer {
     display: flex;
     flex-direction: row;
-    height: 100dvh;
-    color: var(--foreground-default)
+    height: 100%;
+    color: var(--foreground-default);
+    position: relative;
+    padding-left: 14rem;
+    overflow-x: hidden;
+}
+
+.layoutContainer:has(.nowPlayingContainer) {
+    padding-right: 14rem;
 }
 
 @media (max-width: 720px) {
     .layoutContainer {
-        flex-direction: column;
+        padding-left: 0;
     }
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 20vh;
+    background: linear-gradient(to right, var(--brand-default) 0%, var(--background-surface-50) 100%);
+    filter: blur(50px);
+    z-index: -10;
+    opacity: 0.1;
 }
 
 /* NOW PLAYING STYLES */
@@ -21,10 +39,14 @@
     .nowPlayingContainer {
         display: flex;
         flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100dvh;
         width: 14rem;
         padding: 1rem;
         background-color: var(--background-surface-50);
-        overflow: auto;
+        border-left: 1px solid var(--border-default);
     }
 }
 
@@ -76,8 +98,12 @@
 @media (min-width: 720px) {
     .sidebarContainer {
         display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 14rem;
         height: 100dvh;
+        border-right: 1px solid var(--border-default);
         background-color: var(--background-surface-50);
         overflow: auto;
     }
@@ -126,6 +152,21 @@
     font-size: 0.875rem;
     font-weight: 500;
     margin: 0.2rem 0.7rem 0.2rem 0.7rem;
+}
+
+.userButton {
+    justify-content: start !important;
+    gap: 0.5rem;
+    padding-inline: 0.5rem !important;
+    padding-top: 1.25rem !important;
+    padding-bottom: 1.25rem !important;
+    font-size: 0.875rem !important;
+}
+
+.avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
 }
 
 /* END OF SIDEBAR STYLES */

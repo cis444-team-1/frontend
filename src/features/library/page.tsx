@@ -27,7 +27,7 @@ export default function LibraryPage() {
         <Filters />
         <div className={styles.playlistContainer}>
           {playlists.map((playlist) => (
-            <VerticalPlaylistCard playlist={playlist} />
+            <VerticalPlaylistCard playlist={playlist} showVisibility />
           ))}
         </div>
       </div>

@@ -1,4 +1,12 @@
-import { Trash, EllipsisVertical, Search, Pencil } from "lucide-react";
+import {
+  Trash,
+  EllipsisVertical,
+  Pencil,
+  User,
+  Settings,
+  Users,
+  LogOut,
+} from "lucide-react";
 import { useRef, useEffect, RefObject } from "react";
 import { usePlaylist } from "../../../hooks/use-playlist";
 import { Link } from "react-router";
@@ -11,11 +19,11 @@ import {
 import { Button } from "../../../components/button/button";
 import { ScrollArea } from "../../../components/scrollarea/scroll-area";
 import { Playlist } from "../../../types/playlist";
-import { Input } from "../../../components/input/input";
 import { usePlayback } from "../../../hooks/use-playback";
 
 import styles from "../styles.module.css";
 import { useTheme } from "../../../hooks/theme";
+import { users } from "../../../types/user";
 
 export function Sidebar() {
   const { playlists } = usePlaylist();
@@ -43,30 +51,43 @@ export function Sidebar() {
         <div className={styles.sidebarHeader}>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button type="dashed" block size="large">
-                User Button
+              <Button
+                type="text"
+                block
+                size="large"
+                className={styles.userButton}
+                icon={<img src={users[0].imageSrc} className={styles.avatar} />}
+              >
+                {users[0].username}
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => {}}>Settings</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => {}}>Users</DropdownMenuItem>
+              <Link to="/profile">
+                <DropdownMenuItem onClick={() => {}}>
+                  <User /> Profile
+                </DropdownMenuItem>
+              </Link>
+              <DropdownMenuItem onClick={() => {}}>
+                <Settings />
+                Settings
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => {}}>
+                <Users />
+                Users
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => {}}>
+                <LogOut />
+                Logout
+              </DropdownMenuItem>
+              <Button
+                block
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                style={{ marginTop: "0.5rem" }}
+              >
+                Change theme
+              </Button>
             </DropdownMenuContent>
           </DropdownMenu>
-
-          <Input
-            icon={<Search />}
-            size="tiny"
-            placeholder="Search"
-            className={styles.searchInput}
-          />
-        </div>
-
-        {/** TODO: MOVE SOMEWHERE ELSE */}
-        <div style={{ marginLeft: "0.8rem" }}>
-          <p style={{ fontSize: "0.8rem" }}>Current Theme: {theme}</p>
-          <Button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-            Change theme
-          </Button>
         </div>
 
         <p className={styles.playlistsTitle} style={{ marginTop: "1rem" }}>

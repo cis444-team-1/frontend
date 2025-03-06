@@ -6,7 +6,13 @@ import Badge from "../badge/badge";
 import { useState } from "react";
 import { Button } from "../button/button";
 
-export const VerticalPlaylistCard = ({ playlist }: { playlist: Playlist }) => {
+export const VerticalPlaylistCard = ({
+  playlist,
+  showVisibility = false,
+}: {
+  playlist: Playlist;
+  showVisibility?: boolean;
+}) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   return (
     <div>
@@ -29,14 +35,16 @@ export const VerticalPlaylistCard = ({ playlist }: { playlist: Playlist }) => {
           type="success"
         />
 
-        <Badge
-          label={playlist.visbility}
-          size="tiny"
-          variant="full"
-          color="primary"
-          borderRadius={999}
-          className={styles.visibilityBadge}
-        />
+        {showVisibility && (
+          <Badge
+            label={playlist.visbility}
+            size="tiny"
+            variant="full"
+            color="primary"
+            borderRadius={999}
+            className={styles.visibilityBadge}
+          />
+        )}
       </Link>
       <p className={styles.playlistTitle}>{playlist.name}</p>
       <p className={styles.playlistInfo}>
