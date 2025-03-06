@@ -8,12 +8,14 @@ import PlaylistPage from "./features/playlist/page";
 import PlaybackLayout from "./features/base/components/playback-layout";
 import LibraryPage from "./features/library/page";
 import ExplorePage from "./features/explore/page";
+import HomePage from "./features/home/page";
 
 const mainRoutes = {
   path: "/",
   element: <PlaybackLayout />,
   children: [
-    { path: "/", element: <PlaylistPage /> },
+    { path: "/", element: <HomePage /> },
+    { path: "/playlist", element: <PlaylistPage /> },
     { path: "/library", element: <LibraryPage /> },
     { path: "/explore", element: <ExplorePage /> },
   ],

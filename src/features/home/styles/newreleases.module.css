@@ -1,0 +1,55 @@
+.playlistTitle {
+  font-weight: 500;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: var(--foreground-default);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.playlistInfo {
+  font-size: 0.875rem;
+  color: var(--foreground-muted);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.imageContainer {
+  position: relative;
+}
+
+.imageContainer:hover .playButton {
+  opacity: 1;
+}
+
+.playButton {
+  opacity: 0;
+  border-radius: 9999px;
+  position: absolute;
+  bottom: .7rem;
+  right: .5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  outline: none;
+}
+
+.visibilityBadge {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.2rem;
+  color: var(--foreground-light) !important;
+  font-weight: 500;
+}
+
+.skeleton {
+  height: 160px;
+  width: 160px;
+  background-color: var(--foreground-muted);
+}
