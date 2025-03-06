@@ -17,7 +17,7 @@
     display: none;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 1000px) {
     .nowPlayingContainer {
         display: flex;
         flex-direction: column;
@@ -161,6 +161,11 @@
     justify-content: end;
     gap: 0.5rem;
     width: calc(100% / 3);
+}
+
+.playbackButton {
+    width: 2.5rem;
+    height: 2.5rem;
 }
 
 .trackInfoContainer {

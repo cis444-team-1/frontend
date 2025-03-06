@@ -4,6 +4,13 @@
     flex: 1 1 0;
     overflow: hidden;
     padding-bottom: 69px;
+    overflow-y: auto;
+    gap: 1rem;
+}
+
+.searchInput {
+    max-width: 32rem;
+    width: 100%;
 }
 
 .playlistContainer {

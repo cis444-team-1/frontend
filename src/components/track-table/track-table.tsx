@@ -19,8 +19,8 @@ import { Playlist } from "../../types/playlist";
 import { formatDuration } from "../../lib/utils";
 
 export function TrackTable({ playlist }: { playlist: Playlist }) {
-  let tableRef = useRef<HTMLTableElement>(null);
-  let { registerPanelRef, setActivePanel, setPlaylist } = usePlayback();
+  const tableRef = useRef<HTMLTableElement>(null);
+  const { registerPanelRef, setActivePanel, setPlaylist } = usePlayback();
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -77,7 +77,7 @@ function TrackRow({
   isSelected: boolean;
   onSelect: () => void;
 }) {
-  let {
+  const {
     currentTrack,
     playTrack,
     togglePlayPause,
@@ -85,10 +85,10 @@ function TrackRow({
     setActivePanel,
     handleKeyNavigation,
   } = usePlayback();
-  let { playlists } = usePlaylist();
+  const { playlists } = usePlaylist();
 
-  let [isFocused, setIsFocused] = useState(false);
-  let isCurrentTrack = currentTrack?.title === track.title;
+  const [isFocused, setIsFocused] = useState(false);
+  const isCurrentTrack = currentTrack?.title === track.title;
 
   function onClickTrackRow(e: React.MouseEvent) {
     e.preventDefault();

@@ -14,6 +14,62 @@ export interface Song {
   durationSeconds: number;
 }
 
+export const MUSIC_TYPES: string[] = [
+  // Moods
+  "Happy",
+  "Sad",
+  "Relaxing",
+  "Energetic",
+  "Romantic",
+  "Melancholic",
+  "Chill",
+  "Uplifting",
+  "Dark",
+  "Epic",
+  "Calm",
+  "Motivational",
+  "Mysterious",
+  "Groovy",
+  "Euphoric",
+  "Peaceful",
+  "Aggressive",
+  "Nostalgic",
+  "Dreamy",
+  "Somber",
+  "Soulful",
+  "Reflective",
+  "Playful",
+  "Hypnotic",
+  "Sensual",
+
+  // Genres
+  "Pop",
+  "Rock",
+  "Hip-Hop",
+  "R&B",
+  "Jazz",
+  "Blues",
+  "Classical",
+  "Electronic",
+  "House",
+  "Techno",
+  "Trance",
+  "Reggae",
+  "Salsa",
+  "Country",
+  "Folk",
+  "Metal",
+  "Punk",
+  "Indie",
+  "Alternative",
+  "Funk",
+  "Soul",
+  "Gospel",
+  "Ambient",
+  "Lo-Fi",
+  "Soundtrack",
+] as const;
+
 const getTestImage = () => {
   return `https://picsum.photos/id/${Math.floor(
     Math.random() * 300
