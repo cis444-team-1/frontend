@@ -22,25 +22,36 @@ const DialogOverlay = React.forwardRef<
 ));
 DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
 
+interface DialogContentProps
+  extends React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> {
+  size?: "sm" | "default" | "lg" | "xl" | "full";
+}
+
 const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-  <DialogPortal>
-    <DialogOverlay />
-    <DialogPrimitive.Content
-      ref={ref}
-      className={`${styles.dialogContent} ${className || ""}`}
-      {...props}
-    >
-      {children}
-      <DialogPrimitive.Close className={styles.dialogCloseButton}>
-        <X className={styles.dialogCloseIcon} />
-        <span className={styles.srOnly}>Close</span>
-      </DialogPrimitive.Close>
-    </DialogPrimitive.Content>
-  </DialogPortal>
-));
+  DialogContentProps
+>(({ className, children, size = "default", ...props }, ref) => {
+  const sizeClass = size !== "default" ? styles[size] : "";
+
+  return (
+    <DialogPortal>
+      <DialogOverlay />
+      <DialogPrimitive.Content
+        ref={ref}
+        className={`${styles.dialogContent} ${sizeClass} ${className || ""}`}
+        {...props}
+      >
+        {children}
+        <DialogPrimitive.Close
+          className={styles.dialogCloseButton}
+          aria-label="Close dialog"
+        >
+          <X size={16} />
+        </DialogPrimitive.Close>
+      </DialogPrimitive.Content>
+    </DialogPortal>
+  );
+});
 DialogContent.displayName = DialogPrimitive.Content.displayName;
 
 const DialogHeader = ({

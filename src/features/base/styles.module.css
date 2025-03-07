@@ -90,6 +90,7 @@
 
 /* END OF NOW PLAYING STYLES */
 
+/* DIALOG STYLES */
 .dialogContent {
   max-width: 450px;
 }
@@ -110,20 +111,23 @@
 .label {
   font-weight: 500;
   font-size: 0.875rem;
-  color: var(--text-color);
+  color: var(--foreground-default);
 }
 
-
-.input, .textarea {
+.input,
+.textarea {
   width: 100%;
   border-radius: 0.375rem;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-control);
+  background-color: var(--background-default);
+  color: var(--foreground-default);
   transition: border-color 0.15s ease;
 }
 
-.input:focus, .textarea:focus {
-  border-color: var(--accent-color);
+.input:focus,
+.textarea:focus {
   outline: none;
+  box-shadow: 0 0 0 2px var(--background-default);
 }
 
 .textarea {
@@ -148,6 +152,7 @@
   font-size: 0.875rem;
   font-weight: normal;
   cursor: pointer;
+  color: var(--foreground-default);
 }
 
 .footer {
@@ -155,33 +160,21 @@
   justify-content: flex-end;
   gap: 0.75rem;
   padding-top: 0.75rem;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-default);
+  margin-top: 1rem;
 }
 
 .cancelButton {
   background-color: transparent;
-  color: var(--text-color);
+  color: var(--foreground-default);
+  border: 1px solid var(--border-control);
 }
 
 .cancelButton:hover {
-  background-color: var(--hover-color);
+  background-color: var(--background-surface-200);
 }
 
-/* CSS Variables for theming - will inherit from your app's theme */
-:root {
-  --text-color: #000000;
-  --border-color: #e2e8f0;
-  --accent-color: #0071e3;
-  --hover-color: rgba(0, 0, 0, 0.05);
-}
-
-/* Dark theme support */
-:root[data-theme="dark"] {
-  --text-color: #ffffff;
-  --border-color: #333333;
-  --hover-color: rgba(255, 255, 255, 0.1);
-}
-
+/* END OF DIALOG STYLES */
 /* SIDEBAR STYLES */
 .sidebarContainer {
   display: none;
@@ -341,7 +334,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 10;
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem;
@@ -476,3 +469,4 @@
 }
 
 /* END OF PLAYBACK CONTROLS STYLES */
+

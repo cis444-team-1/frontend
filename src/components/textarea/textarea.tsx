@@ -1,18 +1,24 @@
 import * as React from "react";
 import styles from "./textarea.module.css";
 
-const Textarea = React.forwardRef<
-  HTMLTextAreaElement,
-  React.ComponentProps<"textarea">
->(({ className, ...props }, ref) => {
-  return (
-    <textarea
-      className={`${styles.textarea} ${className || ""}`}
-      ref={ref}
-      {...props}
-    />
-  );
-});
+export interface TextareaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  error?: boolean;
+}
+
+const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+  ({ className, error, ...props }, ref) => {
+    return (
+      <textarea
+        className={`${styles.textarea} ${error ? styles.error : ""} ${
+          className || ""
+        }`}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
 Textarea.displayName = "Textarea";
 
 export { Textarea };
