@@ -9,8 +9,10 @@
   overflow-x: hidden;
 }
 
-.layoutContainer:has(.nowPlayingContainer) {
-  padding-right: 14rem;
+@media screen and (min-width: 1000px) {
+  .layoutContainer:has(.nowPlayingContainer) {
+    padding-right: 14rem;
+  }
 }
 
 @media (max-width: 720px) {

@@ -39,11 +39,11 @@ export const FeaturedPlaylistCard = ({
 
       <div className={styles.buttonContainer}>
         <Button
-          icon={<Play fill="white" />}
+          icon={<Play fill="white" color="white" />}
           type="success"
           rounded
           size="large"
-          style={{ paddingInline: "2.5rem" }}
+          style={{ color: "white" }}
           onClick={onPlay}
         >
           Play

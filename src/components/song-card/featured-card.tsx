@@ -22,13 +22,20 @@ export const FeaturedSongCard = ({
         <img src={song.imageUrl} alt={song.title} className={styles.image} />
 
         <Button
-          icon={isPlaying ? <Pause fill="white" /> : <Play fill="white" />}
+          icon={
+            isPlaying ? (
+              <Pause fill="white" color="white" />
+            ) : (
+              <Play fill="white" color="white" />
+            )
+          }
           type="text"
           size="large"
           className={styles.imagePlayButton}
           onClick={onPlay}
         />
       </div>
+
       <div>
         <div className={styles.title}>
           {song.title} {isPlaying && <AudioLinesIcon />}
@@ -41,11 +48,17 @@ export const FeaturedSongCard = ({
 
       <div className={styles.buttonContainer}>
         <Button
-          icon={isPlaying ? <Pause fill="white" /> : <Play fill="white" />}
+          icon={
+            isPlaying ? (
+              <Pause fill="white" color="white" />
+            ) : (
+              <Play fill="white" color="white" />
+            )
+          }
           type="success"
           rounded
           size="large"
-          style={{ paddingInline: "2.5rem" }}
+          style={{ paddingInline: "2.5rem", color: "white" }}
           onClick={onPlay}
         >
           {isPlaying ? "Pause" : "Play"}

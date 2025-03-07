@@ -11,11 +11,13 @@
 }
 
 .searchContainer {
-    margin: 1rem;
+    padding: 1rem;
+    max-width: 50rem;
+    width: 100%;
 }
 
 .searchInput {
-    width: 50rem;
+    width: 100%;
 }
 
 .playlistContainer {
@@ -43,6 +45,7 @@
     flex-direction: column;
 
     width: 50rem;
+    max-width: 100%;
 }
 
 .divider {
