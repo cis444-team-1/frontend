@@ -11,6 +11,7 @@ import {
   PlusSquare,
   Plus,
   Upload,
+  History,
 } from "lucide-react";
 import { useRef, useEffect, RefObject } from "react";
 import { usePlaylist } from "../../../hooks/use-playlist";
@@ -74,14 +75,23 @@ export function Sidebar() {
                   <User /> Profile
                 </DropdownMenuItem>
               </Link>
-              <DropdownMenuItem onClick={() => {}}>
-                <Settings />
-                Settings
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => {}}>
-                <Users />
-                Users
-              </DropdownMenuItem>
+              <Link to="/history">
+                <DropdownMenuItem onClick={() => {}}>
+                  <History /> History
+                </DropdownMenuItem>
+              </Link>
+              <Link to="/settings">
+                <DropdownMenuItem onClick={() => {}}>
+                  <Settings />
+                  Settings
+                </DropdownMenuItem>
+              </Link>
+              <Link to="/admin/users">
+                <DropdownMenuItem onClick={() => {}}>
+                  <Users />
+                  Users
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuItem onClick={() => {}}>
                 <LogOut />
                 Logout
