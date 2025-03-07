@@ -1,0 +1,42 @@
+.checkbox {
+  height: 1rem;
+  width: 1rem;
+  flex-shrink: 0;
+  border-radius: 0.125rem;
+  border: 1px solid var(--primary-color);
+  background-color: transparent;
+}
+
+.checkbox:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--background-color), 0 0 0 4px var(--ring-color);
+}
+
+.checkbox:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.checkbox[data-state="checked"] {
+  background-color: var(--primary-color);
+  color: var(--primary-foreground-color);
+}
+
+.checkbox-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+}
+
+.checkbox-check {
+  height: 0.5rem;
+  width: 0.5rem;
+}
+
+:root {
+  --primary-color: #000;
+  --primary-foreground-color: #fff;
+  --ring-color: #888;
+  --background-color: #fff;
+}
