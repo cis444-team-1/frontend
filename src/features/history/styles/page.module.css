@@ -1,0 +1,49 @@
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    overflow: hidden;
+    overflow-y: auto;
+    padding-bottom: 200px;
+    gap: 1rem;
+}
+
+.searchInput {
+    max-width: 32rem;
+    width: 100%;
+    background-color: var(--background-surface-50);
+}
+
+.pageTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--foreground-default);
+    margin: 1rem;
+    margin-bottom: 0;
+}
+
+.pageDescription {
+    width: 75%;
+    color: var(--foreground-light);
+}
+
+@media screen and (max-width: 900px) {
+    .pageDescription {
+        width: 100%;
+    }
+}
+
+.sectionContainer {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    position: relative;
+}
+
+.sectionTitle {
+    color: var(--foreground-light);
+    font-size: 1.25rem;
+    margin-bottom: -1rem;
+    margin: 1rem;
+    margin-bottom: 0;
+}
