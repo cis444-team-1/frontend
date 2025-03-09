@@ -5,8 +5,6 @@ import { playlists } from "../../types/playlist";
 export default function HistoryPage() {
   return (
     <div className={styles.pageContainer}>
-      <h1 className={styles.pageTitle}>Play history</h1>
-
       <section className={styles.sectionContainer}>
         <h1 className={styles.sectionTitle}>Today</h1>
 

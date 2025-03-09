@@ -16,6 +16,12 @@ import ProfilePage from "./features/profile/page";
 import HomePage from "./features/home/page";
 import HistoryPage from "./features/history/page";
 import SearchPage from "./features/search/page";
+import LoginPage from "./features/auth/login/page";
+import AuthLayout from "./features/auth/layout";
+import RegisterPage from "./features/auth/register/page";
+import ForgotPasswordPage from "./features/auth/forgot-password/page";
+import ResetPasswordPage from "./features/auth/reset-password/page";
+import VerifyEmailPage from "./features/auth/verify-email/page";
 
 /**
  * These routes are used by the playback layout.
@@ -65,13 +71,14 @@ const adminRoutes = {
  */
 const authRoutes = {
   path: "/auth",
-  element: <div>Auth</div>, // Make sure user isn't logged in for these.
+  element: <AuthLayout />, // Make sure user isn't logged in for these.
   children: [
-    { path: "login", element: <div>Login</div> },
-    { path: "register", element: <div>Register</div> },
-    { path: "reset-password", element: <div>Reset Password</div> },
-    { path: "verify-email", element: <div>Verify Email</div> },
-    { path: "forgot-password", element: <div>Forgot Password</div> },
+    { path: "/auth", element: <Navigate to="/auth/login" /> },
+    { path: "/auth/login", element: <LoginPage /> },
+    { path: "/auth/register", element: <RegisterPage /> },
+    { path: "/auth/reset-password", element: <ResetPasswordPage /> }, // Requires query param token ?token=<id>
+    { path: "/auth/verify-email", element: <VerifyEmailPage /> }, // Requires query param token ?token=<id>
+    { path: "/auth/forgot-password", element: <ForgotPasswordPage /> },
   ],
 };
 

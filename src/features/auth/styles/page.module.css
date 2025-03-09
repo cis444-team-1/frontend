@@ -1,0 +1,20 @@
+.layoutContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+    color: var(--foreground-default);
+    position: relative;
+    overflow-x: hidden;
+}
+
+.modal {
+    width: 100%;
+    max-width: 24rem;
+}
+
+@media screen and (min-width: 720px) {
+    .modal {
+        max-width: 48rem;
+    }
+}

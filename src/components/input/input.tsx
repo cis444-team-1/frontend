@@ -115,7 +115,7 @@ const Input = forwardRef<
           size={size}
           className={clsx(props.className)}
           style={{
-            paddingLeft: icon ? (size === "tiny" ? "2rem" : "3rem") : 0,
+            paddingLeft: icon ? (size === "tiny" ? "2rem" : "3rem") : "",
           }}
         />
         {icon && (
