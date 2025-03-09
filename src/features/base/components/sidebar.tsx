@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Trash,
   EllipsisVertical,
@@ -13,7 +15,7 @@ import {
   Upload,
   History,
 } from "lucide-react";
-import { useRef, useEffect, RefObject } from "react";
+import { useRef, useEffect, type RefObject, useState } from "react";
 import { usePlaylist } from "../../../hooks/use-playlist";
 import { Link, NavLink } from "react-router-dom";
 import {
@@ -24,14 +26,24 @@ import {
 } from "../../../components/dropdown-menu.tsx/dropdown-menu";
 import { Button } from "../../../components/button/button";
 import { ScrollArea } from "../../../components/scrollarea/scroll-area";
-import { Playlist } from "../../../types/playlist";
+import type { Playlist } from "../../../types/playlist";
 import { usePlayback } from "../../../hooks/use-playback";
-
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "../../../components/dialog/dialog";
+import { Label } from "../../../components/label/label";
+import { Input } from "../../../components/input/input";
+import { Textarea } from "../../../components/textarea/textarea";
+import { Checkbox } from "../../../components/checkbox/checkbox";
 import styles from "../styles.module.css";
 import { useTheme } from "../../../hooks/theme";
 import { users } from "../../../types/user";
-
-// TODO : Change the active affect, since some pages lead to the same route, the active affect is not working properly.
 
 export function Sidebar() {
   const { playlists } = usePlaylist();
@@ -39,6 +51,12 @@ export function Sidebar() {
   const { registerPanelRef, handleKeyNavigation, setActivePanel } =
     usePlayback();
   const { theme, setTheme } = useTheme();
+  const [open, setOpen] = useState(false);
+  const [playlistName, setPlaylistName] = useState("");
+  const [playlistDescription, setPlaylistDescription] = useState("");
+  const [isPublic, setIsPublic] = useState(false);
+  const [isCollaborative, setIsCollaborative] = useState(false);
+  const [addToProfile, setAddToProfile] = useState(false);
 
   useEffect(() => {
     if (!registerPanelRef) {
@@ -49,6 +67,25 @@ export function Sidebar() {
       playlistsContainerRef as RefObject<HTMLUListElement>
     );
   }, [registerPanelRef]);
+
+  const handleCreatePlaylist = () => {
+    // Handle playlist creation logic here
+    console.log({
+      name: playlistName,
+      description: playlistDescription,
+      isPublic,
+      isCollaborative,
+      addToProfile,
+    });
+
+    // Reset form and close dialog
+    setPlaylistName("");
+    setPlaylistDescription("");
+    setIsPublic(false);
+    setIsCollaborative(false);
+    setAddToProfile(false);
+    setOpen(false);
+  };
 
   return (
     <div
@@ -64,7 +101,12 @@ export function Sidebar() {
                 block
                 size="large"
                 className={styles.userButton}
-                icon={<img src={users[0].imageSrc} className={styles.avatar} />}
+                icon={
+                  <img
+                    src={users[0].imageSrc || "/placeholder.svg"}
+                    className={styles.avatar}
+                  />
+                }
               >
                 {users[0].username}
               </Button>
@@ -151,15 +193,115 @@ export function Sidebar() {
           <Upload size={18} className={styles.navIcon} />
           <span>Upload Music</span>
         </NavLink>
-        <NavLink
-          to="/create-playlist"
-          className={({ isActive }) =>
-            `${styles.navItem} ${isActive ? styles.active : ""}`
-          }
-        >
-          <Plus size={18} className={styles.navIcon} />
-          <span>Create Playlist</span>
-        </NavLink>
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogTrigger asChild>
+            <div
+              className={styles.navItem}
+              role="button"
+              tabIndex={0}
+              onClick={() => setOpen(true)}
+            >
+              <Plus size={18} className={styles.navIcon} />
+              <span>Create Playlist</span>
+            </div>
+          </DialogTrigger>
+          <DialogContent className={styles.dialogContent}>
+            <DialogHeader>
+              <DialogTitle>Create Playlist</DialogTitle>
+              <DialogDescription>
+                Create a new playlist to organize your music.
+              </DialogDescription>
+            </DialogHeader>
+
+            <div className={styles.formContainer}>
+              <div className={styles.formGroup}>
+                <Label htmlFor="playlist-name" required>
+                  Playlist Title
+                </Label>
+                <Input
+                  id="playlist-name"
+                  placeholder="Add a playlist title"
+                  className={styles.input}
+                  value={playlistName}
+                  onChange={(e) => setPlaylistName(e.target.value)}
+                  size="medium"
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <Label htmlFor="playlist-description">Description</Label>
+                <Textarea
+                  id="playlist-description"
+                  placeholder="Add an optional description"
+                  className={styles.textarea}
+                  value={playlistDescription}
+                  onChange={(e) => setPlaylistDescription(e.target.value)}
+                />
+              </div>
+
+              <div className={styles.optionsContainer}>
+                <div className={styles.checkboxGroup}>
+                  <Checkbox
+                    id="make-public"
+                    checked={isPublic}
+                    onCheckedChange={(checked) => setIsPublic(checked === true)}
+                  />
+                  <Label htmlFor="make-public" className={styles.checkboxLabel}>
+                    Make playlist public
+                  </Label>
+                </div>
+
+                <div className={styles.checkboxGroup}>
+                  <Checkbox
+                    id="allow-collaborative"
+                    checked={isCollaborative}
+                    onCheckedChange={(checked) =>
+                      setIsCollaborative(checked === true)
+                    }
+                  />
+                  <Label
+                    htmlFor="allow-collaborative"
+                    className={styles.checkboxLabel}
+                  >
+                    Allow collaborative editing
+                  </Label>
+                </div>
+
+                <div className={styles.checkboxGroup}>
+                  <Checkbox
+                    id="add-to-profile"
+                    checked={addToProfile}
+                    onCheckedChange={(checked) =>
+                      setAddToProfile(checked === true)
+                    }
+                  />
+                  <Label
+                    htmlFor="add-to-profile"
+                    className={styles.checkboxLabel}
+                  >
+                    Add to profile
+                  </Label>
+                </div>
+              </div>
+            </div>
+
+            <DialogFooter className={styles.footer}>
+              <Button
+                type="default"
+                onClick={() => setOpen(false)}
+                className={styles.cancelButton}
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={handleCreatePlaylist}
+                disabled={!playlistName.trim()}
+              >
+                Create
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
 
       <div className={styles.navSection}>
@@ -190,7 +332,6 @@ function PlaylistRow({ playlist }: { playlist: Playlist }) {
         }
         tabIndex={0}
       >
-        {/** TODO: HANDLE TEXT OVERFLOW WITH ELLIPSIS */}
         {playlist.name}
       </NavLink>
 
