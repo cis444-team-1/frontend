@@ -121,18 +121,39 @@
   border: 1px solid var(--border-control);
   background-color: var(--background-default);
   color: var(--foreground-default);
-  transition: border-color 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  font-size: 0.875rem;
 }
 
-.input:focus,
-.textarea:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--background-default);
+.input {
+  padding: 0.75rem !important;
+  height: auto !important;
 }
 
 .textarea {
   min-height: 80px;
   resize: vertical;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--foreground-muted);
+  opacity: 0.7;
+}
+
+.input:focus,
+.input:focus-visible,
+.textarea:focus,
+.textarea:focus-visible {
+  outline: none;
+  border-color: var(--border-strong);
+  box-shadow: 0 0 0 2px var(--background-default), 0 0 0 4px var(--border-stronger);
+}
+
+/* Add this to ensure the textarea gets the focus effect when typing */
+.textarea:not(:placeholder-shown) {
+  border-color: var(--border-strong);
+  box-shadow: 0 0 0 2px var(--background-default), 0 0 0 4px var(--border-stronger);
 }
 
 .optionsContainer {
@@ -168,6 +189,7 @@
   background-color: transparent;
   color: var(--foreground-default);
   border: 1px solid var(--border-control);
+  font-weight: 500;
 }
 
 .cancelButton:hover {
@@ -334,7 +356,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 10;
+  z-index: 100;
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem;

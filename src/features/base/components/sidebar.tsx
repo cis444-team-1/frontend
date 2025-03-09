@@ -214,6 +214,7 @@ export function Sidebar() {
                   className={styles.input}
                   value={playlistName}
                   onChange={(e) => setPlaylistName(e.target.value)}
+                  size="medium"
                 />
               </div>
 
