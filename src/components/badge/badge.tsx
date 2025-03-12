@@ -1,6 +1,6 @@
 // Badge.tsx
 import React, { useState } from "react";
-import styles from "./Badge.module.css";
+import styles from "./badge.module.css";
 import { X } from "lucide-react";
 import clsx from "clsx";
 

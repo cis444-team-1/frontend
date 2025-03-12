@@ -5,8 +5,6 @@ import profileStyles from "../styles/profile-header.module.css";
 import { User } from "../../../types/user";
 import { Button } from "../../../components/button/button";
 
-const randomBackground = "https://picsum.photos/1920/1080";
-
 export const ProfileHeader = ({
   user,
   showSubscribe = true,
@@ -26,14 +24,6 @@ export const ProfileHeader = ({
         icon={<Search />}
         className={styles.searchInput}
       />
-
-      <img
-        src={randomBackground}
-        alt="background"
-        className={profileStyles.backgroundImage}
-      />
-
-      <div className={profileStyles.gradient}></div>
 
       <div className={profileStyles.container}>
         <img

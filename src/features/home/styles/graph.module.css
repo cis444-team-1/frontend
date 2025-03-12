@@ -1,0 +1,21 @@
+.container {
+    background-color: var(--background-surface-50);
+    padding-inline: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--border-default)
+}
+
+.container>p {
+    font-size: 0.875rem;
+    color: var(--foreground-lighter)
+}
+
+.divider {
+    width: calc(100% + 2rem);
+    height: 1px;
+    margin-top: 0.5rem;
+    margin-inline: -1rem;
+    background-color: var(--border-default);
+}

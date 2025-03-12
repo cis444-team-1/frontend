@@ -12,7 +12,8 @@
 
 .subtrigger:focus,
 .subtrigger[data-state="open"] {
-    background-color: var(--brand-default);
+    background-color: var(--background-surface-300);
+    color: var(--brand-default)
 }
 
 .subtrigger svg {

@@ -17,7 +17,10 @@ export const FanFavorite = ({ playlist }: { playlist: FanFavorites }) => {
           src={playlist.imageSrc}
           alt={playlist.name}
           onLoad={() => setImageLoaded(true)}
-          style={{ display: imageLoaded ? "block" : "none" }}
+          style={{
+            display: imageLoaded ? "block" : "none",
+            borderRadius: "0.25rem",
+          }}
         />
 
         {!imageLoaded && <div className={styles.skeleton}></div>}

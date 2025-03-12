@@ -4,4 +4,29 @@
     flex: 1 1 0;
     overflow: hidden;
     padding-bottom: 80px;
+    margin-inline: 10rem;
+}
+
+@media screen and (max-width: 1400px) {
+    .pageContainer {
+        margin-inline: 3rem;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .pageContainer {
+        margin-inline: 0;
+    }
+}
+
+.sectionContainer {
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.searchInput {
+    max-width: 32rem;
+    width: 100%;
 }

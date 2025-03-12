@@ -245,7 +245,7 @@
 }
 
 .sidebarScrollAreaContainer {
-  height: calc(100dvh - 450px);
+  height: calc(100dvh - 530px);
 }
 
 .sidebarList {
@@ -358,7 +358,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 10;
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem;
@@ -493,4 +493,3 @@
 }
 
 /* END OF PLAYBACK CONTROLS STYLES */
-
