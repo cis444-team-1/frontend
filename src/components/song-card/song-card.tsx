@@ -7,7 +7,13 @@ import styles from "./song-card.module.css";
 import { usePlayback } from "../../hooks/use-playback";
 import { AudioLinesIcon } from "../audio-lines/audio-lines";
 
-export const HorizontalSongCard = ({ song }: { song: Song }) => {
+export const HorizontalSongCard = ({
+  song,
+  ranking,
+}: {
+  song: Song;
+  ranking?: number;
+}) => {
   const {
     currentTrack,
     playTrack,
@@ -30,7 +36,34 @@ export const HorizontalSongCard = ({ song }: { song: Song }) => {
 
   return (
     <div className={styles.container} onClick={onClickCard}>
-      <img src={song.imageUrl} alt={song.title} className={styles.image} />
+      {ranking && <p className={styles.ranking}>{ranking}</p>}
+
+      <div className={styles.imageWrapper}>
+        <img src={song.imageUrl} alt={song.title} className={styles.image} />
+
+        <Button
+          size="medium"
+          className={
+            isCurrentTrack && isPlaying ? styles.pauseButton : styles.playButton
+          }
+          icon={
+            isCurrentTrack && isPlaying ? (
+              <Pause />
+            ) : (
+              <Play fill="white" color="white" />
+            )
+          }
+        />
+
+        <Button
+          type="text"
+          size="medium"
+          className={
+            isCurrentTrack && isPlaying ? styles.audioButton : styles.noShow
+          }
+          icon={<AudioLinesIcon />}
+        />
+      </div>
 
       <div>
         <p className={styles.title}>{song.title}</p>
@@ -38,30 +71,6 @@ export const HorizontalSongCard = ({ song }: { song: Song }) => {
           {song.artist} • {song.album} • {formatDuration(song.durationSeconds)}
         </p>
       </div>
-
-      <Button
-        type="text"
-        size="medium"
-        className={
-          isCurrentTrack && isPlaying ? styles.pauseButton : styles.playButton
-        }
-        icon={
-          isCurrentTrack && isPlaying ? (
-            <Pause />
-          ) : (
-            <Play fill="white" color="white" />
-          )
-        }
-      />
-
-      <Button
-        type="text"
-        size="medium"
-        className={
-          isCurrentTrack && isPlaying ? styles.audioButton : styles.noShow
-        }
-        icon={<AudioLinesIcon />}
-      />
 
       <Button
         type="text"

@@ -22,6 +22,8 @@ import RegisterPage from "./features/auth/register/page";
 import ForgotPasswordPage from "./features/auth/forgot-password/page";
 import ResetPasswordPage from "./features/auth/reset-password/page";
 import VerifyEmailPage from "./features/auth/verify-email/page";
+import AdminLayout from "./features/admin/layout";
+import { UsersPage } from "./features/admin/users";
 
 /**
  * These routes are used by the playback layout.
@@ -62,7 +64,8 @@ const nonPlaybackRoutes = {
 
 const adminRoutes = {
   path: "/admin",
-  children: [{ path: "users", element: <div>Users</div> }],
+  element: <AdminLayout />,
+  children: [{ path: "/admin/users", element: <UsersPage /> }],
 };
 
 /**

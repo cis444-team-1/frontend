@@ -26,8 +26,12 @@ export default function LibraryPage() {
         <p className={styles.pageTitle}>Playlists</p>
         <Filters />
         <div className={styles.playlistContainer}>
-          {playlists.map((playlist) => (
-            <VerticalPlaylistCard playlist={playlist} showVisibility />
+          {playlists.map((playlist, index) => (
+            <VerticalPlaylistCard
+              key={index}
+              playlist={playlist}
+              showVisibility
+            />
           ))}
         </div>
       </div>
@@ -35,17 +39,18 @@ export default function LibraryPage() {
       <div className={styles.sectionContainer}>
         <p className={styles.pageTitle}>Artists</p>
         <div className={styles.artistContainer}>
-          {users.map((user) => (
-            <VerticalArtistCard user={user} />
+          {users.map((user, index) => (
+            <VerticalArtistCard key={index} user={user} />
           ))}
         </div>
       </div>
 
       <div className={styles.sectionContainer}>
         <ScrollArea title="Uploads">
+          <div className={styles.divider} />
           <div className={styles.songContainer}>
-            {songs.map((song) => (
-              <LongHorizontalSongCard song={song} />
+            {songs.map((song, index) => (
+              <LongHorizontalSongCard key={index} song={song} />
             ))}
           </div>
           <ScrollBar orientation="vertical" />

@@ -6,6 +6,19 @@
     overflow-y: auto;
     padding-bottom: 200px;
     gap: 1rem;
+    margin-inline: 10rem;
+}
+
+@media screen and (max-width: 1400px) {
+    .pageContainer {
+        margin-inline: 3rem;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .pageContainer {
+        margin-inline: 0;
+    }
 }
 
 .searchInput {

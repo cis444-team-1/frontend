@@ -21,19 +21,21 @@ export default function ExplorePage() {
       </div>
 
       <div className={styles.sectionContainer}>
-        <p className={styles.pageTitle}>New releases</p>
-        <div className={styles.playlistContainer}>
-          {playlists.map((playlist) => (
-            <VerticalPlaylistCard playlist={playlist} />
-          ))}
-        </div>
+        <ScrollArea title="New Releases" showControls>
+          <div className={styles.playlistContainer}>
+            {playlists.map((playlist, index) => (
+              <VerticalPlaylistCard playlist={playlist} key={index} />
+            ))}
+          </div>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
       </div>
 
       <div className={styles.sectionContainer}>
         <ScrollArea showControls title="Top Charts">
           <div className={styles.songContainer}>
-            {songs.map((song) => (
-              <HorizontalSongCard song={song} />
+            {songs.map((song, index) => (
+              <HorizontalSongCard song={song} ranking={index + 1} key={index} />
             ))}
           </div>
           <ScrollBar orientation="horizontal" />
@@ -43,13 +45,14 @@ export default function ExplorePage() {
       <div className={styles.sectionContainer}>
         <ScrollArea showControls title="Moods & Genres">
           <div className={styles.genreContainer}>
-            {MUSIC_TYPES.map((type) => (
+            {MUSIC_TYPES.map((type, index) => (
               <Badge
                 label={type}
                 onClick={() => {}}
                 borderRadius={5}
                 variant="outline"
                 size="large"
+                key={index}
               />
             ))}
           </div>
@@ -60,8 +63,8 @@ export default function ExplorePage() {
       <div className={styles.sectionContainer}>
         <ScrollArea showControls title="Trending">
           <div className={styles.songContainer}>
-            {songs.map((song) => (
-              <HorizontalSongCard song={song} />
+            {songs.map((song, index) => (
+              <HorizontalSongCard song={song} ranking={index + 1} key={index} />
             ))}
           </div>
           <ScrollBar orientation="horizontal" />

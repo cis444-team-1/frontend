@@ -8,7 +8,7 @@ export function CoverImage({
   imageSrc: string | null;
   playlistId: string;
 }) {
-  let currentUrl = imageSrc
+  const currentUrl = imageSrc
     ? "https://www.argospetinsurance.co.uk/assets/uploads/2017/12/cat-pet-animal-domestic-104827.jpeg"
     : imageSrc;
 
@@ -21,6 +21,7 @@ export function CoverImage({
           width: "6rem",
           height: "6rem",
           objectFit: "cover",
+          borderRadius: "0.25rem",
         }}
       />
     );

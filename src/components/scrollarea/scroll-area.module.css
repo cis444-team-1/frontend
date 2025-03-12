@@ -39,6 +39,8 @@
     height: 100%;
     width: 100%;
     border-radius: inherit;
+
+    padding-bottom: 1rem;
 }
 
 .controls {
@@ -63,9 +65,9 @@
 }
 
 .title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--foreground-default);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--foreground-default)
 }
 
 .header {

@@ -3,7 +3,21 @@
     flex-direction: column;
     flex: 1 1 0;
     overflow: hidden;
-    padding-bottom: 69px;
+    padding-bottom: 200px;
+    gap: 1rem;
+    margin-inline: 10rem;
+}
+
+@media screen and (max-width: 1400px) {
+    .pageContainer {
+        margin-inline: 3rem;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .pageContainer {
+        margin-inline: 0;
+    }
 }
 
 .searchInput {
@@ -12,9 +26,12 @@
 }
 
 .playlistContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.playlistContainer>div {
+    width: 180px;
 }
 
 .artistContainer {
@@ -24,8 +41,8 @@
 }
 
 .pageTitle {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 2rem;
+    font-weight: 700;
     color: var(--foreground-default);
 }
 
@@ -34,4 +51,45 @@
     display: flex;
     gap: 1rem;
     flex-direction: column;
+}
+
+.userContainer {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.userContainer p {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--foreground-default)
+}
+
+.userContainer h1 {
+    color: var(--foreground-light)
+}
+
+.image {
+    border-radius: 999px;
+    max-width: 4rem;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+@media screen and (max-width: 1200px) {
+    .cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.songContainer {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: 1rem;
 }

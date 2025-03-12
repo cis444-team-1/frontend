@@ -11,10 +11,21 @@
     cursor: pointer;
 }
 
+.container:hover:after {
+    content: "";
+    background-color: var(--background-surface-50);
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--border-default);
+    border-radius: 0.25rem;
+    z-index: -1;
+}
+
 .image {
     width: 3.2rem;
     height: 3.2rem;
     object-fit: cover;
+    border-radius: 0.25rem;
 }
 
 .playButton {

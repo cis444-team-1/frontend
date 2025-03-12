@@ -6,6 +6,19 @@
     padding-bottom: 69px;
     overflow-y: auto;
     gap: 1rem;
+    margin-inline: 10rem;
+}
+
+@media screen and (max-width: 1400px) {
+    .pageContainer {
+        margin-inline: 3rem;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .pageContainer {
+        margin-inline: 0;
+    }
 }
 
 .searchInput {
@@ -15,8 +28,8 @@
 
 .playlistContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
 }
 
 .artistContainer {
@@ -32,8 +45,8 @@
 }
 
 .pageTitle {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 2rem;
+    font-weight: 700;
     color: var(--foreground-default);
 }
 
@@ -42,4 +55,11 @@
     display: flex;
     gap: 1rem;
     flex-direction: column;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--border-default);
+    margin-bottom: 1rem;
 }
