@@ -13,6 +13,7 @@ import { AnalyticsCard } from "../../components/analytic-card/card";
 import { HorizontalSongCard } from "../../components/song-card/song-card";
 import { songs } from "../../types/song";
 import { ListeningTrends } from "./components/listening-trends";
+import { VerticalArtistCard } from "../../components/artist-card/vertical-card";
 export default function HomePage() {
   return (
     <div className={styles.pageContainer}>
@@ -109,6 +110,17 @@ export default function HomePage() {
       <div className={styles.sectionContainer}>
         <p className={styles.pageTitle}>Your Listening Trends</p>
         <ListeningTrends />
+      </div>
+
+      <div className={styles.sectionContainer}>
+        <ScrollArea title="Following" showControls>
+          <div className={styles.playlistContainer}>
+            {users.map((user, index) => (
+              <VerticalArtistCard user={user} key={index} />
+            ))}
+          </div>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
       </div>
     </div>
   );

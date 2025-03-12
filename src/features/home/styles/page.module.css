@@ -3,7 +3,8 @@
     flex-direction: column;
     flex: 1 1 0;
     overflow: hidden;
-    padding-bottom: 69px;
+    padding-bottom: 200px;
+    gap: 1rem;
     margin-inline: 10rem;
 }
 
