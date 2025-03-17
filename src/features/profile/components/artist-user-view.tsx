@@ -18,7 +18,7 @@ export const ArtistView = ({ user }: { user: User }) => {
 
       <div className={styles.sectionContainer}>
         <h1 className={styles.pageTitle}>About this artist</h1>
-        <p className={styles.pageDescription}>{user.bio}</p>
+        <p className={styles.pageDescription}>{user.user_metadata.bio}</p>
       </div>
 
       <div className={styles.sectionContainer}>

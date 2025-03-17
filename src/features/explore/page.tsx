@@ -1,23 +1,17 @@
-import { Search } from "lucide-react";
 import Badge from "../../components/badge/badge";
-import { Input } from "../../components/input/input";
 import { VerticalPlaylistCard } from "../../components/playlist-card/vertical-card";
 import { ScrollArea, ScrollBar } from "../../components/scrollarea/scroll-area";
 import { HorizontalSongCard } from "../../components/song-card/song-card";
 import { playlists } from "../../types/playlist";
 import { MUSIC_TYPES, songs } from "../../types/song";
 import styles from "./styles/page.module.css";
+import { Header } from "../base/components/header";
 
 export default function ExplorePage() {
   return (
     <div className={styles.pageContainer}>
       <div className={styles.sectionContainer}>
-        <Input
-          placeholder="Search music, artists, albums, or playlists..."
-          size="xlarge"
-          icon={<Search />}
-          className={styles.searchInput}
-        />
+        <Header />
       </div>
 
       <div className={styles.sectionContainer}>

@@ -3,25 +3,37 @@ import styles from "./modal.module.css";
 import { Button } from "../../../components/button/button";
 import { useForm } from "react-hook-form";
 import { Form } from "../../../components/form/form";
-import { useId } from "react";
 import { NewPasswordInput } from "../../../components/form-inputs/new-password";
 import { NewPasswordSchema } from "../schemas/auth-schemas";
 import { z } from "zod";
+import { useUpdatePassword } from "../../../api/auth";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "../../../components/alert/alert";
+import { CircleCheck } from "lucide-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useSession } from "../../../hooks/session-hook";
 
 export const ResetPasswordCard = ({
   className,
-  email,
   ...props
 }: {
   className?: string;
-  email: string;
   props?: React.HTMLAttributes<HTMLDivElement>;
 }) => {
-  const registerForm = useForm<z.infer<typeof NewPasswordSchema>>();
-  const id = useId();
+  const registerForm = useForm<z.infer<typeof NewPasswordSchema>>({
+    resolver: zodResolver(NewPasswordSchema),
+    defaultValues: {
+      password: "",
+    },
+  });
+  const updatePassword = useUpdatePassword();
+  const { session } = useSession();
 
-  const onSubmit = (data: z.infer<typeof NewPasswordSchema>) => {
-    console.log(data);
+  const onSubmit = async (data: z.infer<typeof NewPasswordSchema>) => {
+    updatePassword.mutate({ password: data.password });
   };
 
   return (
@@ -34,12 +46,36 @@ export const ResetPasswordCard = ({
           >
             <div className={styles.formHeader}>
               <h1>Reset your password</h1>
-              <p>Type in a new password for {email}</p>
+              <p>Type in a new password for {session?.user.email}</p>
             </div>
 
-            <NewPasswordInput id={id} />
+            {updatePassword.isSuccess && (
+              <Alert variant="success">
+                <CircleCheck />
+                <AlertTitle>Password Reset</AlertTitle>
+                <AlertDescription>
+                  Your password has been reset for {session?.user.email}
+                </AlertDescription>
+              </Alert>
+            )}
 
-            <Button htmlType="submit" className="w-full" size="large">
+            {updatePassword.isError && (
+              <Alert variant="destructive">
+                <AlertTitle>Error</AlertTitle>
+                <AlertDescription>
+                  {String(updatePassword.error)}
+                </AlertDescription>
+              </Alert>
+            )}
+
+            <NewPasswordInput />
+
+            <Button
+              htmlType="submit"
+              className="w-full"
+              size="large"
+              loading={updatePassword.isPending}
+            >
               Reset Password
             </Button>
           </form>
@@ -47,7 +83,7 @@ export const ResetPasswordCard = ({
       </div>
 
       <div className={styles.disclaimer}>
-        <a href="/auth/login">Back to Login</a>
+        <a href="/">Back to home</a>
       </div>
     </div>
   );

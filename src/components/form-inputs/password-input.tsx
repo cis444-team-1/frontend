@@ -1,5 +1,4 @@
 import { useFormContext } from "react-hook-form";
-
 import {
   FormControl,
   FormField,
@@ -9,9 +8,11 @@ import {
 } from "../form/form";
 import { Input } from "../input/input";
 import styles from "./password.module.css";
+import { Button } from "../button/button";
+import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 
 export const PasswordFormInput = ({
-  id,
   name,
   placeholder,
   label,
@@ -19,7 +20,6 @@ export const PasswordFormInput = ({
   className,
   inputClassName,
 }: {
-  id: string;
   name: string;
   placeholder: string;
   label: string;
@@ -28,6 +28,7 @@ export const PasswordFormInput = ({
   inputClassName?: string;
 }) => {
   const form = useFormContext();
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <FormField
@@ -45,16 +46,31 @@ export const PasswordFormInput = ({
           </div>
 
           <FormControl>
-            <Input
-              {...field}
-              placeholder={placeholder}
-              className={inputClassName}
-              aria-invalid={!!form.formState.errors.email}
-              aria-describedby={`${id}-description`}
-              required={required}
-              size="large"
-              type="password"
-            />
+            <div className={styles.passwordContainer}>
+              <Input
+                {...field}
+                placeholder={placeholder}
+                className={inputClassName}
+                required={required}
+                aria-invalid={form.formState.errors[name] ? "true" : "false"}
+                size="large"
+                type={showPassword ? "text" : "password"}
+              />
+              <Button
+                htmlType="button"
+                type="text"
+                onClick={() => setShowPassword(!showPassword)}
+                className={styles.toggleVisibility}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+                icon={
+                  showPassword ? (
+                    <EyeOff size={16} strokeWidth={2} />
+                  ) : (
+                    <Eye size={16} strokeWidth={2} />
+                  )
+                }
+              />
+            </div>
           </FormControl>
           <FormMessage />
         </FormItem>

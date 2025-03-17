@@ -12,11 +12,13 @@ import { Input } from "../input/input";
 import clsx from "clsx";
 import styles from "./new-password.module.css";
 import { Button } from "../button/button";
+import { NewPasswordSchema } from "../../features/auth/schemas/auth-schemas";
+import { z } from "zod";
 
-export const NewPasswordInput = ({ id }: { id: string }) => {
+export const NewPasswordInput = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const form = useFormContext();
+  const form = useFormContext<z.infer<typeof NewPasswordSchema>>();
 
   const checkMatchingPassword = (password: string, confirmPassword: string) => {
     if (password === "" || confirmPassword === "") return false;
@@ -99,8 +101,6 @@ export const NewPasswordInput = ({ id }: { id: string }) => {
                     {...field}
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
-                    aria-invalid={strengthScore < 4}
-                    aria-describedby={`${id}-description`}
                     size="large"
                   />
                 </FormControl>
@@ -191,7 +191,6 @@ export const NewPasswordInput = ({ id }: { id: string }) => {
                     aria-invalid={
                       form.formState.errors.confirmPassword ? true : false
                     }
-                    aria-describedby={`${id}-description`}
                     size="large"
                   />
                 </FormControl>

@@ -1,0 +1,45 @@
+.loginButton {
+    padding-inline: 2rem;
+}
+
+.userButton {
+    padding: 0;
+}
+
+.userButton img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+}
+
+.avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 999px;
+}
+
+.userInfo h1 {
+    font-weight: 500;
+    color: var(--foreground-default);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    line-clamp: 1;
+    -webkit-line-clamp: 1
+}
+
+.userInfo p {
+    font-size: 0.775rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    line-clamp: 1;
+    -webkit-line-clamp: 1
+}
+
+.divider {
+    width: calc(100% + 0.6rem);
+    height: 1px;
+    background-color: var(--border-default);
+    margin: 0.25rem -0.3rem;
+}

@@ -6,7 +6,26 @@
     align-items: center;
     display: flex;
     gap: 1rem;
+
+    container-type: inline-size;
+    container-name: playlist-card;
 }
+
+.actions {
+    width: 100%;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@container playlist-card (max-width: 600px) {
+    .actions {
+        flex-direction: column;
+        align-items: start;
+    }
+}
+
 
 .imageContainer {
     position: relative;

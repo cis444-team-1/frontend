@@ -9,8 +9,8 @@ export const VerticalArtistCard = ({ user }: { user: User }) => {
     <div>
       <Link to={`/artist/123`} className={styles.imageContainer}>
         <img
-          src={user.imageSrc}
-          alt="https://i.pravatar.cc/300"
+          src={user.user_metadata.avatar || "/placeholder.svg"}
+          alt={user.user_metadata.username + " profile image"}
           onLoad={() => setImageLoaded(true)}
           style={{
             display: imageLoaded ? "block" : "none",
@@ -20,7 +20,7 @@ export const VerticalArtistCard = ({ user }: { user: User }) => {
 
         {!imageLoaded && <div className={styles.skeleton}></div>}
       </Link>
-      <p className={styles.userTitle}>{user.username}</p>
+      <p className={styles.userTitle}>{user.user_metadata.username}</p>
       <p className={styles.userInfo}>123 followers</p>
       <div></div>
     </div>

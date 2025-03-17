@@ -36,42 +36,44 @@ export const FeaturedSongCard = ({
         />
       </div>
 
-      <div>
-        <div className={styles.title}>
-          {song.title} {isPlaying && <AudioLinesIcon />}
+      <div className={styles.actions}>
+        <div>
+          <div className={styles.title}>
+            {song.title} {isPlaying && <AudioLinesIcon />}
+          </div>
+          <div className={styles.info}>
+            <Music size={16} /> Song • {song.artist} •{" "}
+            {formatDuration(song.durationSeconds)}
+          </div>
         </div>
-        <div className={styles.info}>
-          <Music size={16} /> Song • {song.artist} •{" "}
-          {formatDuration(song.durationSeconds)}
-        </div>
-      </div>
 
-      <div className={styles.buttonContainer}>
-        <Button
-          icon={
-            isPlaying ? (
-              <Pause fill="white" color="white" />
-            ) : (
-              <Play fill="white" color="white" />
-            )
-          }
-          type="success"
-          rounded
-          size="large"
-          style={{ paddingInline: "2.5rem", color: "white" }}
-          onClick={onPlay}
-        >
-          {isPlaying ? "Pause" : "Play"}
-        </Button>
-        <Button
-          icon={<ListPlus />}
-          type="outline"
-          rounded
-          size="large"
-          onClick={onSave}
-        >
-          Save
-        </Button>
+        <div className={styles.buttonContainer}>
+          <Button
+            icon={
+              isPlaying ? (
+                <Pause fill="white" color="white" />
+              ) : (
+                <Play fill="white" color="white" />
+              )
+            }
+            type="success"
+            rounded
+            size="large"
+            style={{ paddingInline: "2.5rem", color: "white" }}
+            onClick={onPlay}
+          >
+            {isPlaying ? "Pause" : "Play"}
+          </Button>
+          <Button
+            icon={<ListPlus />}
+            type="outline"
+            rounded
+            size="large"
+            onClick={onSave}
+          >
+            Save
+          </Button>
+        </div>
       </div>
     </div>
   );

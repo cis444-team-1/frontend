@@ -1,0 +1,82 @@
+.description {
+    font-size: 0.875rem;
+    color: var(--foreground-light);
+    font-weight: 400;
+}
+
+.description p {
+    line-height: 1.625rem;
+}
+
+.title {
+    margin-bottom: 0.25rem;
+}
+
+.card {
+    position: relative;
+    width: 100%;
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+    padding: 1rem;
+}
+
+.card>svg {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    color: var(--foreground-default);
+    width: 23px;
+    height: 23px;
+    padding: 0.25rem;
+    display: flex;
+    border-radius: 0.25rem;
+}
+
+.card>svg~* {
+    padding-left: 2.5rem;
+}
+
+.card>svg+div {
+    transform: translateY(-3px);
+}
+
+.default {
+    color: var(--foreground-default);
+    background-color: var(--background-surface-100);
+    border: 1px solid var(--border-default);
+}
+
+.default>svg {
+    color: var(--background-surface-100);
+    background-color: var(--foreground-default);
+}
+
+.destructive {
+    border: 1px solid var(--destructive-400);
+    background-color: var(--destructive-200);
+}
+
+.destructive>svg {
+    color: var(--destructive-200);
+    background-color: var(--destructive-600);
+}
+
+.warning {
+    border: 1px solid var(--warning-400);
+    background-color: var(--warning-200);
+}
+
+.warning>svg {
+    color: var(--warning-200);
+    background-color: var(--warning-600);
+}
+
+.success {
+    border: 1px solid var(--success-400);
+    background-color: color-mix(in srgb, var(--success-600) 20%, transparent)
+}
+
+.success>svg {
+    color: var(--success-200);
+    background-color: var(--success-600);
+}

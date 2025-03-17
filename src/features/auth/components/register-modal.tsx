@@ -5,20 +5,36 @@ import { GoogleIcon } from "./google-icon";
 import { useForm } from "react-hook-form";
 import { Form } from "../../../components/form/form";
 import { NewPasswordInput } from "../../../components/form-inputs/new-password";
-import { useId } from "react";
 import { SimpleFormInput } from "../../../components/form-inputs/simple-form-input";
 import { RegisterSchema } from "../schemas/auth-schemas";
 import { z } from "zod";
+import { useRegister } from "../../../api/auth";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "../../../components/alert/alert";
+import { AlertCircle, CircleCheck } from "lucide-react";
+import { useTheme } from "../../../hooks/theme";
 
 export const RegisterModal = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => {
-  const registerForm = useForm<z.infer<typeof RegisterSchema>>();
-  const id = useId();
+  const registerForm = useForm<z.infer<typeof RegisterSchema>>({
+    resolver: zodResolver(RegisterSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+  });
+  const register = useRegister();
+  const { theme } = useTheme();
 
-  const onSubmit = (data: z.infer<typeof RegisterSchema>) => {
-    console.log(data);
+  const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
+    register.mutate(values);
   };
 
   return (
@@ -35,17 +51,40 @@ export const RegisterModal = ({
                 <p>Create your Melo account</p>
               </div>
 
+              {register.isError && (
+                <Alert variant="destructive">
+                  <AlertCircle />
+                  <AlertTitle>Could not create your account.</AlertTitle>
+                  <AlertDescription>{String(register.error)}</AlertDescription>
+                </Alert>
+              )}
+
+              {register.isSuccess && (
+                <Alert variant="success">
+                  <CircleCheck />
+                  <AlertTitle>Email verification sent</AlertTitle>
+                  <AlertDescription>
+                    Sucessfully created your account. Please verify the email
+                    sent to {register.data}
+                  </AlertDescription>
+                </Alert>
+              )}
+
               <SimpleFormInput
-                id={id}
                 name="email"
                 label="Email"
-                placeholder="m@example.com"
+                placeholder="Enter your email address"
                 required
               />
 
-              <NewPasswordInput id={id} />
+              <NewPasswordInput />
 
-              <Button htmlType="submit" className="w-full" size="large">
+              <Button
+                htmlType="submit"
+                className="w-full"
+                size="large"
+                loading={register.isPending}
+              >
                 Sign Up
               </Button>
 
@@ -64,7 +103,10 @@ export const RegisterModal = ({
           </Form>
 
           <div className={styles.imageContainer}>
-            <img src="/placeholder.svg" alt="Image" />
+            <img
+              src={theme === "dark" ? "/1-dark.png" : "/1.png"}
+              alt="Image"
+            />
           </div>
         </div>
       </div>

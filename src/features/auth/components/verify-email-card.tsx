@@ -1,32 +1,40 @@
 import clsx from "clsx";
 import styles from "./modal.module.css";
-import { Loader2 } from "lucide-react";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "../../../components/alert/alert";
+import { CheckCircle } from "lucide-react";
+import { useSession } from "../../../hooks/session-hook";
+import { Navigate } from "react-router";
 
 export const VerifyEmailCard = ({
   className,
-  email,
   ...props
 }: {
   className?: string;
-  email: string;
   props?: React.HTMLAttributes<HTMLDivElement>;
 }) => {
+  const { session } = useSession();
+
+  if (!session) {
+    return <Navigate to="/auth/login" />;
+  }
+
   return (
     <div className={clsx(styles.modal, className)} {...props}>
-      <div className={styles.card}>
-        <div className={styles.formHeader}>
-          <h1>Verifying Email</h1>
-          <p>Give us a second while we verify {email}</p>
-        </div>
-
-        {/* TODO: ADD NOTIFICATION BASED ON VERIFICATION STATUS */}
-        <div>
-          <Loader2 />
-        </div>
-      </div>
+      <Alert variant="success">
+        <CheckCircle />
+        <AlertTitle>Your email has been verified</AlertTitle>
+        <AlertDescription>
+          Welcome to Melo, {session?.user.email}. You can now personalize your
+          musical journey.
+        </AlertDescription>
+      </Alert>
 
       <div className={styles.disclaimer}>
-        <a href="/auth/login">Back to Login</a>
+        <a href="/">Back to Home</a>
       </div>
     </div>
   );

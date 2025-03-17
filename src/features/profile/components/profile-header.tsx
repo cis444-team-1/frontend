@@ -1,9 +1,9 @@
-import { Pencil, Search, Share } from "lucide-react";
-import { Input } from "../../../components/input/input";
+import { Pencil, Share } from "lucide-react";
 import styles from "../styles/page.module.css";
 import profileStyles from "../styles/profile-header.module.css";
 import { User } from "../../../types/user";
 import { Button } from "../../../components/button/button";
+import { Header } from "../../base/components/header";
 
 export const ProfileHeader = ({
   user,
@@ -17,25 +17,22 @@ export const ProfileHeader = ({
   isArtist?: boolean;
 }) => {
   return (
-    <header className={styles.sectionContainer}>
-      <Input
-        placeholder="Search music, artists, albums, or playlists..."
-        size="xlarge"
-        icon={<Search />}
-        className={styles.searchInput}
-      />
+    <div className={styles.sectionContainer}>
+      <Header />
 
       <div className={profileStyles.container}>
         <img
           className={profileStyles.image}
-          src={user.imageSrc}
-          alt={user.username + " profile image"}
+          src={user.user_metadata.avatar || "/placeholder.svg"}
+          alt={user.user_metadata.username + " profile image"}
         />
 
         <div className={profileStyles.info}>
           {isArtist && <p className={profileStyles.artistTitle}>Artist</p>}
 
-          <h1 className={profileStyles.username}>{user.username}</h1>
+          <h1 className={profileStyles.username}>
+            {user.user_metadata.username}
+          </h1>
           <div className={profileStyles.buttons}>
             {showSubscribe && (
               <Button
@@ -58,6 +55,6 @@ export const ProfileHeader = ({
           </div>
         </div>
       </div>
-    </header>
+    </div>
   );
 };

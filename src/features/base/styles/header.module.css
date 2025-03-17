@@ -1,0 +1,33 @@
+.header {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.searchInputContainer {
+    flex-grow: 1;
+}
+
+.searchInput {
+    max-width: 32rem;
+    width: 100%;
+    background-color: var(--background-surface-50);
+}
+
+@media screen and (max-width: 640px) {
+    .searchInput {
+        max-width: 100%
+    }
+}
+
+.mobileMenu {
+    display: none;
+}
+
+@media screen and (max-width: 720px) {
+    .mobileMenu {
+        display: block;
+    }
+}

@@ -1,8 +1,16 @@
 import styles from "./styles/page.module.css";
 import { TrackTable } from "../../components/track-table/track-table";
 import { playlists } from "../../types/playlist";
+import { Navigate } from "react-router";
+import { useSession } from "../../hooks/session-hook";
 
 export default function HistoryPage() {
+  const { session } = useSession();
+
+  if (!session) {
+    return <Navigate to="/auth/login" />;
+  }
+
   return (
     <div className={styles.pageContainer}>
       <section className={styles.sectionContainer}>

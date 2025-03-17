@@ -10,15 +10,13 @@ import {
 import { Input } from "../input/input";
 
 export const SimpleFormInput = ({
-  id,
   name,
-  placeholder,
   label,
   required = false,
   className,
+  placeholder,
   inputClassName,
 }: {
-  id: string;
   name: string;
   placeholder: string;
   label: string;
@@ -27,8 +25,6 @@ export const SimpleFormInput = ({
   inputClassName?: string;
 }) => {
   const form = useFormContext();
-
-  const emailType = name === "email" ? "email" : "text";
 
   return (
     <FormField
@@ -42,13 +38,9 @@ export const SimpleFormInput = ({
           <FormControl>
             <Input
               {...field}
-              placeholder={placeholder}
               className={inputClassName}
-              aria-invalid={!!form.formState.errors.email}
-              aria-describedby={`${id}-description`}
-              required={required}
               size="large"
-              type={emailType}
+              placeholder={placeholder}
             />
           </FormControl>
           <FormMessage />

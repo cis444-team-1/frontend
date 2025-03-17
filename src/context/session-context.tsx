@@ -4,8 +4,10 @@ import { Session } from "@supabase/supabase-js";
 
 export const SessionContext = createContext<{
   session: Session | null;
+  setSession: (session: Session | null) => void;
 }>({
   session: null,
+  setSession: () => null,
 });
 
 type Props = { children: React.ReactNode };
@@ -29,7 +31,7 @@ export const SessionProvider = ({ children }: Props) => {
   }, [supabase]);
 
   return (
-    <SessionContext.Provider value={{ session }}>
+    <SessionContext.Provider value={{ session, setSession }}>
       {isLoading ? <div>Loading supabase</div> : children}
     </SessionContext.Provider>
   );

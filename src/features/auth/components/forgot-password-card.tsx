@@ -3,20 +3,32 @@ import styles from "./modal.module.css";
 import { Button } from "../../../components/button/button";
 import { useForm } from "react-hook-form";
 import { Form } from "../../../components/form/form";
-import { useId } from "react";
 import { SimpleFormInput } from "../../../components/form-inputs/simple-form-input";
 import { z } from "zod";
 import { ForgotPasswordSchema } from "../schemas/auth-schemas";
+import { useSendPasswordResetEmail } from "../../../api/auth";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "../../../components/alert/alert";
+import { AlertCircle, CircleCheck } from "lucide-react";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export const ForgotPasswordCard = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => {
-  const registerForm = useForm<z.infer<typeof ForgotPasswordSchema>>();
-  const id = useId();
+  const registerForm = useForm<z.infer<typeof ForgotPasswordSchema>>({
+    resolver: zodResolver(ForgotPasswordSchema),
+    defaultValues: {
+      email: "",
+    },
+  });
+  const sendPasswordResetEmail = useSendPasswordResetEmail();
 
-  const onSubmit = (data: z.infer<typeof ForgotPasswordSchema>) => {
-    console.log(data);
+  const onSubmit = async (data: z.infer<typeof ForgotPasswordSchema>) => {
+    sendPasswordResetEmail.mutate({ email: data.email });
   };
 
   return (
@@ -35,11 +47,30 @@ export const ForgotPasswordCard = ({
               </p>
             </div>
 
+            {sendPasswordResetEmail.isError && (
+              <Alert variant="destructive">
+                <AlertCircle />
+                <AlertTitle>Could not send email.</AlertTitle>
+                <AlertDescription>
+                  {String(sendPasswordResetEmail.error)}
+                </AlertDescription>
+              </Alert>
+            )}
+
+            {sendPasswordResetEmail.isSuccess && (
+              <Alert variant="success">
+                <CircleCheck />
+                <AlertTitle>Email sent!</AlertTitle>
+                <AlertDescription>
+                  Sent password reset email to {registerForm.watch("email")}
+                </AlertDescription>
+              </Alert>
+            )}
+
             <SimpleFormInput
-              id={id}
               name="email"
               label="Email"
-              placeholder="m@example.com"
+              placeholder="Enter your email address"
               required
             />
 

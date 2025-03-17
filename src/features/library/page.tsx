@@ -4,22 +4,24 @@ import { VerticalPlaylistCard } from "../../components/playlist-card/vertical-ca
 import Filters from "./components/filters";
 import { users } from "../../types/user";
 import { VerticalArtistCard } from "../../components/artist-card/vertical-card";
-import { Input } from "../../components/input/input";
-import { Search } from "lucide-react";
 import { ScrollArea, ScrollBar } from "../../components/scrollarea/scroll-area";
 import { LongHorizontalSongCard } from "../../components/song-card/long-song-card";
 import { songs } from "../../types/song";
+import { useSession } from "../../hooks/session-hook";
+import { Navigate } from "react-router";
+import { Header } from "../base/components/header";
 
 export default function LibraryPage() {
+  const { session } = useSession();
+
+  if (!session) {
+    return <Navigate to="/auth/login" />;
+  }
+
   return (
     <div className={styles.pageContainer}>
       <div className={styles.sectionContainer}>
-        <Input
-          placeholder="Search music, artists, albums, or playlists..."
-          size="xlarge"
-          icon={<Search />}
-          className={styles.searchInput}
-        />
+        <Header />
       </div>
 
       <div className={styles.sectionContainer}>

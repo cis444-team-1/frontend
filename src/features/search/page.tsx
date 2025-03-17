@@ -1,6 +1,4 @@
 import styles from "./styles/page.module.css";
-import { Input } from "../../components/input/input";
-import { Search } from "lucide-react";
 import { Button } from "../../components/button/button";
 import { songs } from "../../types/song";
 import { HorizontalSongCard } from "../../components/song-card/song-card";
@@ -8,19 +6,15 @@ import { FeaturedSongCard } from "../../components/song-card/featured-card";
 import { usePlayback } from "../../hooks/use-playback";
 import { FeaturedPlaylistCard } from "../../components/playlist-card/featured-card";
 import { playlists } from "../../types/playlist";
+import { Header } from "../base/components/header";
 
 export default function SearchPage() {
   const playback = usePlayback();
 
   return (
     <div className={styles.pageContainer}>
-      <div className={styles.searchContainer}>
-        <Input
-          placeholder="Search music, artists, albums, or playlists..."
-          size="xlarge"
-          icon={<Search />}
-          className={styles.searchInput}
-        />
+      <div className={styles.sectionContainer}>
+        <Header />
       </div>
 
       <div className={styles.sectionContainer}>

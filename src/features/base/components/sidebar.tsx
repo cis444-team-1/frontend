@@ -4,16 +4,11 @@ import {
   Trash,
   EllipsisVertical,
   Pencil,
-  User,
-  Settings,
-  Users,
-  LogOut,
   Home,
   Radio,
   PlusSquare,
   Plus,
   Upload,
-  History,
 } from "lucide-react";
 import { useRef, useEffect, type RefObject, useState } from "react";
 import { usePlaylist } from "../../../hooks/use-playlist";
@@ -42,21 +37,21 @@ import { Input } from "../../../components/input/input";
 import { Textarea } from "../../../components/textarea/textarea";
 import { Checkbox } from "../../../components/checkbox/checkbox";
 import styles from "../styles.module.css";
-import { useTheme } from "../../../hooks/theme";
-import { users } from "../../../types/user";
+import { useSession } from "../../../hooks/session-hook";
 
 export function Sidebar() {
   const { playlists } = usePlaylist();
   const playlistsContainerRef = useRef<HTMLUListElement>(null);
   const { registerPanelRef, handleKeyNavigation, setActivePanel } =
     usePlayback();
-  const { theme, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
   const [playlistDescription, setPlaylistDescription] = useState("");
   const [isPublic, setIsPublic] = useState(false);
   const [isCollaborative, setIsCollaborative] = useState(false);
   const [addToProfile, setAddToProfile] = useState(false);
+
+  const { session } = useSession();
 
   useEffect(() => {
     if (!registerPanelRef) {
@@ -92,64 +87,12 @@ export function Sidebar() {
       className={styles.sidebarContainer}
       onClick={() => setActivePanel("sidebar")}
     >
-      <div>
+      <Link to="/">
         <div className={styles.sidebarHeader}>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                type="text"
-                block
-                size="large"
-                className={styles.userButton}
-                icon={
-                  <img
-                    src={users[0].imageSrc || "/placeholder.svg"}
-                    className={styles.avatar}
-                  />
-                }
-              >
-                {users[0].username}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="center" style={{ width: "12rem" }}>
-              <Link to="/profile">
-                <DropdownMenuItem onClick={() => {}}>
-                  <User /> Profile
-                </DropdownMenuItem>
-              </Link>
-              <Link to="/history">
-                <DropdownMenuItem onClick={() => {}}>
-                  <History /> History
-                </DropdownMenuItem>
-              </Link>
-              <Link to="/settings">
-                <DropdownMenuItem onClick={() => {}}>
-                  <Settings />
-                  Settings
-                </DropdownMenuItem>
-              </Link>
-              <Link to="/admin/users">
-                <DropdownMenuItem onClick={() => {}}>
-                  <Users />
-                  Users
-                </DropdownMenuItem>
-              </Link>
-              <DropdownMenuItem onClick={() => {}}>
-                <LogOut />
-                Logout
-              </DropdownMenuItem>
-              <Button
-                block
-                size="medium"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                style={{ marginTop: "0.5rem" }}
-              >
-                Change theme
-              </Button>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <img src="/logo.png" alt="Logo" />
+          <p>Melo Music</p>
         </div>
-      </div>
+      </Link>
 
       <div className={styles.navSection}>
         <p className={styles.playlistsTitle}>Navigation</p>
@@ -171,153 +114,164 @@ export function Sidebar() {
           <PlusSquare size={18} className={styles.navIcon} />
           <span>Explore</span>
         </NavLink>
-        <NavLink
-          to="/library"
-          className={({ isActive }) =>
-            `${styles.navItem} ${isActive ? styles.active : ""}`
-          }
-        >
-          <Radio size={18} className={styles.navIcon} />
-          <span>Library</span>
-        </NavLink>
-      </div>
-
-      <div className={styles.navSection}>
-        <p className={styles.playlistsTitle}>Create</p>
-        <NavLink
-          to="/upload-music"
-          className={({ isActive }) =>
-            `${styles.navItem} ${isActive ? styles.active : ""}`
-          }
-        >
-          <Upload size={18} className={styles.navIcon} />
-          <span>Upload Music</span>
-        </NavLink>
-        <Dialog open={open} onOpenChange={setOpen}>
-          <DialogTrigger asChild>
-            <div
-              className={styles.navItem}
-              role="button"
-              tabIndex={0}
-              onClick={() => setOpen(true)}
-            >
-              <Plus size={18} className={styles.navIcon} />
-              <span>Create Playlist</span>
-            </div>
-          </DialogTrigger>
-          <DialogContent className={styles.dialogContent}>
-            <DialogHeader>
-              <DialogTitle>Create Playlist</DialogTitle>
-              <DialogDescription>
-                Create a new playlist to organize your music.
-              </DialogDescription>
-            </DialogHeader>
-
-            <div className={styles.formContainer}>
-              <div className={styles.formGroup}>
-                <Label htmlFor="playlist-name" required>
-                  Playlist Title
-                </Label>
-                <Input
-                  id="playlist-name"
-                  placeholder="Add a playlist title"
-                  className={styles.input}
-                  value={playlistName}
-                  onChange={(e) => setPlaylistName(e.target.value)}
-                  size="medium"
-                />
-              </div>
-
-              <div className={styles.formGroup}>
-                <Label htmlFor="playlist-description">Description</Label>
-                <Textarea
-                  id="playlist-description"
-                  placeholder="Add an optional description"
-                  className={styles.textarea}
-                  value={playlistDescription}
-                  onChange={(e) => setPlaylistDescription(e.target.value)}
-                />
-              </div>
-
-              <div className={styles.optionsContainer}>
-                <div className={styles.checkboxGroup}>
-                  <Checkbox
-                    id="make-public"
-                    checked={isPublic}
-                    onCheckedChange={(checked) => setIsPublic(checked === true)}
-                  />
-                  <Label htmlFor="make-public" className={styles.checkboxLabel}>
-                    Make playlist public
-                  </Label>
-                </div>
-
-                <div className={styles.checkboxGroup}>
-                  <Checkbox
-                    id="allow-collaborative"
-                    checked={isCollaborative}
-                    onCheckedChange={(checked) =>
-                      setIsCollaborative(checked === true)
-                    }
-                  />
-                  <Label
-                    htmlFor="allow-collaborative"
-                    className={styles.checkboxLabel}
-                  >
-                    Allow collaborative editing
-                  </Label>
-                </div>
-
-                <div className={styles.checkboxGroup}>
-                  <Checkbox
-                    id="add-to-profile"
-                    checked={addToProfile}
-                    onCheckedChange={(checked) =>
-                      setAddToProfile(checked === true)
-                    }
-                  />
-                  <Label
-                    htmlFor="add-to-profile"
-                    className={styles.checkboxLabel}
-                  >
-                    Add to profile
-                  </Label>
-                </div>
-              </div>
-            </div>
-
-            <DialogFooter className={styles.footer}>
-              <Button
-                type="default"
-                onClick={() => setOpen(false)}
-                className={styles.cancelButton}
-              >
-                Cancel
-              </Button>
-              <Button
-                onClick={handleCreatePlaylist}
-                disabled={!playlistName.trim()}
-              >
-                Create
-              </Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-      </div>
-
-      <div className={styles.navSection}>
-        <p className={styles.playlistsTitle}>Playlists</p>
-        <ScrollArea className={styles.sidebarScrollAreaContainer}>
-          <ul
-            ref={playlistsContainerRef}
-            className={styles.sidebarList}
-            onKeyDown={(e) => handleKeyNavigation(e, "sidebar")}
+        {session && (
+          <NavLink
+            to="/library"
+            className={({ isActive }) =>
+              `${styles.navItem} ${isActive ? styles.active : ""}`
+            }
           >
-            {playlists.map((playlist: Playlist) => (
-              <PlaylistRow key={playlist.id} playlist={playlist} />
-            ))}
-          </ul>
-        </ScrollArea>
+            <Radio size={18} className={styles.navIcon} />
+            <span>Library</span>
+          </NavLink>
+        )}
       </div>
+
+      {session && (
+        <div className={styles.navSection}>
+          <p className={styles.playlistsTitle}>Create</p>
+          <NavLink
+            to="/upload-music"
+            className={({ isActive }) =>
+              `${styles.navItem} ${isActive ? styles.active : ""}`
+            }
+          >
+            <Upload size={18} className={styles.navIcon} />
+            <span>Upload Music</span>
+          </NavLink>
+          <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger asChild>
+              <div
+                className={styles.navItem}
+                role="button"
+                tabIndex={0}
+                onClick={() => setOpen(true)}
+              >
+                <Plus size={18} className={styles.navIcon} />
+                <span>Create Playlist</span>
+              </div>
+            </DialogTrigger>
+            <DialogContent className={styles.dialogContent}>
+              <DialogHeader>
+                <DialogTitle>Create Playlist</DialogTitle>
+                <DialogDescription>
+                  Create a new playlist to organize your music.
+                </DialogDescription>
+              </DialogHeader>
+
+              <div className={styles.formContainer}>
+                <div className={styles.formGroup}>
+                  <Label htmlFor="playlist-name" required>
+                    Playlist Title
+                  </Label>
+                  <Input
+                    id="playlist-name"
+                    placeholder="Add a playlist title"
+                    className={styles.input}
+                    value={playlistName}
+                    onChange={(e) => setPlaylistName(e.target.value)}
+                    size="medium"
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <Label htmlFor="playlist-description">Description</Label>
+                  <Textarea
+                    id="playlist-description"
+                    placeholder="Add an optional description"
+                    className={styles.textarea}
+                    value={playlistDescription}
+                    onChange={(e) => setPlaylistDescription(e.target.value)}
+                  />
+                </div>
+
+                <div className={styles.optionsContainer}>
+                  <div className={styles.checkboxGroup}>
+                    <Checkbox
+                      id="make-public"
+                      checked={isPublic}
+                      onCheckedChange={(checked) =>
+                        setIsPublic(checked === true)
+                      }
+                    />
+                    <Label
+                      htmlFor="make-public"
+                      className={styles.checkboxLabel}
+                    >
+                      Make playlist public
+                    </Label>
+                  </div>
+
+                  <div className={styles.checkboxGroup}>
+                    <Checkbox
+                      id="allow-collaborative"
+                      checked={isCollaborative}
+                      onCheckedChange={(checked) =>
+                        setIsCollaborative(checked === true)
+                      }
+                    />
+                    <Label
+                      htmlFor="allow-collaborative"
+                      className={styles.checkboxLabel}
+                    >
+                      Allow collaborative editing
+                    </Label>
+                  </div>
+
+                  <div className={styles.checkboxGroup}>
+                    <Checkbox
+                      id="add-to-profile"
+                      checked={addToProfile}
+                      onCheckedChange={(checked) =>
+                        setAddToProfile(checked === true)
+                      }
+                    />
+                    <Label
+                      htmlFor="add-to-profile"
+                      className={styles.checkboxLabel}
+                    >
+                      Add to profile
+                    </Label>
+                  </div>
+                </div>
+              </div>
+
+              <DialogFooter className={styles.footer}>
+                <Button
+                  type="default"
+                  onClick={() => setOpen(false)}
+                  className={styles.cancelButton}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={handleCreatePlaylist}
+                  disabled={!playlistName.trim()}
+                >
+                  Create
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </div>
+      )}
+
+      {session && (
+        <div className={styles.navSection}>
+          <p className={styles.playlistsTitle}>Playlists</p>
+          <ScrollArea className={styles.sidebarScrollAreaContainer}>
+            <ul
+              ref={playlistsContainerRef}
+              className={styles.sidebarList}
+              onKeyDown={(e) => handleKeyNavigation(e, "sidebar")}
+            >
+              {playlists.map((playlist: Playlist) => (
+                <PlaylistRow key={playlist.id} playlist={playlist} />
+              ))}
+            </ul>
+          </ScrollArea>
+        </div>
+      )}
     </div>
   );
 }

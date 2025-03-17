@@ -20,11 +20,6 @@
     }
 }
 
-.searchInput {
-    max-width: 32rem;
-    width: 100%;
-}
-
 .playlistContainer {
     display: flex;
     gap: 1rem;

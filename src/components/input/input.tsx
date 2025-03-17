@@ -1,14 +1,11 @@
-import { Copy } from "lucide-react";
 import React, {
   ComponentProps,
   ComponentPropsWithoutRef,
   ElementRef,
   forwardRef,
-  useState,
 } from "react";
 import { VariantProps, cva } from "class-variance-authority";
 import clsx from "clsx";
-import { Button } from "../button/button";
 import styles from "./input.module.css";
 
 export interface InputProps
@@ -61,7 +58,7 @@ export interface Props
   extends Omit<ComponentProps<typeof ShadcnInput>, "size" | "onCopy"> {
   copy?: boolean;
   onCopy?: () => void;
-  icon?: any;
+  icon?: React.ReactNode;
   size?: "tiny" | "small" | "medium" | "large" | "xlarge";
   reveal?: boolean;
   actions?: React.ReactNode;
@@ -72,82 +69,27 @@ export interface Props
 const Input = forwardRef<
   ElementRef<typeof ShadcnInput>,
   ComponentPropsWithoutRef<typeof ShadcnInput> & Props
->(
-  (
-    {
-      copy,
-      icon,
-      actions,
-      onCopy,
-      iconContainerClassName,
-      containerClassName,
-      size,
-      ...props
-    }: Props,
-    ref
-  ) => {
-    const [copyLabel, setCopyLabel] = useState("Copy");
-
-    function _onCopy(value: any) {
-      navigator.clipboard.writeText(value)?.then(
-        function () {
-          /* clipboard successfully set */
-          setCopyLabel("Copied");
-          setTimeout(function () {
-            setCopyLabel("Copy");
-          }, 3000);
-          onCopy?.();
-        },
-        function () {
-          /* clipboard write failed */
-          setCopyLabel("Failed to copy");
-        }
-      );
-    }
-
-    return (
-      <div className={containerClassName} style={{ position: "relative" }}>
-        <ShadcnInput
-          ref={ref}
-          {...props}
-          onCopy={onCopy}
-          value={props.value}
-          size={size}
-          className={clsx(props.className)}
-          style={{
-            paddingLeft: icon ? (size === "tiny" ? "2rem" : "3rem") : "",
-          }}
-        />
-        {icon && (
-          <div
-            className={clsx(styles.icon, IconContainerVariants({ size: size }))}
-          >
-            {icon}
-          </div>
-        )}
-        {copy || actions ? (
-          <div className={styles.copy}>
-            {copy ? (
-              <Button
-                size="tiny"
-                type="default"
-                icon={
-                  <Copy
-                    size={16}
-                    style={{ color: "var(--foreground-muted)" }}
-                  />
-                }
-                onClick={() => _onCopy(props.value)}
-              >
-                {copyLabel}
-              </Button>
-            ) : null}
-            {actions && actions}
-          </div>
-        ) : null}
-      </div>
-    );
-  }
-);
+>(({ icon, containerClassName, size, ...props }: Props, ref) => {
+  return (
+    <div className={containerClassName} style={{ position: "relative" }}>
+      <ShadcnInput
+        ref={ref}
+        {...props}
+        size={size}
+        className={clsx(props.className)}
+        style={{
+          paddingLeft: icon ? (size === "tiny" ? "2rem" : "3rem") : "",
+        }}
+      />
+      {icon && (
+        <div
+          className={clsx(styles.icon, IconContainerVariants({ size: size }))}
+        >
+          {icon}
+        </div>
+      )}
+    </div>
+  );
+});
 
 export { Input };

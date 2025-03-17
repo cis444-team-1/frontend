@@ -91,7 +91,7 @@ function UserRow({ user }: { user: User }) {
         {user.id}
       </td>
 
-      <td className={tableStyles.cell}>{user.username}</td>
+      <td className={tableStyles.cell}>{user.user_metadata.username}</td>
 
       <td className={`${tableStyles.cell} ${tableStyles.truncate}`}>
         {user.email}

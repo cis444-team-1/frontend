@@ -29,34 +29,37 @@ export const FeaturedPlaylistCard = ({
           onClick={onPlay}
         />
       </div>
-      <div>
-        <div className={styles.title}>{playlist.name}</div>
-        <div className={styles.info}>
-          <ListMusic size={16} /> Playlist • {playlist.userId} •{" "}
-          {playlist.updatedAt.toDateString()}
-        </div>
-      </div>
 
-      <div className={styles.buttonContainer}>
-        <Button
-          icon={<Play fill="white" color="white" />}
-          type="success"
-          rounded
-          size="large"
-          style={{ color: "white" }}
-          onClick={onPlay}
-        >
-          Play
-        </Button>
-        <Button
-          icon={<ListPlus />}
-          type="outline"
-          rounded
-          size="large"
-          onClick={onSave}
-        >
-          Save
-        </Button>
+      <div className={styles.actions}>
+        <div>
+          <div className={styles.title}>{playlist.name}</div>
+          <div className={styles.info}>
+            <ListMusic size={16} /> Playlist • {playlist.userId} •{" "}
+            {playlist.updatedAt.toDateString()}
+          </div>
+        </div>
+
+        <div className={styles.buttonContainer}>
+          <Button
+            icon={<Play fill="white" color="white" />}
+            type="success"
+            rounded
+            size="large"
+            style={{ color: "white" }}
+            onClick={onPlay}
+          >
+            Play
+          </Button>
+          <Button
+            icon={<ListPlus />}
+            type="outline"
+            rounded
+            size="large"
+            onClick={onSave}
+          >
+            Save
+          </Button>
+        </div>
       </div>
     </div>
   );
