@@ -46,7 +46,7 @@ button.badge:hover {
 }
 
 .selected {
-    filter: brightness(0.8);
+    filter: brightness(2);
 }
 
 button.badge:active {

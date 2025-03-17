@@ -120,14 +120,7 @@
     color: var(--foreground-light);
 }
 
-.copy {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0.5rem;
-    padding-left: 3px;
-    padding-right: 1px;
-    display: flex;
-    gap: 1px;
-    align-items: center;
+.input[type="file"] {
+    cursor: pointer;
+    color: var(--foreground-default);
 }

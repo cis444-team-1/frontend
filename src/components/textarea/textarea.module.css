@@ -49,3 +49,7 @@
   }
 }
 
+.textarea[aria-invalid="true"] {
+  border-color: var(--destructive-default);
+  background-color: var(--destructive-200);
+}

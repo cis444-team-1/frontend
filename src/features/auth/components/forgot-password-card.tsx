@@ -74,7 +74,12 @@ export const ForgotPasswordCard = ({
               required
             />
 
-            <Button htmlType="submit" className="w-full" size="large">
+            <Button
+              htmlType="submit"
+              className="w-full"
+              size="large"
+              loading={sendPasswordResetEmail.isPending}
+            >
               Send Reset Email
             </Button>
           </form>

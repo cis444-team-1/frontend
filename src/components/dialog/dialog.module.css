@@ -125,6 +125,10 @@
   line-height: 1.5;
   letter-spacing: -0.025em;
   color: var(--foreground-default);
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .dialogDescription {
@@ -149,6 +153,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -158,6 +163,7 @@
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0;
   }
@@ -167,6 +173,7 @@
   from {
     transform: translate(-50%, -50%) scale(0.95);
   }
+
   to {
     transform: translate(-50%, -50%) scale(1);
   }
@@ -176,6 +183,7 @@
   from {
     transform: translate(-50%, -50%) scale(1);
   }
+
   to {
     transform: translate(-50%, -50%) scale(0.95);
   }
@@ -185,6 +193,7 @@
   from {
     transform: translate(-50%, -48%) scale(0.95);
   }
+
   to {
     transform: translate(-50%, -50%) scale(1);
   }
@@ -194,8 +203,8 @@
   from {
     transform: translate(-50%, -50%) scale(1);
   }
+
   to {
     transform: translate(-50%, -48%) scale(0.95);
   }
 }
-

@@ -11,7 +11,7 @@ import { User, users } from "../../types/user";
 import { AnalyticsCard } from "../../components/analytic-card/card";
 import { HorizontalSongCard } from "../../components/song-card/song-card";
 import { songs } from "../../types/song";
-import { ListeningTrends } from "./components/listening-trends";
+// import { ListeningTrends } from "./components/listening-trends";
 import { VerticalArtistCard } from "../../components/artist-card/vertical-card";
 import { useSession } from "../../hooks/session-hook";
 import { Header } from "../base/components/header";
@@ -117,10 +117,10 @@ export default function HomePage() {
               <ScrollBar orientation="horizontal" />
             </ScrollArea>
           </div>
-          <div className={styles.sectionContainer}>
+          {/* <div className={styles.sectionContainer}>
             <p className={styles.pageTitle}>Your Listening Trends</p>
             <ListeningTrends />
-          </div>
+          </div> */}
           <div className={styles.sectionContainer}>
             <ScrollArea title="Following" showControls>
               <div className={styles.playlistContainer}>

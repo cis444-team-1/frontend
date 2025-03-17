@@ -4,6 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import supabase from "../supabase";
 import { Session } from "@supabase/supabase-js";
 import { UserMetadata } from "../types/user";
+import { toast } from "sonner";
 
 type Credentials = {
   email: string;
@@ -81,26 +82,43 @@ export function useRegister() {
   });
 }
 
+type OnboardingSchema = {
+  username: string;
+  bio: string;
+  tags: string[];
+  avatarImage: File | null;
+};
+
 export function useOnboarding() {
-  return useMutation<UserMetadata, unknown, UserMetadata>({
-    mutationFn: async (values: UserMetadata) => {
+  return useMutation<void, unknown, OnboardingSchema>({
+    mutationFn: async ({ username, bio, tags, avatarImage }) => {
+      let avatarUrl;
+      if (avatarImage) {
+        const { data: imageData } = await supabase.storage
+          .from("avatars")
+          .upload(avatarImage.name, avatarImage);
+        avatarUrl = imageData?.path;
+      }
+
       const { data } = await supabase.auth.updateUser({
         data: {
-          ...values,
+          username: username,
+          bio: bio,
+          tags: tags,
+          avatar: avatarUrl,
+          is_onboarded: true,
         },
       });
 
       if (!data.user) {
         throw new Error("Error updating user metadata");
       }
-
-      return data.user.user_metadata as UserMetadata;
     },
-    onSuccess: (data) => {
-      console.log("Data changed: ", data);
+    onSuccess: () => {
+      toast.success("Profile updated");
     },
-    onError: (error) => {
-      console.log("Error signing up", error);
+    onError: () => {
+      toast.error("Something went wrong. Try again later.");
     },
   });
 }
