@@ -30,7 +30,7 @@ export default function HomePage() {
           <div className={styles.userContainer}>
             <img
               className={styles.image}
-              src={user.user_metadata.avatar || "/placeholder.svg"}
+              src={user.user_metadata.avatar || "/user.png"}
               alt={user.user_metadata.username + " profile image"}
             />
             <div>

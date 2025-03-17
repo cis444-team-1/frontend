@@ -53,7 +53,7 @@ export const UserButton = () => {
             className={styles.userButton}
             icon={
               <img
-                src={user.user_metadata.avatar || "/placeholder.svg"}
+                src={user.user_metadata.avatar || "/user.png"}
                 className={styles.avatar}
               />
             }
@@ -63,7 +63,7 @@ export const UserButton = () => {
           <Link to={`/profile/${user.id}`}>
             <DropdownMenuItem>
               <img
-                src={user.user_metadata.avatar || "/placeholder.svg"}
+                src={user.user_metadata.avatar || "/user.png"}
                 className={styles.avatar}
               />
               <div className={styles.userInfo}>
