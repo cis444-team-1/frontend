@@ -11,6 +11,18 @@ export interface Playlist {
   visbility: "public" | "private";
 }
 
+// TODO: MAKE THIS THE MAIN PLAYLIST LATER, THIS IS FROM API
+export interface PlaylistAPIRequest {
+  playlist_id?: string;
+  user_id?: string;
+  title: string;
+  description?: string;
+  is_public: boolean;
+  image_src?: string;
+  created_at?: Date;
+  songs?: Song[]; // Not part of the entity, but will be appended by the api
+}
+
 const getTestImage = () => {
   return `https://picsum.photos/id/${Math.floor(
     Math.random() * 300
