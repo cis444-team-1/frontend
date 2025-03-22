@@ -4,9 +4,11 @@ import styles from "./profile-image-input.module.css";
 import { FormLabel } from "../form/form";
 
 export const ProfileImageInput = ({
+  showLabel = true,
   imagePreview,
   setImagePreview,
 }: {
+  showLabel?: boolean;
   imagePreview: string | null;
   setImagePreview: Dispatch<React.SetStateAction<string | null>>;
 }) => {
@@ -15,7 +17,7 @@ export const ProfileImageInput = ({
 
   return (
     <div>
-      <FormLabel htmlFor="avatar">Profile image</FormLabel>
+      {showLabel && <FormLabel htmlFor="avatar">Profile image</FormLabel>}
       <div className={styles.container}>
         <div className={styles.imageContainer}>
           <img src={imagePreview || ""} alt="avatar" />

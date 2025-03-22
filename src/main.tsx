@@ -26,6 +26,7 @@ import AdminLayout from "./features/admin/layout";
 import { UsersPage } from "./features/admin/users";
 import { SessionProvider } from "./context/session-context";
 import { Toaster } from "sonner";
+import SettingsPage from "./features/settings/page";
 
 /**
  * These routes are used by the playback layout.
@@ -45,22 +46,8 @@ const mainRoutes = {
     { path: "/profile/:userId", element: <ProfilePage /> },
     { path: "/history", element: <HistoryPage /> },
     { path: "/search", element: <SearchPage /> }, // Supports query params, i.e. /search?q=Imagine+Dragons
+    { path: "/settings", element: <SettingsPage /> },
     { path: "*", element: <Navigate to="/" /> }, // Catch-all route for unknown routes
-  ],
-};
-
-/**
- * These routes are not used by the playback layout. Meaning that there is no music to be played.
- *
- */
-const nonPlaybackRoutes = {
-  element: <div>NonPlayback</div>,
-  children: [
-    { path: "/privacy", element: <div>Privacy</div> },
-    { path: "/about", element: <div>About</div> },
-    { path: "/contact", element: <div>Contact</div> },
-    { path: "/terms", element: <div>Terms</div> },
-    { path: "/settings", element: <div>Settings</div> },
   ],
 };
 
@@ -87,18 +74,15 @@ const authRoutes = {
   ],
 };
 
-const router = createBrowserRouter(
-  [mainRoutes, nonPlaybackRoutes, authRoutes, adminRoutes],
-  {
-    future: {
-      v7_fetcherPersist: true,
-      v7_normalizeFormMethod: true,
-      v7_partialHydration: true,
-      v7_relativeSplatPath: true,
-      v7_skipActionErrorRevalidation: true,
-    },
-  }
-);
+const router = createBrowserRouter([mainRoutes, authRoutes, adminRoutes], {
+  future: {
+    v7_fetcherPersist: true,
+    v7_normalizeFormMethod: true,
+    v7_partialHydration: true,
+    v7_relativeSplatPath: true,
+    v7_skipActionErrorRevalidation: true,
+  },
+});
 
 export const queryClient = new QueryClient();
 

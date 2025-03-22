@@ -1,10 +1,10 @@
 import { newrelease } from "../../types/newreleaseplaylist";
-import { fanfavorites } from "../../types/fanfavorite";
+// import { fanfavorites } from "../../types/fanfavorite";
 import { playlists } from "../../types/playlist";
 import styles from "./styles/page.module.css";
 import { VerticalPlaylistCard } from "../../components/playlist-card/vertical-card";
 import { NewReleases } from "./components/newreleases";
-import { FanFavorite } from "./components/fanfavorite";
+// import { FanFavorite } from "./components/fanfavorite";
 import { Headphones, Music, Tag } from "lucide-react";
 import { ScrollArea, ScrollBar } from "../../components/scrollarea/scroll-area";
 import { User, users } from "../../types/user";
@@ -90,7 +90,7 @@ export default function HomePage() {
         </div>
       )}
 
-      <div className={styles.sectionContainer}>
+      {/* <div className={styles.sectionContainer}>
         <ScrollArea title="Bruno Mars Fans Love" showControls>
           <div className={styles.playlistContainer}>
             {fanfavorites.map((playlist, index) => (
@@ -99,7 +99,7 @@ export default function HomePage() {
           </div>
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
-      </div>
+      </div> */}
 
       {session && (
         <>
