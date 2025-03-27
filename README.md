@@ -68,3 +68,91 @@ However, we do have a testing framework setup with Vitest and Jest, allowing us 
 ├── index.html       # Root html document
 └── readme.md
 ```
+
+
+# Installation for Local Development
+Here's a markdown guide for installing, setting up, and running a Vite React project with `.env` variables.  
+
+This guide walks you through setting up the Vite + React project, configuring environment variables, and running the development server.
+
+## Prerequisites
+
+Ensure you have the following installed:
+
+- [Node.js](https://nodejs.org/) (LTS recommended)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+
+## Installation
+
+1. Clone the project
+
+   ```sh
+   git clone https://github.com/cis444-team-1/frontend
+   ```
+
+2. Create a new branch
+
+   ```sh
+   git checkout -b new-branch
+   ```
+
+3. Install dependencies:
+
+   ```sh
+   npm install
+   ```
+
+## Environment Variables
+
+This app uses environment variables defined in `.env` files.
+
+1. Create a `.env` file in the root of your project:
+
+   ```sh
+   touch .env
+   ```
+
+2. Add variables prefixed with `VITE_`:
+
+   ```env
+   VITE_SUPABASE_URL=redacted
+   VITE_SUPABASE_ANON_KEY=123
+   VITE_FRONTEND_URL=http://localhost:5173
+   VITE_BACKEND_URL=http://localhost:8080
+   PROJECT_REF=redacted
+   ```
+
+## Running the Development Server
+
+Start the Vite development server with:
+
+```sh
+npm run dev
+```
+
+This will start the server and provide a local development URL.
+
+## Building for Production
+
+To create an optimized production build, run:
+
+```sh
+npm run build
+```
+
+## Running the Production Build Locally
+
+To preview the production build locally:
+
+```sh
+npm run preview
+```
+
+## Additional Notes
+
+- `.env` files are **not committed** to version control by default. Add `.env` to `.gitignore` to keep secrets safe.
+- Use `.env.development` and `.env.production` for environment-specific settings.
+
+---
+
+Now you're ready to build!
