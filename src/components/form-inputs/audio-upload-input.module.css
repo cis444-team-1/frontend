@@ -1,0 +1,88 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+}
+
+.container:has(.removeButton) {
+    margin-top: -2rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.removeButton {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: auto;
+    color: var(--destructive-600)
+}
+
+.uploadContainer {
+    width: 400px;
+    height: 100px;
+    border: 2px dashed var(--border-default);
+    background-color: var(--background-surface-50);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.uploadContainer:hover {
+    background-color: var(--background-surface-200);
+    border-color: var(--border-default);
+}
+
+.fileSelected {
+    background-color: var(--background-surface-50);
+    border-color: #3498db;
+}
+
+.fileInput {
+    display: none;
+}
+
+.uploadPrompt h1 {
+    color: var(--foreground-light);
+}
+
+.uploadPrompt p {
+    color: var(--foreground-muted);
+    font-size: 0.875rem;
+}
+
+.uploadPrompt p {
+    margin: 10px 0;
+}
+
+.fileInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.progressBar {
+    width: 300px;
+    height: 0.5rem;
+    background-color: var(--foreground-muted);
+    border-radius: 10px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: #3498db;
+    transition: width 0.5s ease-in-out;
+}

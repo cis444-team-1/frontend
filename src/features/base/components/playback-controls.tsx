@@ -76,8 +76,10 @@ export function PlaybackButtons() {
 }
 
 export function ProgressBar() {
-  const { currentTime, duration, audioRef, setCurrentTime } = usePlayback();
+  const { currentTime, duration, audioRef, setCurrentTime, isPlaying } =
+    usePlayback();
   const progressBarRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
 
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
@@ -96,6 +98,33 @@ export function ProgressBar() {
     }
   };
 
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    setIsDragging(true);
+    handleProgressChange(e);
+  };
+
+  const handleMouseMove = (e: MouseEvent) => {
+    if (isDragging && progressBarRef.current) {
+      handleProgressChange(e as unknown as React.MouseEvent<HTMLDivElement>); // Type assertion
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  useEffect(() => {
+    if (progressBarRef.current) {
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
+      return () => {
+        document.removeEventListener("mousemove", handleMouseMove);
+        document.removeEventListener("mouseup", handleMouseUp);
+      };
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDragging, progressBarRef]);
+
   return (
     <div className={styles.progressBarContainer}>
       <span className={styles.progressBarText}>{formatTime(currentTime)}</span>
@@ -103,14 +132,18 @@ export function ProgressBar() {
       <div
         ref={progressBarRef}
         className={styles.progressBarOuter}
-        onClick={handleProgressChange}
+        onMouseDown={handleMouseDown}
       >
         <div
           className={styles.progressBarInner}
           style={{
             width: `${(currentTime / duration) * 100}%`,
           }}
-        ></div>
+        >
+          {(isPlaying || currentTime > 0) && (
+            <div className={styles.progressBarDot} />
+          )}
+        </div>
       </div>
 
       <span className={styles.progressBarText}>{formatTime(duration)}</span>

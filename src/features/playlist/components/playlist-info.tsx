@@ -4,8 +4,25 @@ import { Playlist } from "../../../types/playlist";
 import { CoverImage } from "./cover-image";
 import { EditableTitle } from "./editable-title";
 import styles from "../styles/playlist-info.module.css";
+import { Pause, Play, Share, Shuffle } from "lucide-react";
+import { usePlayback } from "../../../hooks/use-playback";
 
 export function PlaylistInfo({ playlist }: { playlist: Playlist }) {
+  const { playTrack, isPlaying, togglePlayPause } = usePlayback();
+
+  const playPlaylist = () => {
+    if (playlist.songs.length > 0) {
+      playTrack(playlist.songs[0]);
+    }
+  };
+
+  const shufflePlaylist = () => {
+    if (playlist.songs.length > 0) {
+      const shuffled = playlist.songs.sort(() => Math.random() - 0.5);
+      playTrack(shuffled[0]);
+    }
+  };
+
   return (
     <div className={styles.playlistInfoContainer}>
       <CoverImage
@@ -21,13 +38,34 @@ export function PlaylistInfo({ playlist }: { playlist: Playlist }) {
           )}
         </p>
         <div className={styles.buttonContainer}>
-          <Button type="danger" size="tiny">
-            Play all
-          </Button>
-          <Button type="warning" size="tiny">
+          {isPlaying ? (
+            <Button
+              type="danger"
+              size="tiny"
+              icon={<Pause />}
+              onClick={togglePlayPause}
+            >
+              Pause
+            </Button>
+          ) : (
+            <Button
+              type="danger"
+              size="tiny"
+              icon={<Play />}
+              onClick={playPlaylist}
+            >
+              Play All
+            </Button>
+          )}
+          <Button
+            type="warning"
+            size="tiny"
+            icon={<Shuffle />}
+            onClick={shufflePlaylist}
+          >
             Shuffle
           </Button>
-          <Button type="primary" size="tiny">
+          <Button type="primary" size="tiny" icon={<Share />}>
             Share
           </Button>
         </div>

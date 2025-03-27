@@ -7,11 +7,11 @@ import {
   Home,
   Radio,
   PlusSquare,
-  Upload,
+  Plus,
 } from "lucide-react";
 import { useRef, useEffect, type RefObject } from "react";
 import { usePlaylist } from "../../../hooks/use-playlist";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,10 +24,12 @@ import type { Playlist } from "../../../types/playlist";
 import { usePlayback } from "../../../hooks/use-playback";
 import styles from "../styles.module.css";
 import { useSession } from "../../../hooks/session-hook";
-import { CreatePlaylistModal } from "./create-playlist-modal";
+import { useModal } from "../../../hooks/use-modal";
 
 export function Sidebar() {
   const { playlists } = usePlaylist();
+  const { openModal } = useModal();
+  const navigate = useNavigate();
   const playlistsContainerRef = useRef<HTMLUListElement>(null);
   const { registerPanelRef, handleKeyNavigation, setActivePanel } =
     usePlayback();
@@ -59,7 +61,7 @@ export function Sidebar() {
       <div className={styles.navSection}>
         <p className={styles.playlistsTitle}>Navigation</p>
         <NavLink
-          to="/"
+          to={session ? "/" : "/auth/login"}
           className={({ isActive }) =>
             `${styles.navItem} ${isActive ? styles.active : ""}`
           }
@@ -76,34 +78,52 @@ export function Sidebar() {
           <PlusSquare size={18} className={styles.navIcon} />
           <span>Explore</span>
         </NavLink>
-        {session && (
-          <NavLink
-            to="/library"
-            className={({ isActive }) =>
-              `${styles.navItem} ${isActive ? styles.active : ""}`
-            }
-          >
-            <Radio size={18} className={styles.navIcon} />
-            <span>Library</span>
-          </NavLink>
-        )}
+        <NavLink
+          to="/library"
+          className={({ isActive }) =>
+            `${styles.navItem} ${isActive ? styles.active : ""}`
+          }
+        >
+          <Radio size={18} className={styles.navIcon} />
+          <span>Library</span>
+        </NavLink>
       </div>
 
-      {session && (
-        <div className={styles.navSection}>
-          <p className={styles.playlistsTitle}>Create</p>
-          <NavLink
-            to="/upload-music"
-            className={({ isActive }) =>
-              `${styles.navItem} ${isActive ? styles.active : ""}`
+      <div className={styles.navSection}>
+        <p className={styles.playlistsTitle}>Create</p>
+        <div
+          className={styles.navItem}
+          onClick={() => {
+            if (!session) {
+              return navigate("/auth/login");
             }
-          >
-            <Upload size={18} className={styles.navIcon} />
-            <span>Upload Music</span>
-          </NavLink>
-          <CreatePlaylistModal />
+
+            openModal("song.mutate", {
+              title: "Upload song",
+              description: "Upload a song to Melo Music",
+            });
+          }}
+        >
+          <Plus size={18} className={styles.navIcon} />
+          <span>Upload song</span>
         </div>
-      )}
+        <div
+          className={styles.navItem}
+          onClick={() => {
+            if (!session) {
+              return navigate("/auth/login");
+            }
+
+            openModal("playlist.mutate", {
+              title: "Create playlist",
+              description: "Create a new playlist",
+            });
+          }}
+        >
+          <Plus size={18} className={styles.navIcon} />
+          <span>Create playlist</span>
+        </div>
+      </div>
 
       {session && (
         <div className={styles.navSection}>
@@ -126,10 +146,11 @@ export function Sidebar() {
 }
 
 function PlaylistRow({ playlist }: { playlist: Playlist }) {
+  const { openModal } = useModal();
   return (
     <li className={styles.playlistRowItem}>
       <NavLink
-        to={`/playlist`}
+        to={`/playlist/${playlist.id}`}
         className={({ isActive }) =>
           `${styles.navItem} ${isActive ? styles.active : ""}`
         }
@@ -148,10 +169,32 @@ function PlaylistRow({ playlist }: { playlist: Playlist }) {
             />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => {}}>
+            <DropdownMenuItem
+              onClick={(e) => {
+                e.stopPropagation();
+                openModal("playlist.mutate", {
+                  title: `Edit playlist: ${playlist.name}`,
+                  description: "Change playlist details",
+                  formData: {
+                    title: playlist.name,
+                    description: "LALALLALALALALALALA",
+                    is_public: playlist.visbility === "public", // TODO: CHANGE TO is_public
+                    image_src: playlist.imageSrc, // TODO: CHANGE TO image_src
+                  },
+                });
+              }}
+            >
               <Pencil size={16} /> Edit Playlist
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => {}}>
+            <DropdownMenuItem
+              onClick={() => {
+                openModal("delete", {
+                  title: "Delete Playlist",
+                  description: "Are you sure you want to delete this playlist?",
+                  onConfirm: () => {},
+                });
+              }}
+            >
               <Trash size={16} /> Delete Playlist
             </DropdownMenuItem>
           </DropdownMenuContent>

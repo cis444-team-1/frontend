@@ -4,18 +4,28 @@ import { Button } from "../button/button";
 import styles from "./featured-card.module.css";
 import { formatDuration } from "../../lib/utils";
 import { AudioLinesIcon } from "../audio-lines/audio-lines";
+import { useModal } from "../../hooks/use-modal";
 
 export const FeaturedSongCard = ({
   song,
   isPlaying = false,
   onPlay,
-  onSave,
 }: {
   song: Song;
   isPlaying?: boolean;
   onPlay: () => void;
-  onSave: () => void;
 }) => {
+  const { openModal } = useModal();
+
+  function handleAddToPlaylist(e: React.MouseEvent) {
+    e.stopPropagation(); // Prevents the card from being clicked
+    openModal("playlist.add", {
+      title: `Add ${song.title} to playlist`,
+      description: "Choose what playlist(s) you want to add this song to",
+      id: song.id,
+    });
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
@@ -69,7 +79,7 @@ export const FeaturedSongCard = ({
             type="outline"
             rounded
             size="large"
-            onClick={onSave}
+            onClick={handleAddToPlaylist}
           >
             Save
           </Button>

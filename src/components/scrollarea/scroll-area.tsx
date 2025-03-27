@@ -9,6 +9,7 @@ type CustomScrollAreaProps = React.ComponentPropsWithoutRef<
   typeof ScrollAreaPrimitive.Root
 > & {
   showControls?: boolean;
+  showMoreButton?: boolean;
   onShowMore?: () => void;
   title?: string;
 };
@@ -23,6 +24,7 @@ const ScrollArea = React.forwardRef<
       title = "",
       showControls = false,
       onShowMore,
+      showMoreButton = false,
       children,
       ...props
     },
@@ -58,14 +60,16 @@ const ScrollArea = React.forwardRef<
             {title && <p className={styles.title}>{title}</p>}
             {showControls && (
               <div className={styles.controls}>
-                <Button
-                  type="default"
-                  size="large"
-                  onClick={onShowMore}
-                  className={styles.moreButton}
-                >
-                  More
-                </Button>
+                {showMoreButton && (
+                  <Button
+                    type="default"
+                    size="large"
+                    onClick={onShowMore}
+                    className={styles.moreButton}
+                  >
+                    More
+                  </Button>
+                )}
                 <Button
                   icon={<ChevronLeft />}
                   type="default"

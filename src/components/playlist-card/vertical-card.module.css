@@ -32,12 +32,12 @@
 
 .playButton {
     opacity: 0;
-    border-radius: 9999px;
     position: absolute;
-    bottom: .7rem;
-    right: .5rem;
-    width: 2.5rem;
-    height: 2.5rem;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: color-mix(in srgb, var(--background-surface-100) 50%, transparent);
     border: none;
     outline: none;
 }

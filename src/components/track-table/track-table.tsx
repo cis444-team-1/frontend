@@ -1,15 +1,11 @@
 import { useRef, useEffect, useState } from "react";
-import { Play, Pause, Plus, Ellipsis } from "lucide-react";
+import { Play, Pause, Ellipsis, Heart, Share, ListPlus } from "lucide-react";
 import { usePlayback } from "../../hooks/use-playback";
-import { usePlaylist } from "../../hooks/use-playlist";
 import styles from "./track-table.module.css";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "../dropdown-menu.tsx/dropdown-menu";
 import { Button } from "../button/button";
@@ -17,6 +13,8 @@ import { AudioLinesIcon } from "../audio-lines/audio-lines";
 import { Song } from "../../types/song";
 import { Playlist } from "../../types/playlist";
 import { formatDuration } from "../../lib/utils";
+import { toast } from "sonner";
+import { useModal } from "../../hooks/use-modal";
 
 export function TrackTable({ playlist }: { playlist: Playlist }) {
   const tableRef = useRef<HTMLTableElement>(null);
@@ -85,8 +83,7 @@ function TrackRow({
     setActivePanel,
     handleKeyNavigation,
   } = usePlayback();
-  const { playlists } = usePlaylist();
-
+  const { openModal } = useModal();
   const [isFocused, setIsFocused] = useState(false);
   const isCurrentTrack = currentTrack?.title === track.title;
 
@@ -113,6 +110,15 @@ function TrackRow({
     } else {
       handleKeyNavigation(e, "tracklist");
     }
+  }
+
+  function handleAddToPlaylist(e: React.MouseEvent) {
+    e.stopPropagation(); // Prevents the card from being clicked
+    openModal("playlist.add", {
+      title: `Add ${track.title} to playlist`,
+      description: "Choose what playlist(s) you want to add this song to",
+      id: track.id,
+    });
   }
 
   return (
@@ -184,23 +190,20 @@ function TrackRow({
                   </>
                 )}
               </DropdownMenuItem>
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger>
-                  <Plus />
-                  Add to Playlist
-                </DropdownMenuSubTrigger>
-                <DropdownMenuSubContent>
-                  {playlists.map((playlist) => (
-                    <DropdownMenuItem
-                      className={styles.playlistItem}
-                      key={playlist.id}
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      {playlist.name}
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuSubContent>
-              </DropdownMenuSub>
+              <DropdownMenuItem
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toast.success("Liked song! It's now in your liked songs.");
+                }}
+              >
+                <Heart size={16} /> Like
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={(e) => e.stopPropagation()}>
+                <Share size={16} /> Share
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={handleAddToPlaylist}>
+                <ListPlus size={16} /> Add to playlist
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

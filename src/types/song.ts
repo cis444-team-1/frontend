@@ -75,7 +75,7 @@ const getTestImage = () => {
     Math.random() * 300
   )}/2000/2000`;
 };
-const testAudio = "sample.mp3";
+const testAudio = "/sample.mp3";
 
 export const songs: Song[] = [
   {

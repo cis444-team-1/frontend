@@ -19,6 +19,7 @@ export const PasswordFormInput = ({
   required = false,
   className,
   inputClassName,
+  hideForgotPassword = false,
 }: {
   name: string;
   placeholder: string;
@@ -26,6 +27,7 @@ export const PasswordFormInput = ({
   required?: boolean;
   className?: string;
   inputClassName?: string;
+  hideForgotPassword?: boolean;
 }) => {
   const form = useFormContext();
   const [showPassword, setShowPassword] = useState(false);
@@ -40,9 +42,11 @@ export const PasswordFormInput = ({
             <FormLabel>
               {label} {required && <span style={{ color: "red" }}>*</span>}
             </FormLabel>
-            <a href="/auth/forgot-password" className={styles.forgotPassword}>
-              Forgot your password?
-            </a>
+            {!hideForgotPassword && (
+              <a href="/auth/forgot-password" className={styles.forgotPassword}>
+                Forgot your password?
+              </a>
+            )}
           </div>
 
           <FormControl>

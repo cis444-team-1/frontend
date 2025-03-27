@@ -128,7 +128,7 @@ export function PlaybackProvider({ children }: { children: ReactNode }) {
       setIsPlaying(true);
       setCurrentTime(0);
       if (audioRef.current) {
-        console.log("IS PLAYING");
+        console.log(track.title + " is playing now.");
         audioRef.current.src = getAudioSrc(track.audioUrl as string);
         audioRef.current.play();
       }

@@ -10,6 +10,7 @@ import { TextAreaFormInput } from "../../components/form-inputs/textarea-input";
 import { Button } from "../../components/button/button";
 import { ProfileImageInput } from "../../components/form-inputs/profile-image-input";
 import { useState } from "react";
+import { Switch } from "../../components/switch/switch";
 
 const SettingsSchema = z.object({
   username: z.string(),
@@ -121,6 +122,12 @@ export default function SettingsPage() {
             <div>
               <h2>Visibility</h2>
               <p>Set who can see your profile</p>
+            </div>
+
+            <div style={{ display: "flex", gap: "1rem" }}>
+              <p>Private</p>
+              <Switch />
+              <p>Public</p>
             </div>
           </section>
 

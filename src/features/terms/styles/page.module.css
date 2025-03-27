@@ -1,0 +1,33 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.title {
+    text-align: center;
+    color: var(--foreground-default);
+    border-bottom: 2px solid var(--border-default);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+.section {
+    margin-bottom: 1.5rem;
+    background-color: var(--background-surface-100);
+    border: 1px solid var(--border-default);
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.sectionTitle {
+    color: var(--foreground-default);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.text {
+    color: var(--foreground-default);
+}

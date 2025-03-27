@@ -4,7 +4,6 @@ import styles from "./vertical-card.module.css";
 import { Play } from "lucide-react";
 import Badge from "../badge/badge";
 import { useState } from "react";
-import { Button } from "../button/button";
 
 export const VerticalPlaylistCard = ({
   playlist,
@@ -32,11 +31,9 @@ export const VerticalPlaylistCard = ({
 
         {!imageLoaded && <div className={styles.skeleton}></div>}
 
-        <Button
-          icon={<Play fill="white" color="white" />}
-          className={styles.playButton}
-          type="success"
-        />
+        <div className={styles.playButton}>
+          <Play fill="white" color="white" />
+        </div>
 
         {showVisibility && (
           <Badge

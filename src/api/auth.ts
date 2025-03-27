@@ -51,7 +51,8 @@ export function useRegister() {
         email: email,
         password: password,
         options: {
-          emailRedirectTo: import.meta.env.FRONTEND_URL + "/auth/verify-email",
+          emailRedirectTo:
+            import.meta.env.VITE_FRONTEND_URL + "/auth/verify-email",
           data: {
             is_onboarded: false,
             role: "user",
@@ -149,7 +150,7 @@ export function useSendPasswordResetEmail() {
   return useMutation<undefined, string, { email: string }>({
     mutationFn: async ({ email }) => {
       const { data } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: import.meta.env.FRONTEND_URL + "/auth/reset-password",
+        redirectTo: import.meta.env.VITE_FRONTEND_URL + "/auth/reset-password",
       });
 
       if (!data) {

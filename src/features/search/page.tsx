@@ -37,7 +37,6 @@ export default function SearchPage() {
 
             playback.playTrack(songs[0]);
           }}
-          onSave={() => {}}
         />
 
         <FeaturedPlaylistCard
