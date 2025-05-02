@@ -93,7 +93,8 @@ export const HorizontalSongCard = ({
       <div>
         <p className={styles.title}>{song.title}</p>
         <p className={styles.info}>
-          {song.artist} • {song.album} • {formatDuration(song.durationSeconds)}
+          {song.artist}
+          {song.album} • {formatDuration(song.durationSeconds)}
         </p>
       </div>
 
