@@ -26,17 +26,6 @@ export default function ExplorePage() {
       </div>
 
       <div className={styles.sectionContainer}>
-        <ScrollArea showControls title="Top Charts">
-          <div className={styles.songContainer}>
-            {songs.map((song, index) => (
-              <HorizontalSongCard song={song} ranking={index + 1} key={index} />
-            ))}
-          </div>
-          <ScrollBar orientation="horizontal" />
-        </ScrollArea>
-      </div>
-
-      <div className={styles.sectionContainer}>
         <ScrollArea showControls title="Moods & Genres">
           <div className={styles.genreContainer}>
             {MUSIC_TYPES.map((type, index) => (
@@ -55,7 +44,7 @@ export default function ExplorePage() {
       </div>
 
       <div className={styles.sectionContainer}>
-        <ScrollArea showControls title="Trending">
+        <ScrollArea showControls title="Top Charts">
           <div className={styles.songContainer}>
             {songs.map((song, index) => (
               <HorizontalSongCard song={song} ranking={index + 1} key={index} />

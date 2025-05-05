@@ -65,9 +65,6 @@ export function PlaylistInfo({ playlist }: { playlist: Playlist }) {
           >
             Shuffle
           </Button>
-          <Button type="primary" size="tiny" icon={<Share />}>
-            Share
-          </Button>
         </div>
       </div>
     </div>

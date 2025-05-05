@@ -21,7 +21,7 @@ export const VerticalArtistCard = ({ user }: { user: User }) => {
         {!imageLoaded && <div className={styles.skeleton}></div>}
       </Link>
       <p className={styles.userTitle}>{user.user_metadata.username}</p>
-      <p className={styles.userInfo}>123 followers</p>
+      <p className={styles.userInfo}>1.1M Followers</p>
       <div></div>
     </div>
   );

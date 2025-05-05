@@ -57,39 +57,26 @@ export default function HomePage() {
           <p className={styles.pageTitle}>Listening Stats</p>
           <div className={styles.cards}>
             <AnalyticsCard
-              label="listening time"
+              label="Listening time"
               value="32 hours"
               sublabel="+12% from last week"
               icon={<Headphones color="gray" />}
               color={theme === "light" ? "#d1d1d1" : "#202020"}
             />
             <AnalyticsCard
-              label="most played genre"
+              label="Most played genre"
               value="Hip-hop"
               icon={<Tag color="gray" />}
               color={theme === "light" ? "#d1d1d1" : "#202020"}
             />
             <AnalyticsCard
-              label="total songs played"
+              label="Total songs played"
               value="234"
               sublabel="+32% from last week"
               icon={<Music color="gray" />}
               color={theme === "light" ? "#d1d1d1" : "#202020"}
             />
           </div>
-        </div>
-      )}
-
-      {session && (
-        <div className={styles.sectionContainer}>
-          <ScrollArea title="New Releases for You" showControls>
-            <div className={styles.playlistContainer}>
-              {playlists.map((playlist, index) => (
-                <VerticalPlaylistCard playlist={playlist} key={index} />
-              ))}
-            </div>
-            <ScrollBar orientation="horizontal" />
-          </ScrollArea>
         </div>
       )}
 
