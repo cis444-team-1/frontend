@@ -4,7 +4,7 @@ import { Playlist } from "../../../types/playlist";
 import { CoverImage } from "./cover-image";
 import { EditableTitle } from "./editable-title";
 import styles from "../styles/playlist-info.module.css";
-import { Pause, Play, Share, Shuffle } from "lucide-react";
+import { Pause, Play, Shuffle } from "lucide-react";
 import { usePlayback } from "../../../hooks/use-playback";
 
 export function PlaylistInfo({ playlist }: { playlist: Playlist }) {
