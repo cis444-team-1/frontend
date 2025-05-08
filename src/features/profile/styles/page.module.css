@@ -15,6 +15,10 @@
     }
 }
 
+.dialogHeader {
+    color: var(--foreground-default)
+}
+
 @media screen and (max-width: 900px) {
     .pageContainer {
         margin-inline: 0;

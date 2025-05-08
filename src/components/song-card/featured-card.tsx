@@ -2,9 +2,9 @@ import { ListPlus, Music, Pause, Play } from "lucide-react";
 import { Song } from "../../types/song";
 import { Button } from "../button/button";
 import styles from "./featured-card.module.css";
-import { formatDuration } from "../../lib/utils";
 import { AudioLinesIcon } from "../audio-lines/audio-lines";
 import { useModal } from "../../hooks/use-modal";
+import { AudioDuration } from "../audio-duration";
 
 export const FeaturedSongCard = ({
   song,
@@ -22,14 +22,14 @@ export const FeaturedSongCard = ({
     openModal("playlist.add", {
       title: `Add ${song.title} to playlist`,
       description: "Choose what playlist(s) you want to add this song to",
-      id: song.id,
+      id: song.track_id,
     });
   }
 
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
-        <img src={song.imageUrl} alt={song.title} className={styles.image} />
+        <img src={song.image_src} alt={song.title} className={styles.image} />
 
         <Button
           icon={
@@ -52,8 +52,8 @@ export const FeaturedSongCard = ({
             {song.title} {isPlaying && <AudioLinesIcon />}
           </div>
           <div className={styles.info}>
-            <Music size={16} /> Song • {song.artist} •{" "}
-            {formatDuration(song.durationSeconds)}
+            <Music size={16} /> Song • {song.artist_name} •{" "}
+            <AudioDuration src={song.audio_src} />
           </div>
         </div>
 

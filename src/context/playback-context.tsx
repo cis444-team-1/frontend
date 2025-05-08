@@ -7,6 +7,8 @@ import {
   useCallback,
 } from "react";
 import { Song } from "../types/song";
+import { useSession } from "../hooks/session-hook";
+import { useAddToPlayHistory } from "../api/tracks";
 
 type Panel = "sidebar" | "tracklist";
 
@@ -107,6 +109,8 @@ export function PlaybackProvider({ children }: { children: ReactNode }) {
   const [duration, setDuration] = useState(0);
   const [playlist, setPlaylist] = useState<Song[]>([]);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const { session } = useSession();
+  const addToPlayHistory = useAddToPlayHistory();
 
   const { activePanel, setActivePanel, registerPanelRef, handleKeyNavigation } =
     useKeyboardNavigation();
@@ -124,23 +128,28 @@ export function PlaybackProvider({ children }: { children: ReactNode }) {
 
   const playTrack = useCallback(
     (track: Song) => {
+      if (session) {
+        console.log("Adding to play history");
+        addToPlayHistory.mutate({ trackId: track.track_id });
+      }
+
       setCurrentTrack(track);
       setIsPlaying(true);
       setCurrentTime(0);
       if (audioRef.current) {
         console.log(track.title + " is playing now.");
-        audioRef.current.src = getAudioSrc(track.audioUrl as string);
+        audioRef.current.src = getAudioSrc(track.audio_src as string);
         audioRef.current.play();
       }
       setActivePanel("tracklist");
     },
-    [setActivePanel]
+    [setActivePanel, addToPlayHistory, session]
   );
 
   const playNextTrack = useCallback(() => {
     if (currentTrack && playlist.length > 0) {
       const currentIndex = playlist.findIndex(
-        (track) => track.id === currentTrack.id
+        (track) => track.track_id === currentTrack.track_id
       );
       const nextIndex = (currentIndex + 1) % playlist.length;
       playTrack(playlist[nextIndex]);
@@ -150,7 +159,7 @@ export function PlaybackProvider({ children }: { children: ReactNode }) {
   const playPreviousTrack = useCallback(() => {
     if (currentTrack && playlist.length > 0) {
       const currentIndex = playlist.findIndex(
-        (track) => track.id === currentTrack.id
+        (track) => track.track_id === currentTrack.track_id
       );
       const previousIndex =
         (currentIndex - 1 + playlist.length) % playlist.length;

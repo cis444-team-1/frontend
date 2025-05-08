@@ -21,6 +21,18 @@ export interface UserMetadata {
   username?: string;
 }
 
+export interface PublicUser {
+  id: string;
+  user_metadata: {
+    bio?: string;
+    email_verified?: boolean;
+    is_onboarded?: boolean;
+    tags?: string[];
+    username?: string;
+    avatar?: string;
+  };
+}
+
 export interface User extends SupabaseUser {
   user_metadata: UserMetadata;
 }

@@ -1,21 +1,36 @@
 import { Pencil, Share } from "lucide-react";
 import styles from "../styles/page.module.css";
 import profileStyles from "../styles/profile-header.module.css";
-import { User } from "../../../types/user";
+import { PublicUser } from "../../../types/user";
 import { Button } from "../../../components/button/button";
 import { Header } from "../../base/components/header";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTrigger,
+} from "../../../components/dialog/dialog";
+import { Link } from "react-router";
+import { toast } from "sonner";
 
 export const ProfileHeader = ({
   user,
-  showSubscribe = true,
+  // showSubscribe = true,
   showEdit = false,
   isArtist = false,
 }: {
-  user: User;
+  user: PublicUser;
   showSubscribe?: boolean;
   showEdit?: boolean;
   isArtist?: boolean;
 }) => {
+  const handleCopy = () => {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url);
+    toast.success("Copied to clipboard!");
+  };
+
   return (
     <div className={styles.sectionContainer}>
       <Header />
@@ -34,7 +49,7 @@ export const ProfileHeader = ({
             {user.user_metadata.username}
           </h1>
           <div className={profileStyles.buttons}>
-            {showSubscribe && (
+            {/* {showSubscribe && (
               <Button
                 size="large"
                 type="primary"
@@ -43,14 +58,36 @@ export const ProfileHeader = ({
                 Subscribe{" "}
                 <span className={profileStyles.subscribers}>14.7K</span>
               </Button>
-            )}
-            <Button size="large" icon={<Share />} type="outline">
-              Share
-            </Button>
+            )} */}
+            <Dialog>
+              <DialogContent>
+                <DialogHeader className={profileStyles.dialogHeader}>
+                  Share
+                </DialogHeader>
+                <DialogDescription>
+                  <div className={profileStyles.shareCard}>
+                    <div className={profileStyles.linkText}>
+                      https://youtu.be/ZWDSoHEoBvY?si=LNXIqiMPbGiIy
+                    </div>
+                    <Button onClick={handleCopy} size="large">
+                      Copy
+                    </Button>
+                  </div>
+                </DialogDescription>
+              </DialogContent>
+
+              <DialogTrigger asChild>
+                <Button size="large" icon={<Share />} type="outline">
+                  Share
+                </Button>
+              </DialogTrigger>
+            </Dialog>
             {showEdit && (
-              <Button size="large" icon={<Pencil />} type="outline">
-                Edit
-              </Button>
+              <Link to="/settings">
+                <Button size="large" icon={<Pencil />} type="outline">
+                  Edit
+                </Button>
+              </Link>
             )}
           </div>
         </div>

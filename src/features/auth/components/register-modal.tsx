@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import styles from "./modal.module.css";
 import { Button } from "../../../components/button/button";
-import { GoogleIcon } from "./google-icon";
+// import { GoogleIcon } from "./google-icon";
 import { useForm } from "react-hook-form";
 import { Form } from "../../../components/form/form";
 import { NewPasswordInput } from "../../../components/form-inputs/new-password";
@@ -88,13 +88,13 @@ export const RegisterModal = ({
                 Sign Up
               </Button>
 
-              <div className={styles.divider}>
+              {/* <div className={styles.divider}>
                 <span>Or continue with</span>
               </div>
 
               <Button icon={<GoogleIcon />} type="outline" size="large">
                 Continue with Google
-              </Button>
+              </Button> */}
 
               <div className={styles.formFooter}>
                 Already have an account? <a href="/auth/login">Login</a>

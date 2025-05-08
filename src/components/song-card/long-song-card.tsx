@@ -1,5 +1,6 @@
 import {
   EllipsisVertical,
+  ExternalLink,
   Heart,
   ListPlus,
   Pause,
@@ -20,6 +21,8 @@ import {
   DropdownMenuTrigger,
 } from "../dropdown-menu.tsx/dropdown-menu";
 import { toast } from "sonner";
+import { Link } from "react-router";
+import { AudioDuration } from "../audio-duration";
 
 export const LongHorizontalSongCard = ({ song }: { song: Song }) => {
   const {
@@ -49,13 +52,13 @@ export const LongHorizontalSongCard = ({ song }: { song: Song }) => {
     openModal("playlist.add", {
       title: `Add ${song.title} to playlist`,
       description: "Choose what playlist(s) you want to add this song to",
-      id: song.id,
+      id: song.track_id,
     });
   }
 
   return (
     <div className={styles.container} onClick={onClickCard}>
-      <img src={song.imageUrl} alt={song.title} className={styles.image} />
+      <img src={song.image_src} alt={song.title} className={styles.image} />
 
       <div className={styles.textContainer}>
         <div className={styles.titleContainer}>
@@ -63,10 +66,12 @@ export const LongHorizontalSongCard = ({ song }: { song: Song }) => {
         </div>
 
         <div className={styles.infoContainer}>
-          <p className={styles.info}>{song.artist} • 10 plays</p>
-          <p className={styles.info}>{song.album}</p>
+          <p className={styles.info}>
+            {song.artist_name} • <AudioDuration src={song.audio_src} />
+          </p>
+          <p className={styles.info}>{song.album_title}</p>
           <p className={styles.smallInfo}>
-            {song.artist} • 10 plays • {song.album}
+            {song.artist_name} • {song.album_title}
           </p>
         </div>
       </div>
@@ -105,6 +110,14 @@ export const LongHorizontalSongCard = ({ song }: { song: Song }) => {
           />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
+          <Link
+            to={`/track/${song.track_id}`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <DropdownMenuItem>
+              <ExternalLink size={16} /> Go to
+            </DropdownMenuItem>
+          </Link>
           <DropdownMenuItem
             onClick={() =>
               toast.success("Liked song! It's now in your liked songs.")

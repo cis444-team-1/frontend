@@ -11,12 +11,11 @@ import {
 import { Button } from "../button/button";
 import { AudioLinesIcon } from "../audio-lines/audio-lines";
 import { Song } from "../../types/song";
-import { Playlist } from "../../types/playlist";
-import { formatDuration } from "../../lib/utils";
 import { toast } from "sonner";
 import { useModal } from "../../hooks/use-modal";
+import { AudioDuration } from "../audio-duration";
 
-export function TrackTable({ playlist }: { playlist: Playlist }) {
+export function TrackTable({ songs }: { songs: Song[] }) {
   const tableRef = useRef<HTMLTableElement>(null);
   const { registerPanelRef, setActivePanel, setPlaylist } = usePlayback();
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null);
@@ -26,8 +25,8 @@ export function TrackTable({ playlist }: { playlist: Playlist }) {
   }, [registerPanelRef]);
 
   useEffect(() => {
-    setPlaylist(playlist.songs);
-  }, [playlist.songs, setPlaylist]);
+    setPlaylist(songs);
+  }, [songs, setPlaylist]);
 
   return (
     <table
@@ -50,13 +49,13 @@ export function TrackTable({ playlist }: { playlist: Playlist }) {
         </tr>
       </thead>
       <tbody className={styles.tableBody}>
-        {playlist.songs.map((track: Song, index: number) => (
+        {songs.map((track: Song, index: number) => (
           <TrackRow
-            key={track.id}
+            key={track.track_id}
             track={track}
             index={index}
-            isSelected={selectedTrackId === track.id}
-            onSelect={() => setSelectedTrackId(track.id)}
+            isSelected={selectedTrackId === track.track_id}
+            onSelect={() => setSelectedTrackId(track.track_id)}
           />
         ))}
       </tbody>
@@ -117,7 +116,7 @@ function TrackRow({
     openModal("playlist.add", {
       title: `Add ${track.title} to playlist`,
       description: "Choose what playlist(s) you want to add this song to",
-      id: track.id,
+      id: track.track_id,
     });
   }
 
@@ -144,8 +143,8 @@ function TrackRow({
         <div className={styles.trackInfo}>
           <div className={styles.imageWrapper}>
             <img
-              src={track.imageUrl || "/placeholder.svg"}
-              alt={`${track.album} cover`}
+              src={track.image_src || "/placeholder.svg"}
+              alt={`${track.album_title} cover`}
               className={styles.trackImage}
             />
           </div>
@@ -154,11 +153,13 @@ function TrackRow({
       </td>
 
       <td className={`${styles.cell} ${styles.hiddenSm} ${styles.truncate}`}>
-        {track.artist}
+        {track.artist_name}
       </td>
-      <td className={`${styles.cell} ${styles.hiddenMd}`}>{track.album}</td>
+      <td className={`${styles.cell} ${styles.hiddenMd}`}>
+        {track.album_title}
+      </td>
       <td className={`${styles.cell} ${styles.tabularNums}`}>
-        {formatDuration(track.durationSeconds)}
+        <AudioDuration src={track.audio_src} />
       </td>
 
       <td className={styles.cell}>

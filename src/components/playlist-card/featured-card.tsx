@@ -2,6 +2,7 @@ import { ListMusic, ListPlus, Play } from "lucide-react";
 import { Button } from "../button/button";
 import styles from "./featured-card.module.css";
 import { Playlist } from "../../types/playlist";
+import { useGetPublicUser } from "../../api/user";
 
 export const FeaturedPlaylistCard = ({
   playlist,
@@ -12,12 +13,14 @@ export const FeaturedPlaylistCard = ({
   onPlay: () => void;
   onSave: () => void;
 }) => {
+  const user = useGetPublicUser(playlist.user_id || "");
+
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
         <img
-          src={playlist.imageSrc}
-          alt={playlist.name}
+          src={playlist.image_src}
+          alt={playlist.title}
           className={styles.image}
         />
 
@@ -32,10 +35,10 @@ export const FeaturedPlaylistCard = ({
 
       <div className={styles.actions}>
         <div>
-          <div className={styles.title}>{playlist.name}</div>
+          <div className={styles.title}>{playlist.title}</div>
           <div className={styles.info}>
-            <ListMusic size={16} /> Playlist • {playlist.userId} •{" "}
-            {playlist.updatedAt.toDateString()}
+            <ListMusic size={16} /> Playlist •{" "}
+            {user.data?.user_metadata.username || "Unknown User"}
           </div>
         </div>
 

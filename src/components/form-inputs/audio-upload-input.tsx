@@ -5,15 +5,15 @@ import { Button } from "../button/button";
 export const AudioUploadInput = () => {
   const form = useFormContext();
 
-  const watchFile: File = form.watch("audioFile");
+  const watchFile: File = form.watch("audioSrc");
 
   const triggerFileInput = () => {
-    document.getElementById("audioFile")?.click();
+    document.getElementById("audioSrc")?.click();
   };
 
   const handleFileDrop = (files: FileList) => {
     if (files.length > 0 && files[0].type.startsWith("audio/")) {
-      form.setValue("audioFile", files[0], {
+      form.setValue("audioSrc", files[0], {
         shouldValidate: true,
         shouldDirty: true,
       });
@@ -26,7 +26,7 @@ export const AudioUploadInput = () => {
         <Button
           type="text"
           className={styles.removeButton}
-          onClick={() => form.setValue("audioFile", null)}
+          onClick={() => form.setValue("audioSrc", null)}
         >
           Remove
         </Button>
@@ -38,10 +38,10 @@ export const AudioUploadInput = () => {
         onClick={triggerFileInput}
       >
         <input
-          id="audioFile"
+          id="audioSrc"
           type="file"
           accept="audio/*"
-          {...form.register("audioFile")}
+          {...form.register("audioSrc")}
           className={styles.fileInput}
           onChange={(e) => {
             const files = e.target.files;

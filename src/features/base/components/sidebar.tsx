@@ -10,8 +10,7 @@ import {
   Plus,
 } from "lucide-react";
 import { useRef, useEffect, type RefObject } from "react";
-import { usePlaylist } from "../../../hooks/use-playlist";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,9 +24,10 @@ import { usePlayback } from "../../../hooks/use-playback";
 import styles from "../styles.module.css";
 import { useSession } from "../../../hooks/session-hook";
 import { useModal } from "../../../hooks/use-modal";
+import { useGetPersonalPlaylists } from "../../../api/playlist";
 
 export function Sidebar() {
-  const { playlists } = usePlaylist();
+  const playlists = useGetPersonalPlaylists();
   const { openModal } = useModal();
   const navigate = useNavigate();
   const playlistsContainerRef = useRef<HTMLUListElement>(null);
@@ -128,17 +128,19 @@ export function Sidebar() {
       {session && (
         <div className={styles.navSection}>
           <p className={styles.playlistsTitle}>Playlists</p>
-          <ScrollArea className={styles.sidebarScrollAreaContainer}>
-            <ul
-              ref={playlistsContainerRef}
-              className={styles.sidebarList}
-              onKeyDown={(e) => handleKeyNavigation(e, "sidebar")}
-            >
-              {playlists.map((playlist: Playlist) => (
-                <PlaylistRow key={playlist.id} playlist={playlist} />
-              ))}
-            </ul>
-          </ScrollArea>
+          {playlists.data && (
+            <ScrollArea className={styles.sidebarScrollAreaContainer}>
+              <ul
+                ref={playlistsContainerRef}
+                className={styles.sidebarList}
+                onKeyDown={(e) => handleKeyNavigation(e, "sidebar")}
+              >
+                {playlists.data.map((playlist: Playlist) => (
+                  <PlaylistRow key={playlist.playlist_id} playlist={playlist} />
+                ))}
+              </ul>
+            </ScrollArea>
+          )}
         </div>
       )}
     </div>
@@ -147,17 +149,17 @@ export function Sidebar() {
 
 function PlaylistRow({ playlist }: { playlist: Playlist }) {
   const { openModal } = useModal();
+  const isActive =
+    useLocation().pathname === `/playlist/${playlist.playlist_id}`;
+
   return (
     <li className={styles.playlistRowItem}>
-      <NavLink
-        to={`/playlist/${playlist.id}`}
-        className={({ isActive }) =>
-          `${styles.navItem} ${isActive ? styles.active : ""}`
-        }
-        tabIndex={0}
+      <a
+        href={`/playlist/${playlist.playlist_id}`}
+        className={`${styles.navItem} ${isActive ? styles.active : ""}`}
       >
-        {playlist.name}
-      </NavLink>
+        {playlist.title}
+      </a>
 
       <div className={styles.playlistAction}>
         <DropdownMenu>
@@ -173,13 +175,13 @@ function PlaylistRow({ playlist }: { playlist: Playlist }) {
               onClick={(e) => {
                 e.stopPropagation();
                 openModal("playlist.mutate", {
-                  title: `Edit playlist: ${playlist.name}`,
+                  title: `Edit playlist: ${playlist.title}`,
                   description: "Change playlist details",
                   formData: {
-                    title: playlist.name,
-                    description: "LALALLALALALALALALA",
-                    is_public: playlist.visbility === "public", // TODO: CHANGE TO is_public
-                    image_src: playlist.imageSrc, // TODO: CHANGE TO image_src
+                    title: playlist.title,
+                    description: playlist.description,
+                    is_public: playlist.is_public,
+                    image_src: playlist.image_src,
                   },
                 });
               }}

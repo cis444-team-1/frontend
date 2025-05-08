@@ -7,26 +7,26 @@ import { useState } from "react";
 
 export const VerticalPlaylistCard = ({
   playlist,
+  username,
   showVisibility = false,
 }: {
   playlist: Playlist;
   showVisibility?: boolean;
+  username?: string;
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   return (
     <div>
       <Link
-        to={`/playlist/${playlist.id}?play=true`}
+        to={`/playlist/${playlist.playlist_id}?play=true`}
         className={styles.imageContainer}
       >
         <img
-          src={playlist.imageSrc}
-          alt={playlist.name}
+          src={playlist.image_src || "/placeholder.svg"}
+          alt={playlist.title}
           onLoad={() => setImageLoaded(true)}
-          style={{
-            display: imageLoaded ? "block" : "none",
-            borderRadius: "0.25rem",
-          }}
+          className={imageLoaded ? styles.image : ""}
+          style={!imageLoaded ? { display: "none" } : {}}
         />
 
         {!imageLoaded && <div className={styles.skeleton}></div>}
@@ -37,7 +37,7 @@ export const VerticalPlaylistCard = ({
 
         {showVisibility && (
           <Badge
-            label={playlist.visbility}
+            label={playlist.is_public ? "Public" : "Private"}
             size="tiny"
             variant="full"
             color="primary"
@@ -46,11 +46,8 @@ export const VerticalPlaylistCard = ({
           />
         )}
       </Link>
-      <p className={styles.playlistTitle}>{playlist.name}</p>
-      <p className={styles.playlistInfo}>
-        {playlist.userId} • {playlist.songs.length} Tracks
-      </p>
-      <div></div>
+      <p className={styles.playlistTitle}>{playlist.title}</p>
+      <p className={styles.playlistInfo}>{username || "Unknown user"}</p>
     </div>
   );
 };

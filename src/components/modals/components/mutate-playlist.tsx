@@ -51,6 +51,8 @@ export const MutatePlaylist = ({
 
   const handleCreatePlaylist = (values: PlaylistSchema) => {
     createPlaylist.mutate(values);
+
+    if (createPlaylist.isSuccess) onCancel();
   };
 
   return (

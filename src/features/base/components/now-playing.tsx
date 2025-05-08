@@ -13,7 +13,7 @@ export function NowPlaying() {
       <h2 className={styles.nowPlayingTitle}>Now Playing</h2>
       <div className={styles.nowPlayingImageContainer}>
         <img
-          src={currentTrack.imageUrl || "/placeholder.svg"}
+          src={currentTrack.image_src || "/placeholder.svg"}
           alt={currentTrack.title}
           className={styles.nowPlayingImage}
         />
@@ -25,20 +25,20 @@ export function NowPlaying() {
         </div>
         <div>
           <p className={styles.nowPlayingInfoLabel}>Artist</p>
-          <p className={styles.nowPlayingInfoText}>{currentTrack.artist}</p>
+          <p className={styles.nowPlayingInfoText}>
+            {currentTrack.artist_name || "Unknown"}
+          </p>
         </div>
         <div>
           <p className={styles.nowPlayingInfoLabel}>Album</p>
-          <p className={styles.nowPlayingInfoText}>{currentTrack.album}</p>
-        </div>
-        <div>
-          <p className={styles.nowPlayingInfoLabel}>Tags</p>
-          <p className={styles.nowPlayingInfoText}>{currentTrack.genre}</p>
+          <p className={styles.nowPlayingInfoText}>
+            {currentTrack.album_title || "None"}
+          </p>
         </div>
         <div>
           <p className={styles.nowPlayingInfoLabel}>Uploaded</p>
           <p className={styles.nowPlayingInfoText}>
-            {currentTrack.createdAt.toLocaleString()}
+            {currentTrack.created_at.toLocaleString()}
           </p>
         </div>
       </div>

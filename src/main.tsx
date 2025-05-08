@@ -31,6 +31,7 @@ import { ModalProvider } from "./context/modal-context";
 import { ModalRenderer } from "./components/modals/modal-renderer";
 import TermsAndConditionsPage from "./features/terms/page";
 import PrivacyPolicyPage from "./features/privacy/page";
+import TrackPage from "./features/track/page";
 
 /**
  * These routes are used by the playback layout.
@@ -53,6 +54,7 @@ const mainRoutes = {
     { path: "/settings", element: <SettingsPage /> },
     { path: "/terms", element: <TermsAndConditionsPage /> },
     { path: "/privacy", element: <PrivacyPolicyPage /> },
+    { path: "/track/:id", element: <TrackPage /> },
     { path: "*", element: <Navigate to="/" /> }, // Catch-all route for unknown routes
   ],
 };

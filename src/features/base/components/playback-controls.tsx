@@ -21,13 +21,13 @@ export function TrackInfo() {
       {currentTrack && (
         <>
           <img
-            src={currentTrack.imageUrl || "/placeholder.svg"}
+            src={currentTrack.image_src || "/placeholder.svg"}
             alt="Now playing"
             className={styles.trackInfoImage}
           />
           <div className={styles.trackInfoTextContainer}>
             <div className={styles.trackTitle}>{currentTrack.title}</div>
-            <div className={styles.trackArtist}>{currentTrack.artist}</div>
+            <div className={styles.trackArtist}>{currentTrack.artist_name}</div>
           </div>
           <Button type="text" icon={<Heart />} />
         </>
@@ -273,10 +273,14 @@ export function PlaybackControls() {
     if ("mediaSession" in navigator && currentTrack) {
       navigator.mediaSession.metadata = new MediaMetadata({
         title: currentTrack.title,
-        artist: currentTrack.artist,
-        album: currentTrack.album || undefined,
+        artist: currentTrack.artist_name,
+        album: currentTrack.album_title || undefined,
         artwork: [
-          { src: currentTrack.imageUrl!, sizes: "512x512", type: "image/jpeg" },
+          {
+            src: currentTrack.image_src!,
+            sizes: "512x512",
+            type: "image/jpeg",
+          },
         ],
       });
 

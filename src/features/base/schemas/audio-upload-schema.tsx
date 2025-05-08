@@ -13,7 +13,6 @@ export const AudioUpload = z.object({
   title: z.string(),
   imageSrc: z.instanceof(File).optional().nullable(),
   description: z.string().optional(),
-  lyrics: z.string().optional(),
   artist: z.string().optional(), // name of artist not id
   album: z.string(), // name of album not id
 });

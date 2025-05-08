@@ -1,5 +1,4 @@
 import { ModalData } from "../../../context/modal-context";
-import { playlists } from "../../../types/playlist";
 import { Button } from "../../button/button";
 import {
   DialogContent,
@@ -28,9 +27,7 @@ export const Share = ({
         </DialogDescription>
       </DialogHeader>
       <ScrollArea>
-        {playlists.map((playlist) => (
-          <p key={playlist.id}>{playlist.name}</p>
-        ))}
+        <>Hi</>
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
       <DialogFooter>

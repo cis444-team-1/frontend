@@ -21,6 +21,9 @@ import styles from "../styles/modal.module.css";
 import { z } from "zod";
 import { AudioUploadInput } from "../../form-inputs/audio-upload-input";
 import { AudioUpload } from "../../../features/base/schemas/audio-upload-schema";
+import { useCreateTrack } from "../../../api/tracks";
+import { Alert, AlertDescription, AlertTitle } from "../../alert/alert";
+import { AlertCircle } from "lucide-react";
 
 export const MutateSong = ({
   data,
@@ -30,6 +33,7 @@ export const MutateSong = ({
   onCancel: () => void;
 }) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const createTrack = useCreateTrack();
 
   const form = useForm<z.infer<typeof AudioUpload>>({
     resolver: zodResolver(AudioUpload),
@@ -37,7 +41,6 @@ export const MutateSong = ({
       audioSrc: null,
       title: "",
       description: "",
-      lyrics: "",
       imageSrc: null,
       artist: "",
       album: "",
@@ -50,8 +53,12 @@ export const MutateSong = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
+  useEffect(() => {
+    if (createTrack.isSuccess) onCancel();
+  }, [createTrack.isSuccess, onCancel]);
+
   const onSubmit = (values: z.infer<typeof AudioUpload>) => {
-    console.log(values);
+    createTrack.mutate(values);
   };
 
   return (
@@ -69,15 +76,13 @@ export const MutateSong = ({
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className={styles.formContainer}>
-            {/* {createPlaylist.isError && (
+            {createTrack.isError && (
               <Alert variant="destructive">
                 <AlertCircle />
                 <AlertTitle>Error</AlertTitle>
-                <AlertDescription>
-                  {createPlaylist.error.error}
-                </AlertDescription>
+                <AlertDescription>{createTrack.error.error}</AlertDescription>
               </Alert>
-            )} */}
+            )}
 
             <AudioUploadInput />
 
@@ -99,13 +104,6 @@ export const MutateSong = ({
               name="description"
               label="Description"
               placeholder="Enter playlist description"
-            />
-
-            <TextAreaFormInput
-              name="lyrics"
-              label="Lyrics"
-              placeholder="Enter lyrics"
-              limit={2000}
             />
 
             <SimpleFormInput
@@ -136,7 +134,11 @@ export const MutateSong = ({
             >
               Cancel
             </Button>
-            <Button htmlType="submit" size="medium">
+            <Button
+              htmlType="submit"
+              size="medium"
+              loading={createTrack.isPending}
+            >
               {/** If there is formData, then we are updating the song */}
               {data?.formData ? "Update" : "Upload"}
             </Button>

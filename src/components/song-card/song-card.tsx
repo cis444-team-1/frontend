@@ -1,12 +1,12 @@
 import {
   EllipsisVertical,
+  ExternalLink,
   Heart,
   ListPlus,
   Pause,
   Play,
   Share,
 } from "lucide-react";
-import { formatDuration } from "../../lib/utils";
 import { Song } from "../../types/song";
 import { Button } from "../button/button";
 
@@ -21,6 +21,8 @@ import {
 } from "../dropdown-menu.tsx/dropdown-menu";
 import { useModal } from "../../hooks/use-modal";
 import { toast } from "sonner";
+import { Link } from "react-router";
+import { AudioDuration } from "../audio-duration";
 
 export const HorizontalSongCard = ({
   song,
@@ -55,7 +57,7 @@ export const HorizontalSongCard = ({
     openModal("playlist.add", {
       title: `Add ${song.title} to playlist`,
       description: "Choose what playlist(s) you want to add this song to",
-      id: song.id,
+      id: song.track_id,
     });
   }
 
@@ -64,7 +66,7 @@ export const HorizontalSongCard = ({
       {ranking && <p className={styles.ranking}>{ranking}</p>}
 
       <div className={styles.imageWrapper}>
-        <img src={song.imageUrl} alt={song.title} className={styles.image} />
+        <img src={song.image_src} alt={song.title} className={styles.image} />
 
         <Button
           size="medium"
@@ -93,8 +95,8 @@ export const HorizontalSongCard = ({
       <div>
         <p className={styles.title}>{song.title}</p>
         <p className={styles.info}>
-          {song.artist}
-          {song.album} • {formatDuration(song.durationSeconds)}
+          {song.artist_name}
+          {song.album_title} • <AudioDuration src={song.audio_src} />
         </p>
       </div>
 
@@ -108,6 +110,14 @@ export const HorizontalSongCard = ({
           />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
+          <Link
+            to={`/track/${song.track_id}`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <DropdownMenuItem>
+              <ExternalLink size={16} /> Go to
+            </DropdownMenuItem>
+          </Link>
           <DropdownMenuItem
             onClick={() =>
               toast.success("Liked song! It's now in your liked songs.")

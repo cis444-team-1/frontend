@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import styles from "./modal.module.css";
 import { Button } from "../../../components/button/button";
-import { GoogleIcon } from "./google-icon";
+// import { GoogleIcon } from "./google-icon";
 import { useForm } from "react-hook-form";
 import { Form } from "../../../components/form/form";
 import { SimpleFormInput } from "../../../components/form-inputs/simple-form-input";
@@ -9,7 +9,6 @@ import { PasswordFormInput } from "../../../components/form-inputs/password-inpu
 import { LoginSchema } from "../schemas/auth-schemas";
 import { z } from "zod";
 import { useLogin } from "../../../api/auth";
-import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Alert,
@@ -86,7 +85,7 @@ export const LoginModal = ({
                 Login
               </Button>
 
-              <div className={styles.divider}>
+              {/* <div className={styles.divider}>
                 <span>Or continue with</span>
               </div>
 
@@ -99,7 +98,7 @@ export const LoginModal = ({
                 }}
               >
                 Continue with Google
-              </Button>
+              </Button> */}
 
               <div className={styles.formFooter}>
                 Don&apos;t have an account? <a href="/auth/register">Sign up</a>
