@@ -48,7 +48,7 @@ export default function SearchPage() {
       <div className={styles.sectionContainer}>
         <p className={styles.pageTitle}>Top Results</p>
 
-        {search.data?.playlists[0] && (
+        {search.data?.playlists && search.data?.playlists[0] && (
           <FeaturedPlaylistCard
             playlist={search.data.playlists[0]}
             onPlay={() =>
@@ -57,7 +57,7 @@ export default function SearchPage() {
             onSave={() => {}}
           />
         )}
-        {search.data?.tracks[0] && (
+        {search.data?.tracks && search.data?.tracks[0] && (
           <FeaturedSongCard
             isPlaying={
               playback.isPlaying &&

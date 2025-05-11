@@ -141,3 +141,13 @@ export function useGetTopCharts() {
     },
   });
 }
+
+export function useGetDeleteTrack() {
+  return useMutation({
+    mutationFn: async ({ trackId }: { trackId: string }) => {
+      await api.post(routes.deleteTrack(trackId), {
+        track_id: trackId,
+      });
+    },
+  });
+}

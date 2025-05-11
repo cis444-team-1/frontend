@@ -19,4 +19,5 @@ export const routes = {
   topCharts: "/tracks/top-charts",
   newReleases: "/playlists/new-releases",
   getTrackById: (id: string) => `/tracks/${id}`,
+  deleteTrack: (id: string) => `/tracks/${id}`,
 };
